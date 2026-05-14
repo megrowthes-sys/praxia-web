@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Habla con Praxia · Asistente conversacional</title>
+<meta name="description" content="Conversación previa con el asistente de Praxia Atelier. Cualifica tu proyecto en 5 minutos antes de la llamada con Marta." />
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --paper: #f7f4ec;
+    --ink: #1a1a1a;
+    --ink-soft: #5a5a5a;
+    --line: #e6e0d4;
+    --accent: #b08a4f;
+    --accent-soft: #ebe2cf;
+    --card: #fbf8f1;
+  }
+  body { background: var(--paper); color: var(--ink); font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; }
+  .serif { font-family: "Playfair Display", Georgia, serif; }
+  .mono { font-family: "JetBrains Mono", "Courier New", monospace; }
+  .bg-paper { background: var(--paper); }
+  .bg-card { background: var(--card); }
+  .bg-accent { background: var(--accent); color: var(--paper); }
+  .bg-accent-soft { background: var(--accent-soft); }
+  .border-line { border-color: var(--line); }
+  .text-ink { color: var(--ink); }
+  .text-ink-soft { color: var(--ink-soft); }
+  .text-accent { color: var(--accent); }
+</style>
+</head>
+<body class="text-ink">
+
+<!-- Top bar -->
+<header class="border-b border-line bg-paper sticky top-0 z-30">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <div class="w-7 h-7 border border-ink flex items-center justify-center">
+        <span class="serif text-lg leading-none">P</span>
+      </div>
+      <div class="leading-tight">
+        <div class="serif text-lg">Praxia <span class="text-ink-soft">Atelier</span></div>
+        <div class="mono text-[10px] text-ink-soft tracking-widest uppercase">Ecosystem architecture</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-8 text-sm text-ink-soft">
+      <a href="index.html#metodo" class="hover:text-ink">Método</a>
+      <a href="index.html#capsulas" class="hover:text-ink">Cápsulas</a>
+      <a href="index.html#casos" class="hover:text-ink">Casos</a>
+      <a href="Praxia_Atelier_Caso_Mesa_de_Trabajo.html" class="hover:text-ink">Mesa de trabajo</a>
+      <a href="Praxia_Atelier_Chat.html" class="text-ink underline-offset-4 underline">Habla con Praxia</a>
+    </nav>
+    <a href="https://cal.com/marta-escobar-rojas-teatxg/30min" target="_blank" rel="noopener"
+       class="text-sm bg-accent px-4 py-2 rounded-sm hover:opacity-90">Reservar diagnóstico</a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="border-b border-line">
+  <div class="max-w-4xl mx-auto px-6 py-16 text-center">
+    <span class="mono text-[11px] uppercase tracking-widest text-accent">Asistente conversacional</span>
+    <h1 class="serif text-4xl md:text-5xl mt-4 leading-[1.1]">
+      Cuéntame qué tienes en la cabeza.
+    </h1>
+    <p class="text-ink-soft text-lg mt-6 max-w-2xl mx-auto">
+      En cinco minutos sé si Praxia encaja con tu proyecto y qué cápsula te conviene. Marta verá tus respuestas solo si decides agendar reunión.
+    </p>
+  </div>
+</section>
+
+<!-- Mensaje guía hacia el chatbox flotante -->
+<section class="bg-card border-b border-line">
+  <div class="max-w-3xl mx-auto px-6 py-16 text-center">
+    <p class="text-ink-soft text-base leading-relaxed">
+      El asistente está abajo a la derecha — pulsa la pastilla <strong class="text-ink">Habla con Praxia</strong> para empezar la conversación. Si lo prefieres, puedes ir directo a reservar 30 min con Marta:
+    </p>
+    <div class="mt-8">
+      <a href="https://cal.com/marta-escobar-rojas-teatxg/30min" target="_blank" rel="noopener"
+         class="inline-block bg-ink text-paper px-6 py-3 text-sm rounded-sm hover:bg-accent transition">
+        Reservar 30 min con Marta · gratis
+      </a>
+    </div>
+    <p class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-6">
+      One-pager garantizado · Sin compromiso
+    </p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-paper border-t border-line">
+  <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between gap-6 text-sm text-ink-soft">
+    <div>
+      <div class="serif text-lg text-ink">Praxia Atelier</div>
+      <div class="mono text-[11px] uppercase tracking-widest mt-1">Madrid · 2026</div>
+    </div>
+    <div class="flex gap-6">
+      <a href="aviso-legal.html" class="hover:text-ink">Aviso legal</a>
+      <a href="privacidad.html" class="hover:text-ink">Privacidad</a>
+      <a href="mailto:info@praxia-atelier.net" class="hover:text-ink">info@praxia-atelier.net</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Praxia Chatbox · cargado externo (un solo archivo para todas las páginas) -->
+<link rel="stylesheet" href="praxia-chatbox.css">
+<script src="praxia-chatbox.js" defer></script>
+
+</body>
+</html>

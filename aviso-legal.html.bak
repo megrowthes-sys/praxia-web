@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Aviso Legal · Praxia Atelier</title>
+<meta name="description" content="Aviso legal y condiciones de uso del sitio web de Praxia Atelier." />
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1f2e;
+    --ink-soft: #44485a;
+    --paper: #faf8f3;
+    --line: #e6e1d6;
+    --accent: #b9522e;
+    --accent-soft: #f3ddd0;
+  }
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .serif { font-family: "Fraunces", Georgia, serif; font-optical-sizing: auto; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .prose-legal h2 { font-family: "Fraunces", serif; font-size: 22px; line-height: 1.3; margin-top: 36px; margin-bottom: 12px; color: var(--ink); }
+  .prose-legal h3 { font-family: "Fraunces", serif; font-size: 17px; line-height: 1.4; margin-top: 24px; margin-bottom: 8px; color: var(--ink); }
+  .prose-legal p { color: var(--ink-soft); margin-bottom: 14px; line-height: 1.65; }
+  .prose-legal ul { color: var(--ink-soft); margin-bottom: 14px; padding-left: 24px; line-height: 1.65; }
+  .prose-legal ul li { margin-bottom: 6px; list-style: disc; }
+  .prose-legal strong { color: var(--ink); font-weight: 600; }
+  .prose-legal a { color: var(--accent); text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<header class="border-b border-line bg-paper sticky top-0 z-30" style="border-color: var(--line);">
+  <div class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <div class="w-7 h-7 border border-ink flex items-center justify-center" style="border-color: var(--ink);">
+        <span class="serif text-lg leading-none">P</span>
+      </div>
+      <div class="leading-tight">
+        <div class="serif text-lg">Praxia <span style="color: var(--ink-soft);">Atelier</span></div>
+        <div class="mono text-[10px] tracking-widest uppercase" style="color: var(--ink-soft);">Aviso Legal</div>
+      </div>
+    </a>
+    <a href="index.html" class="text-sm" style="color: var(--ink-soft);">← Volver al inicio</a>
+  </div>
+</header>
+
+<main class="max-w-4xl mx-auto px-6 py-16 md:py-20 prose-legal">
+
+  <span class="mono text-[11px] uppercase tracking-widest" style="color: var(--accent);">Información legal</span>
+  <h1 class="serif text-4xl md:text-5xl mt-3 leading-[1.1]">Aviso Legal y Condiciones de Uso</h1>
+  <p class="mono text-xs mt-4" style="color: var(--ink-soft);">Última actualización · 30 de abril de 2026</p>
+
+  <hr class="my-10" style="border-color: var(--line);">
+
+  <h2>1. Identificación del titular</h2>
+  <p>
+    En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se ofrecen a continuación los datos identificativos del titular de este sitio web:
+  </p>
+  <ul>
+    <li><strong>Titular:</strong> Marta Escobar Rojas</li>
+    <li><strong>Nombre comercial:</strong> Praxia Atelier</li>
+    <li><strong>NIF:</strong> 02663604C</li>
+    <li><strong>Domicilio profesional:</strong> Madrid, España</li>
+    <li><strong>Teléfono de contacto:</strong> <a href="tel:+34629291238">+34 629 291 238</a></li>
+    <li><strong>Correo electrónico de contacto:</strong> <a href="mailto:info@praxia-atelier.net">info@praxia-atelier.net</a></li>
+    <li><strong>Actividad profesional:</strong> Servicios de consultoría estratégica, diseño de ecosistemas digitales y arquitectura de producto.</li>
+  </ul>
+
+  <h2>2. Objeto</h2>
+  <p>
+    El presente aviso legal regula el uso del sitio web <strong>praxia-atelier.net</strong> (en adelante "el sitio web"), del que es titular Marta Escobar Rojas, con la denominación comercial Praxia Atelier.
+  </p>
+  <p>
+    La navegación por el sitio web atribuye la condición de usuario del mismo e implica la aceptación plena y sin reservas de todas las disposiciones incluidas en este aviso legal, así como en la Política de Privacidad. Si el usuario no estuviera de acuerdo con cualquiera de las condiciones aquí establecidas, deberá abstenerse de utilizar el sitio web.
+  </p>
+
+  <h2>3. Condiciones de uso</h2>
+  <p>
+    El usuario se compromete a hacer un uso adecuado y lícito del sitio web y de los contenidos del mismo, conforme a la legislación aplicable, al presente aviso legal, a las buenas costumbres y al orden público.
+  </p>
+  <p>El usuario se compromete específicamente a abstenerse de:</p>
+  <ul>
+    <li>Utilizar los contenidos con fines o efectos contrarios a la ley, a la moral o al orden público.</li>
+    <li>Reproducir, copiar, distribuir, transformar, comunicar públicamente o explotar comercialmente cualquier contenido del sitio web sin la autorización previa y por escrito del titular.</li>
+    <li>Introducir o difundir virus informáticos o cualquier otro sistema físico o lógico susceptible de provocar daños en los sistemas del titular o de terceros.</li>
+    <li>Suplantar la identidad del titular, de cualquier colaborador o de un tercero.</li>
+  </ul>
+
+  <h2>4. Propiedad intelectual e industrial</h2>
+  <p>
+    Todos los contenidos del sitio web —incluyendo, sin limitación, textos, fotografías, gráficos, imágenes, iconos, tecnología, software, links, contenidos audiovisuales y sonoros, así como su diseño gráfico y códigos fuente— son propiedad intelectual de Marta Escobar Rojas (Praxia Atelier) o de terceros que han autorizado su uso.
+  </p>
+  <p>
+    Los nombres comerciales, marcas o signos distintivos de cualquier clase aparecidos en el sitio web son propiedad de su titular o de terceros, sin que pueda entenderse que el uso o acceso al sitio web atribuya al usuario derecho alguno sobre los mismos.
+  </p>
+  <p>
+    Las metodologías, marcos de análisis, plantillas, prototipos y materiales originales desarrollados por Praxia Atelier están protegidos por la legislación vigente en materia de propiedad intelectual. Su reproducción, distribución, comunicación pública y transformación, total o parcial, sin la autorización expresa de la titular, constituye una infracción de los derechos de propiedad intelectual.
+  </p>
+
+  <h2>5. Casos de demostración y prototipos</h2>
+  <p>
+    Los casos de demostración accesibles desde el sitio web (incluidos, sin carácter limitativo, "Bodega Valdescuro" y "Clínica Lumen") son <strong>casos ficticios</strong> creados por Praxia Atelier exclusivamente con fines comerciales y de demostración del método del estudio. Cualquier parecido con personas, empresas, marcas o productos reales es coincidencia. Las cifras, niveles, proyecciones y datos contenidos en dichos casos son ilustrativos y no constituyen un compromiso ni una garantía de resultados en proyectos reales.
+  </p>
+
+  <h2>6. Servicios ofrecidos</h2>
+  <p>
+    Praxia Atelier presta servicios de consultoría estratégica y diseño de ecosistemas digitales. La información publicada en el sitio web sobre cápsulas de servicio, plazos y precios tiene <strong>carácter orientativo</strong>. Los servicios concretos se formalizarán mediante propuesta firmada y contrato específico, en el que se detallarán alcance, calendario, entregables, condiciones económicas y obligaciones de las partes.
+  </p>
+  <p>
+    Praxia Atelier es un estudio de consultoría y diseño. La implementación técnica de los proyectos (desarrollo de software, integraciones, etc.) se realiza en colaboración con equipo externo coordinado por la titular, que será debidamente identificado en cada propuesta.
+  </p>
+
+  <h2>7. Enlaces a sitios de terceros</h2>
+  <p>
+    El sitio web puede contener enlaces a páginas web de terceros. Praxia Atelier no asume responsabilidad alguna sobre el contenido, la disponibilidad o las prácticas de privacidad de dichos sitios externos. La inclusión de un enlace no implica relación, recomendación ni respaldo del sitio enlazado.
+  </p>
+
+  <h2>8. Exclusión de garantías y responsabilidad</h2>
+  <p>
+    Praxia Atelier no garantiza la disponibilidad y continuidad ininterrumpida del sitio web, ni la ausencia de errores en el mismo o en sus contenidos. En la medida permitida por la legislación aplicable, queda excluida cualquier responsabilidad por los daños y perjuicios de toda naturaleza que puedan derivarse de la falta de disponibilidad del sitio web o de la presencia de virus o de otros elementos lesivos.
+  </p>
+
+  <h2>9. Modificaciones</h2>
+  <p>
+    Praxia Atelier se reserva el derecho de modificar, en cualquier momento y sin previo aviso, la presentación, configuración y contenidos del sitio web, así como las condiciones recogidas en este aviso legal. Es responsabilidad del usuario revisar periódicamente este aviso para conocer su versión vigente.
+  </p>
+
+  <h2>10. Legislación aplicable y jurisdicción</h2>
+  <p>
+    El presente aviso legal se rige por la legislación española. Para la resolución de cualquier controversia derivada del uso del sitio web, las partes se someterán a los Juzgados y Tribunales del domicilio del titular, salvo que una norma imperativa establezca otro fuero.
+  </p>
+
+  <hr class="my-12" style="border-color: var(--line);">
+
+  <p class="mono text-[11px] uppercase tracking-widest text-center" style="color: var(--ink-soft);">
+    © 2026 · Marta Escobar Rojas · Praxia Atelier · Todos los derechos reservados
+  </p>
+
+</main>
+
+<footer class="border-t" style="border-color: var(--line); background: var(--paper);">
+  <div class="max-w-4xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between gap-4 text-sm" style="color: var(--ink-soft);">
+    <a href="index.html" class="flex items-center gap-2 hover:opacity-80">
+      ← Volver al inicio
+    </a>
+    <div class="flex flex-wrap gap-6">
+      <a href="aviso-legal.html" class="hover:opacity-80">Aviso legal</a>
+      <a href="privacidad.html" class="hover:opacity-80">Política de privacidad</a>
+      <a href="mailto:info@praxia-atelier.net" class="hover:opacity-80">Contacto</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Praxia Chatbox · cargado externo (un solo archivo para todas las páginas) -->
+<link rel="stylesheet" href="praxia-chatbox.css">
+<script src="praxia-chatbox.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+============================================================
+PLANTILLA · NUEVO INSIGHT (aparición externa)
+============================================================
+Copia este bloque entero y pégalo en el chat con el asistente
+de Praxia, rellenando los campos. En 2 minutos lo añade.
+Si tienes imagen, ADJÚNTALA al chat junto con este texto.
+============================================================
+
+Nuevo Insight:
+
+TIPO: [elige uno: Prensa · Podcast · Vídeo · Entrevista · Panel · Mención]
+
+FECHA: [YYYY-MM-DD o solo YYYY-MM si solo conoces el mes · ej. 2026-04-15]
+
+MEDIO: [ej. El País Negocios · Itnig Podcast · LinkedIn de Marta · Cinco Días]
+
+TÍTULO: [título exacto tal como aparece en el medio]
+
+RESUMEN: [2-3 líneas sobre el tema tratado y por qué importa para
+el lector que entra a la web de Praxia. Tono editorial, no
+publicitario. Ejemplo:
+
+"Marta Escobar comenta para El País Negocios la tendencia de
+family offices que crean AIE para coinvertir con sus pares en
+lugar de pasar por fondos tradicionales. Cubre tres casos
+concretos del último año."]
+
+ENLACE: [URL pública directa al contenido · siempre verificada
+y abierta sin login. Si está detrás de paywall, indícalo.]
+
+IMAGEN: [opcional pero muy recomendado · ADJUNTA la imagen al
+chat junto con este texto.
+
+Qué imagen usar:
+- Para Prensa → captura del titular del artículo o foto del
+  medio. Si tienen og:image bonita, sirve también.
+- Para Podcast → carátula del episodio, foto del podcaster, o
+  imagen oficial del show.
+- Para Vídeo → miniatura/thumbnail del vídeo.
+- Para Entrevista → foto principal de la entrevista o del
+  entrevistado.
+- Para Panel → foto del evento o cartel del panel.
+
+Si no tienes imagen, déjalo vacío y la tarjeta saldrá con un
+placeholder visual coherente con el sistema editorial. La web
+funciona igual; solo queda más bonita con imagen.
+
+Tamaño ideal: 1200x630 px o similar (formato horizontal).
+Peso ideal: menos de 200 KB.]
+
+
+============================================================
+EJEMPLO COMPLETO RELLENADO (no es real)
+============================================================
+
+Nuevo Insight:
+TIPO: Podcast
+FECHA: 2026-04-15
+MEDIO: Itnig Podcast · ep. 412
+TÍTULO: "Diseñar negocios completos: la consultoría que se cose
+con producto"
+RESUMEN: Conversación con Bernat Farrero sobre el modelo de
+Praxia, cómo se factura por cápsulas en lugar de horas, y por
+qué la integración entre las ocho capas es el verdadero
+producto. Cubre también la decisión de no escalar a equipo
+fijo y trabajar con bolsa de freelancers.
+ENLACE: https://itnig.net/podcast/412
+IMAGEN: [adjunto carátula del episodio]
+
+============================================================

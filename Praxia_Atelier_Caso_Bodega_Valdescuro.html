@@ -1,0 +1,1148 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Caso · Bodega Valdescuro · Praxia Atelier</title>
+<meta name="description" content="Caso ficticio · Cómo Praxia Atelier diseñaría el ecosistema digital y el vehículo de coinversión de una bodega familiar premium." />
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1f2e;
+    --ink-soft: #44485a;
+    --paper: #faf8f3;
+    --line: #e6e1d6;
+    --accent: #6b1d23;        /* burgundy / vino tinto */
+    --accent-soft: #ecd9da;
+    --moss: #4a5d3a;          /* viña */
+    --moss-soft: #d8dfcd;
+    --gold: #b08d3a;          /* etiqueta dorada */
+    --gold-soft: #f1e6c5;
+    --slate: #4b5d6e;
+    --slate-soft: #d2dce4;
+    --terra: #b9522e;
+  }
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .serif { font-family: "Fraunces", Georgia, serif; font-optical-sizing: auto; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .bg-paper { background: var(--paper); }
+  .bg-card { background: #ffffff; }
+  .text-ink { color: var(--ink); }
+  .text-ink-soft { color: var(--ink-soft); }
+  .text-accent { color: var(--accent); }
+  .bg-accent { background: var(--accent); color: #fff; }
+  .bg-accent-soft { background: var(--accent-soft); color: var(--accent); }
+  .bg-moss-soft { background: var(--moss-soft); color: var(--moss); }
+  .bg-gold-soft { background: var(--gold-soft); color: var(--gold); }
+  .bg-slate-soft { background: var(--slate-soft); color: var(--slate); }
+  .border-line { border-color: var(--line); }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+  .num { font-family: "Fraunces", serif; font-weight: 600; font-size: 14px; color: var(--accent); }
+  .underline-soft { background-image: linear-gradient(var(--accent), var(--accent)); background-position: 0 95%; background-repeat: no-repeat; background-size: 100% 2px; padding-bottom: 2px; }
+  .grid-bg {
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 4px; }
+  .card-accent { border-left: 3px solid var(--accent); }
+  .card-moss { border-left: 3px solid var(--moss); }
+  .card-gold { border-left: 3px solid var(--gold); }
+  .card-slate { border-left: 3px solid var(--slate); }
+  .arrow { font-family: "JetBrains Mono", monospace; color: var(--accent); }
+  /* Tabs */
+  .tabs { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 1px solid var(--line); margin-bottom: 24px; }
+  .tab-btn {
+    padding: 12px 22px;
+    border: 0;
+    background: transparent;
+    color: var(--ink-soft);
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all .15s ease;
+  }
+  .tab-btn:hover { color: var(--ink); }
+  .tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 600;
+  }
+  .panel { display: none; animation: fadein .25s ease; }
+  .panel.active { display: block; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  /* Mockup frame */
+  .browser {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(20, 30, 35, .08);
+  }
+  .browser-bar {
+    background: linear-gradient(to bottom, #f5f0e6, #ece6d8);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dot { width: 12px; height: 12px; border-radius: 999px; }
+  .browser-url {
+    flex: 1;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 5px 12px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-left: 6px;
+  }
+
+  /* Brand mark */
+  .vald-mark { display: inline-flex; align-items: center; gap: 8px; }
+  .vald-symbol {
+    width: 22px; height: 26px;
+    background: linear-gradient(to bottom, var(--accent) 70%, var(--gold) 70%);
+    border-radius: 1px 1px 50% 50% / 1px 1px 8px 8px;
+  }
+  .vald-name { font-family: "Fraunces", serif; font-size: 16px; letter-spacing: .12em; }
+
+  /* App sidebar */
+  .app-side {
+    background: #fbf8f0;
+    border-right: 1px solid var(--line);
+    width: 200px;
+    padding: 16px 12px;
+    flex-shrink: 0;
+  }
+  .nav-item { padding: 8px 10px; border-radius: 4px; font-size: 13px; color: var(--ink-soft); display: flex; align-items: center; gap: 10px; cursor: pointer; }
+  .nav-item.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  .nav-icon { width: 14px; height: 14px; border-radius: 3px; background: currentColor; opacity: .6; }
+
+  /* Pequeñas tarjetas de stats */
+  .marker-card { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 14px; }
+  .marker-num { font-family: "Fraunces", serif; font-size: 26px; line-height: 1; }
+  .marker-label { font-family: "JetBrains Mono", monospace; font-size: 9.5px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase; margin-top: 6px; }
+  .marker-trend { font-size: 11px; margin-top: 6px; color: var(--accent); }
+
+  /* Avatar bubble */
+  .bubble {
+    background: var(--accent-soft);
+    border-radius: 14px 14px 14px 4px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--ink);
+    max-width: 78%;
+    line-height: 1.5;
+  }
+  .bubble-user {
+    background: var(--ink);
+    color: #fff;
+    border-radius: 14px 14px 4px 14px;
+    margin-left: auto;
+  }
+
+  /* Simulator */
+  .slider-wrap { display: flex; flex-direction: column; gap: 4px; }
+  .slider-label { display: flex; justify-content: space-between; font-size: 12px; }
+  .slider-label .v { font-family: "Fraunces", serif; font-weight: 600; color: var(--accent); }
+  input[type=range] { -webkit-appearance: none; height: 4px; background: var(--line); border-radius: 999px; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: var(--accent); border-radius: 999px; cursor: pointer; }
+
+  .marker { width: 8px; height: 8px; border-radius: 999px; display: inline-block; }
+  .ribbon {
+    display: inline-block;
+    background: var(--gold-soft);
+    color: var(--gold);
+    padding: 3px 10px;
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  /* Diagram */
+  .node { background: #fff; border: 1px solid var(--line); padding: 12px 14px; border-radius: 4px; }
+  .node-title { font-family: "Fraunces", serif; font-size: 14px; }
+  .node-tag { font-family: "JetBrains Mono", monospace; font-size: 10px; color: var(--ink-soft); letter-spacing: .08em; text-transform: uppercase; margin-top: 3px; }
+  .node-accent { border-left: 3px solid var(--accent); }
+  .node-moss { border-left: 3px solid var(--moss); }
+  .node-gold { border-left: 3px solid var(--gold); }
+  .node-slate { border-left: 3px solid var(--slate); }
+</style>
+</head>
+<body class="text-ink">
+
+<!-- Top bar -->
+<header class="site-header-original border-b border-line bg-paper sticky top-0 z-30">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-7 h-7 border border-ink flex items-center justify-center">
+        <span class="serif text-lg leading-none">P</span>
+      </div>
+      <div class="leading-tight">
+        <div class="serif text-lg">Praxia <span class="text-ink-soft">Atelier</span></div>
+        <div class="mono text-[10px] text-ink-soft tracking-widest uppercase">Caso · Bodega Valdescuro</div>
+      </div>
+    </div>
+    <span class="ribbon hidden md:inline-block">Caso ficticio · ejemplo de entregable</span>
+  </div>
+</header>
+
+<!-- Hero -->
+<section data-panel="panel-intro" class="relative overflow-hidden border-b border-line">
+  <div class="absolute inset-0 grid-bg opacity-30 pointer-events-none"></div>
+  <div class="relative max-w-6xl mx-auto px-6 py-20 md:py-24">
+    <div class="flex flex-wrap gap-2 mb-6">
+      <span class="pill bg-accent-soft">Family business</span>
+      <span class="pill bg-moss-soft">Ribera del Duero</span>
+      <span class="pill bg-gold-soft">3 generaciones</span>
+      <span class="pill bg-slate-soft">Cápsula 01 + 02</span>
+    </div>
+    <h1 class="serif text-4xl md:text-6xl leading-[1.05] max-w-4xl">
+      Bodega <span class="underline-soft">Valdescuro</span>
+    </h1>
+    <p class="serif text-xl md:text-2xl text-ink-soft mt-4 max-w-3xl italic">
+      Tres generaciones haciendo vino. La cuarta convierte la bodega en un ecosistema digital con club de socios, vertical de inversión y avatar enólogo con IA.
+    </p>
+    <p class="text-base md:text-lg text-ink-soft mt-8 max-w-3xl">
+      Caso ficticio creado por Praxia Atelier para mostrar, end-to-end, cómo se diseña un ecosistema digital sobre una empresa familiar consolidada — sin canibalizar la marca histórica y abriendo dos verticales nuevas: comunidad premium y vehículo de coinversión.
+    </p>
+
+    <!-- Stats -->
+    <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-px bg-line border border-line">
+      <div class="bg-paper p-6">
+        <div class="serif text-3xl">+18 %</div>
+        <div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-2">ARPU proyectado año 1</div>
+      </div>
+      <div class="bg-paper p-6">
+        <div class="serif text-3xl">300</div>
+        <div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-2">socios fundadores objetivo</div>
+      </div>
+      <div class="bg-paper p-6">
+        <div class="serif text-3xl">2,1 M€</div>
+        <div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-2">vehículo coinversión año 2</div>
+      </div>
+      <div class="bg-paper p-6">
+        <div class="serif text-3xl">14 días</div>
+        <div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-2">para entregar el blueprint</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contexto -->
+<section data-panel="panel-partida" class="bg-card border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-12 gap-10">
+    <div class="md:col-span-4">
+      <span class="num">01</span>
+      <h2 class="serif text-3xl mt-3">El punto de partida</h2>
+      <p class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-3">Brainstorm · Día 0</p>
+    </div>
+    <div class="md:col-span-8 space-y-5 text-ink-soft text-lg leading-relaxed">
+      <p>
+        <span class="text-ink font-medium">Bodega Valdescuro S.L.</span> es una bodega familiar de Ribera del Duero fundada en 1958. Factura <span class="text-ink font-medium">4,8 M€/año</span>, vende el 60 % a horeca premium nacional y el 40 % a exportación (Alemania, EEUU, México). Su EBITDA está estable pero plano hace cuatro años.
+      </p>
+      <p>
+        La cuarta generación — Inés Valdescuro, 34 años, MBA y exconsultora — se incorpora con un mandato: <span class="text-ink font-medium">crecer un 30 % en tres años sin tocar la calidad ni hipotecar el patrimonio familiar</span>. Llega con tres ideas dispersas: un club de socios, un fondo para invertir en otras bodegas pequeñas, y "algo con IA porque ahora todo el mundo lo hace".
+      </p>
+      <p class="border-l-2 border-accent pl-5 text-ink">
+        En la sesión de brainstorm de Praxia Atelier convertimos esas tres ideas dispersas en <span class="font-medium">un solo ecosistema coherente</span> donde cada pieza refuerza a las otras: el club capta capital, el capital compra suelo y bodegas pequeñas, las bodegas pequeñas alimentan la oferta exclusiva del club, el avatar enólogo educa y vincula al cliente.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Diagnóstico -->
+<section data-panel="panel-ideas" class="bg-paper border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <span class="num">02</span>
+    <h2 class="serif text-3xl md:text-4xl mt-3">Diagnóstico de las tres ideas</h2>
+    <p class="text-ink-soft mt-3 max-w-3xl">Lo que Inés trae cabe en tres frases. Lo que Praxia devuelve es por qué cada una sola es débil y por qué juntas son un sistema.</p>
+
+    <div class="grid md:grid-cols-3 gap-6 mt-10">
+      <div class="card p-7 card-accent">
+        <span class="pill bg-accent-soft">Idea 1</span>
+        <h3 class="serif text-xl mt-3">Club privado de socios</h3>
+        <p class="text-ink-soft text-sm mt-3"><span class="text-ink font-medium">Sola:</span> riesgo de quedarse en programa de fidelización con 200 € de cuota. Impacto en EBITDA limitado.</p>
+        <p class="text-ink-soft text-sm mt-3"><span class="text-accent font-medium">Como sistema:</span> el club da pertenencia + acceso a vertical inversión + avatar IA + experiencias en finca. Cuota subible a 1.500–3.000 €/año.</p>
+      </div>
+      <div class="card p-7 card-moss">
+        <span class="pill bg-moss-soft">Idea 2</span>
+        <h3 class="serif text-xl mt-3">Fondo para invertir en bodegas pequeñas</h3>
+        <p class="text-ink-soft text-sm mt-3"><span class="text-ink font-medium">Sola:</span> burocracia de SGIIC, supervisión CNMV, costes regulatorios &gt; ROI esperado de los primeros años.</p>
+        <p class="text-ink-soft text-sm mt-3"><span class="text-accent font-medium">Como sistema:</span> sustituido por <span class="text-ink font-medium">AIE de I+D+i + Cultura</span> y vehículo de coinversión privado entre socios del club. Más ágil, deducciones IRPF agregadas, sin licencia financiera.</p>
+      </div>
+      <div class="card p-7 card-gold">
+        <span class="pill bg-gold-soft">Idea 3</span>
+        <h3 class="serif text-xl mt-3">"Algo con IA"</h3>
+        <p class="text-ink-soft text-sm mt-3"><span class="text-ink font-medium">Sola:</span> avatar gimmick, riesgo de no aportar valor real. Caro de mantener si no genera retención.</p>
+        <p class="text-ink-soft text-sm mt-3"><span class="text-accent font-medium">Como sistema:</span> avatar enólogo personal, recomendaciones por añada, vinculación al perfil del socio, derivación a experiencias y a la vertical de inversión cuando detecta interés.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Estructura jurídica -->
+<section data-panel="panel-juridico" class="bg-card border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <span class="num">03</span>
+    <h2 class="serif text-3xl md:text-4xl mt-3">Estructura jurídico-fiscal · 6 entidades coordinadas</h2>
+    <p class="text-ink-soft mt-3 max-w-3xl">Separamos pertenencia de mercantil, blindamos el patrimonio familiar y habilitamos las deducciones para los socios-inversores.</p>
+
+    <!-- Diagrama 2 columnas -->
+    <div class="mt-10 grid md:grid-cols-2 gap-10">
+
+      <div>
+        <h3 class="serif text-xl mb-4">Bloque familiar (operativo)</h3>
+        <div class="space-y-3">
+          <div class="node node-accent">
+            <div class="node-title">Bodega Valdescuro S.L.</div>
+            <div class="node-tag">Sociedad operativa · 1958</div>
+            <p class="text-sm text-ink-soft mt-2">Sigue siendo el corazón. Produce, vende, exporta. No se toca su gobierno actual.</p>
+          </div>
+          <div class="node node-accent">
+            <div class="node-title">Valdescuro Holding S.L.</div>
+            <div class="node-tag">Cabecera familiar · nueva</div>
+            <p class="text-sm text-ink-soft mt-2">Se constituye para concentrar las participaciones de la familia. Aplica régimen ETVE / consolidación fiscal en función del perímetro final.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="serif text-xl mb-4">Bloque ecosistema (nuevo)</h3>
+        <div class="space-y-3">
+          <div class="node node-moss">
+            <div class="node-title">Asociación Círculo Valdescuro</div>
+            <div class="node-tag">L.O. 1/2002 · sin ánimo de lucro</div>
+            <p class="text-sm text-ink-soft mt-2">Vehículo de pertenencia. Cobra cuota anual de socio. Sin actividad mercantil — los servicios concretos los presta la sociedad operativa.</p>
+          </div>
+          <div class="node node-moss">
+            <div class="node-title">Valdescuro Experiencias S.L.</div>
+            <div class="node-tag">Sociedad operativa del club</div>
+            <p class="text-sm text-ink-soft mt-2">Factura las experiencias del club (catas, eventos, viajes). Margen pro-bodega. Evita la recalificación fiscal de la asociación.</p>
+          </div>
+          <div class="node node-gold">
+            <div class="node-title">AIE I+D+i Vitivinícola + Cultura</div>
+            <div class="node-tag">Mesa fiscal agregadora</div>
+            <p class="text-sm text-ink-soft mt-2">Promovida por Valdescuro Holding. Recoge gastos certificables (I+D enológica, recuperación de variedades autóctonas, cultura) y los traslada como deducciones a los socios-inversores.</p>
+          </div>
+          <div class="node node-slate">
+            <div class="node-title">Vehículo Coinversión "Vendimias V"</div>
+            <div class="node-tag">SL ad-hoc · privada · año 2</div>
+            <p class="text-sm text-ink-soft mt-2">Sociedad mercantil que invierte en compra de viñedo y bodegas pequeñas. Suscrita por socios del club que opten al nivel "Inversor". Cap table separado del bloque familiar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cómo se conecta -->
+    <div class="mt-12 border border-line bg-paper p-6 md:p-8">
+      <div class="mono text-[10px] uppercase tracking-widest text-accent">Cómo se conecta</div>
+      <p class="text-ink-soft mt-3">
+        El socio paga cuota a la <span class="text-ink font-medium">Asociación</span> (pertenencia). Las experiencias y el vino exclusivo se compran a <span class="text-ink font-medium">Valdescuro Experiencias</span> (B2C limpio). Si el socio quiere desgravar, suscribe la <span class="text-ink font-medium">AIE</span> y agrega deducciones de I+D y cultura. Si quiere participar en compra de viñedo, entra en <span class="text-ink font-medium">Vendimias V</span> con tickets desde 25.000 €. Cada conversación tiene su vehículo. Hacienda lo agradece, el cliente entiende cada factura, y la familia mantiene el control.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Software -->
+<section data-panel="panel-software" class="bg-paper border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <span class="num">04</span>
+    <h2 class="serif text-3xl md:text-4xl mt-3">Arquitectura del software · 6 módulos integrados</h2>
+    <p class="text-ink-soft mt-3 max-w-3xl">Tres planos: web pública, área del socio, back office. Un único login. Un único punto humano: el responsable de socios.</p>
+
+    <!-- Tabs simulados con anchors visuales -->
+    <div class="mt-10 grid md:grid-cols-3 gap-px bg-line border border-line">
+      <div class="bg-card p-7">
+        <div class="mono text-[11px] tracking-widest uppercase text-accent">Plano A</div>
+        <h3 class="serif text-xl mt-2">Web pública valdescuro.es</h3>
+        <p class="text-sm text-ink-soft mt-3">Marca, tienda online de la bodega, formulario de solicitud de invitación al Círculo. No hay registro abierto — el club es por invitación.</p>
+      </div>
+      <div class="bg-card p-7">
+        <div class="mono text-[11px] tracking-widest uppercase text-accent">Plano B</div>
+        <h3 class="serif text-xl mt-2">Área del socio</h3>
+        <p class="text-sm text-ink-soft mt-3">Mi bodega, avatar enólogo, próximas catas, vino del mes, mis añadas, vertical inversión, mi cap table en Vendimias V.</p>
+      </div>
+      <div class="bg-card p-7">
+        <div class="mono text-[11px] tracking-widest uppercase text-accent">Plano C</div>
+        <h3 class="serif text-xl mt-2">Back office</h3>
+        <p class="text-sm text-ink-soft mt-3">Bandeja diaria del responsable de socios, calendario de catas, KPIs de retención, tracking de comisiones, panel de cumplimiento RGPD.</p>
+      </div>
+    </div>
+
+    <!-- 6 modulos -->
+    <h3 class="serif text-xl mt-14">Los 6 módulos funcionales</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+      <div class="card p-5 card-accent">
+        <span class="mono text-[10px] uppercase tracking-widest text-accent">Módulo 01</span>
+        <h4 class="serif text-lg mt-1">Identidad y acceso</h4>
+        <p class="text-sm text-ink-soft mt-2">Alta por invitación con token, doble factor, niveles de socio (Estándar / Reserva / Inversor).</p>
+      </div>
+      <div class="card p-5 card-moss">
+        <span class="mono text-[10px] uppercase tracking-widest text-accent">Módulo 02</span>
+        <h4 class="serif text-lg mt-1">Avatar enólogo Inés-IA</h4>
+        <p class="text-sm text-ink-soft mt-2">Conversacional por voz y texto. Cata virtual, recomendaciones por añada, perfilado de gusto. Activa derivación a inversión cuando detecta interés.</p>
+      </div>
+      <div class="card p-5 card-gold">
+        <span class="mono text-[10px] uppercase tracking-widest text-accent">Módulo 03</span>
+        <h4 class="serif text-lg mt-1">Catálogo de añadas y reservas</h4>
+        <p class="text-sm text-ink-soft mt-2">Vino del mes, ediciones limitadas, allocation por nivel de socio, reserva de barricas con derecho de tanteo.</p>
+      </div>
+      <div class="card p-5 card-slate">
+        <span class="mono text-[10px] uppercase tracking-widest text-accent">Módulo 04</span>
+        <h4 class="serif text-lg mt-1">Experiencias y eventos</h4>
+        <p class="text-sm text-ink-soft mt-2">Catas, vendimia, viajes a otras DOs, eventos en finca. Pedido a proveedor automático, firma electrónica, pago integrado.</p>
+      </div>
+      <div class="card p-5 card-accent">
+        <span class="mono text-[10px] uppercase tracking-widest text-accent">Módulo 05</span>
+        <h4 class="serif text-lg mt-1">Vertical inversión Vendimias V</h4>
+        <p class="text-sm text-ink-soft mt-2">Sala virtual del vehículo, deals abiertos, cap table del socio, documentación legal, voto y reporting trimestral.</p>
+      </div>
+      <div class="card p-5 card-moss">
+        <span class="mono text-[10px] uppercase tracking-widest text-accent">Módulo 06</span>
+        <h4 class="serif text-lg mt-1">Pagos, facturación y comms</h4>
+        <p class="text-sm text-ink-soft mt-2">Stripe, Verifactu/TicketBAI, WhatsApp Business, email transaccional, plantillas multilingües (ES/EN/DE).</p>
+      </div>
+    </div>
+
+    <!-- Avatar destacado -->
+    <div class="mt-14 grid md:grid-cols-12 gap-8 items-start border-t border-line pt-12">
+      <div class="md:col-span-5">
+        <span class="ribbon">Pieza clave</span>
+        <h3 class="serif text-2xl mt-3">Inés-IA · avatar enólogo del club</h3>
+        <p class="text-ink-soft text-sm mt-3 mono uppercase tracking-widest">Stack · LiveAvatar + LLM con RAG sobre catálogo · embeddings sobre catas históricas</p>
+      </div>
+      <div class="md:col-span-7 space-y-3 text-ink-soft">
+        <p>El avatar lleva la voz de Inés Valdescuro digitalizada (con su consentimiento). Habla con el socio sobre la última añada, le pregunta por la cena del fin de semana, le recomienda dos vinos del catálogo y le ofrece reservar dos botellas con descuento de socio.</p>
+        <p>Cuando detecta interés genuino en cómo se hace el vino, ofrece visitar la bodega. Cuando detecta interés en el negocio, deriva al área de inversión y agenda llamada con el responsable de Vendimias V. <span class="text-ink font-medium">Una conversación, tres caminos posibles.</span></p>
+        <div class="grid grid-cols-3 gap-3 mt-5 pt-5 border-t border-line">
+          <div>
+            <div class="serif text-xl text-accent">14</div>
+            <div class="mono text-[10px] uppercase tracking-widest text-ink-soft mt-1">bloques de cuestionario</div>
+          </div>
+          <div>
+            <div class="serif text-xl text-accent">3</div>
+            <div class="mono text-[10px] uppercase tracking-widest text-ink-soft mt-1">activadores de derivación</div>
+          </div>
+          <div>
+            <div class="serif text-xl text-accent">&lt;30 s</div>
+            <div class="mono text-[10px] uppercase tracking-widest text-ink-soft mt-1">de RRPP a notificación</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOCKUPS NAVEGABLES -->
+<section data-panel="panel-modelo" class="bg-paper border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <span class="num">05</span>
+    <h2 class="serif text-3xl md:text-4xl mt-3">El producto, navegable</h2>
+    <p class="text-ink-soft mt-3 max-w-3xl">Pulsa cada pestaña para ver el ecosistema desde cuatro perspectivas: el cliente público, el socio del Círculo, el avatar Inés-IA y el responsable de socios. Es el mismo formato y nivel de detalle que entregamos a un cliente, pero aquí construido sobre una bodega ficticia para que puedas verlo abierto.</p>
+
+    <div class="mt-10">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="landing">Landing pública</button>
+        <button class="tab-btn" data-tab="socio">Área del socio</button>
+        <button class="tab-btn" data-tab="avatar">Avatar Inés-IA</button>
+        <button class="tab-btn" data-tab="rrpp">Back office RRPP</button>
+        <button class="tab-btn" data-tab="simulador">Simulador económico</button>
+      </div>
+
+      <!-- TAB · LANDING -->
+      <div class="panel active" data-panel="landing">
+        <div class="browser">
+          <div class="browser-bar">
+            <span class="dot" style="background:#ff5f57"></span>
+            <span class="dot" style="background:#febc2e"></span>
+            <span class="dot" style="background:#28c840"></span>
+            <span class="browser-url">https://valdescuro.es</span>
+          </div>
+          <div style="background: #fbf8f0;">
+            <!-- Top nav -->
+            <div style="border-bottom: 1px solid var(--line); padding: 16px 28px; display: flex; align-items: center; justify-content: space-between; background: #fff;">
+              <div class="vald-mark">
+                <span class="vald-symbol"></span>
+                <span class="vald-name">VALDESCURO</span>
+              </div>
+              <div style="display: flex; gap: 24px; font-size: 13px; color: var(--ink-soft);">
+                <span>La bodega</span>
+                <span>Añadas</span>
+                <span>El Círculo</span>
+                <span>Vendimias V</span>
+                <span>Visítanos</span>
+              </div>
+              <button style="background: var(--accent); color: #fff; padding: 8px 16px; border-radius: 4px; font-size: 12px;">Acceso socios</button>
+            </div>
+            <!-- Hero -->
+            <div style="padding: 70px 28px; max-width: 760px;">
+              <span class="pill bg-accent-soft">Ribera del Duero · 1958</span>
+              <h3 class="serif" style="font-size: 38px; line-height: 1.1; margin-top: 16px;">Tres generaciones haciendo vino.</h3>
+              <p class="serif" style="font-size: 22px; color: var(--ink-soft); font-style: italic; margin-top: 8px;">La cuarta abre la bodega a un círculo de socios.</p>
+              <p style="font-size: 14px; color: var(--ink-soft); margin-top: 20px; max-width: 540px;">El Círculo Valdescuro es un club privado de amantes del vino. Catas en finca, allocation de añadas, vendimia con la familia, y la posibilidad de coinvertir en la próxima generación de viñedos.</p>
+              <div style="margin-top: 28px; display: flex; gap: 12px;">
+                <button style="background: var(--accent); color: #fff; padding: 12px 22px; border-radius: 4px; font-size: 13px;">Solicitar invitación</button>
+                <button style="border: 1px solid var(--ink); padding: 12px 22px; border-radius: 4px; font-size: 13px;">Conocer la bodega</button>
+              </div>
+            </div>
+            <!-- Niveles -->
+            <div style="border-top: 1px solid var(--line); background: #fff; padding: 32px 28px;">
+              <div class="mono" style="font-size: 10px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">Niveles del Círculo</div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 14px;">
+                <div>
+                  <div class="serif" style="font-size: 18px; color: var(--accent);">Vendimia</div>
+                  <div class="serif" style="font-size: 22px; margin-top: 4px;">980 €/año</div>
+                  <p style="font-size: 12px; color: var(--ink-soft); margin-top: 6px;">6 botellas + 2 catas + avatar Inés-IA básico.</p>
+                </div>
+                <div>
+                  <div class="serif" style="font-size: 18px; color: var(--moss);">Solera · más popular</div>
+                  <div class="serif" style="font-size: 22px; margin-top: 4px;">2.400 €/año</div>
+                  <p style="font-size: 12px; color: var(--ink-soft); margin-top: 6px;">24 botellas + ediciones limitadas + vendimia con la familia + AIE.</p>
+                </div>
+                <div>
+                  <div class="serif" style="font-size: 18px; color: var(--gold);">Inversor · gran reserva</div>
+                  <div class="serif" style="font-size: 22px; margin-top: 4px;">6.500 €/año</div>
+                  <p style="font-size: 12px; color: var(--ink-soft); margin-top: 6px;">Barrica propia + Vendimias V + voto + deducción IRPF agregada.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB · SOCIO -->
+      <div class="panel" data-panel="socio">
+        <div class="browser">
+          <div class="browser-bar">
+            <span class="dot" style="background:#ff5f57"></span>
+            <span class="dot" style="background:#febc2e"></span>
+            <span class="dot" style="background:#28c840"></span>
+            <span class="browser-url">app.valdescuro.es / mi-bodega</span>
+          </div>
+          <div style="display: flex; min-height: 540px;">
+            <div class="app-side">
+              <div class="vald-mark mb-5" style="margin-bottom: 20px;">
+                <span class="vald-symbol"></span>
+                <span class="vald-name" style="font-size: 12px;">VALDESCURO</span>
+              </div>
+              <div class="nav-item active"><span class="nav-icon"></span> Mi bodega</div>
+              <div class="nav-item"><span class="nav-icon"></span> Inés-IA</div>
+              <div class="nav-item"><span class="nav-icon"></span> Próximas catas</div>
+              <div class="nav-item"><span class="nav-icon"></span> Mis añadas</div>
+              <div class="nav-item"><span class="nav-icon"></span> Allocation</div>
+              <div class="nav-item"><span class="nav-icon"></span> Vendimias V</div>
+              <div class="nav-item"><span class="nav-icon"></span> Comunidad</div>
+              <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--line);">
+                <div class="nav-item"><span class="nav-icon"></span> Mi perfil</div>
+              </div>
+            </div>
+            <div style="flex: 1; padding: 28px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 18px; border-bottom: 1px solid var(--line);">
+                <div>
+                  <div class="mono" style="font-size: 10px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">Buenas tardes, Carlos</div>
+                  <h3 class="serif" style="font-size: 24px; margin-top: 4px;">Tu bodega esta semana</h3>
+                </div>
+                <span class="pill bg-moss-soft">Solera · socio nº 87</span>
+              </div>
+
+              <!-- Cards stat -->
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px;">
+                <div class="marker-card">
+                  <div class="marker-num">24</div>
+                  <div class="marker-label">Botellas allocation 2026</div>
+                  <div class="marker-trend">12 reservadas · 12 disponibles</div>
+                </div>
+                <div class="marker-card">
+                  <div class="marker-num">3</div>
+                  <div class="marker-label">Catas reservadas</div>
+                  <div class="marker-trend">próxima · 18 may</div>
+                </div>
+                <div class="marker-card">
+                  <div class="marker-num">8.400 €</div>
+                  <div class="marker-label">En Vendimias V</div>
+                  <div class="marker-trend">+12 % desde alta</div>
+                </div>
+                <div class="marker-card">
+                  <div class="marker-num">2.840 €</div>
+                  <div class="marker-label">Deducción IRPF est.</div>
+                  <div class="marker-trend">vía AIE · ej. 2026</div>
+                </div>
+              </div>
+
+              <!-- Recomendación Inés -->
+              <div style="margin-top: 22px; background: var(--accent-soft); border-radius: 6px; padding: 16px 18px; display: flex; gap: 14px; align-items: flex-start;">
+                <div style="width: 32px; height: 36px; background: linear-gradient(to bottom, var(--accent) 70%, var(--gold) 70%); border-radius: 1px 1px 50% 50%; flex-shrink: 0;"></div>
+                <div>
+                  <div class="mono" style="font-size: 9.5px; color: var(--accent); letter-spacing: .12em; text-transform: uppercase;">Inés-IA · avatar enólogo</div>
+                  <p style="font-size: 13px; margin-top: 4px; line-height: 1.5;">Carlos, ha entrado en allocation la edición limitada <strong>Valdescuro 14 Pagos 2022</strong>. Sólo 240 botellas. Por tu perfil de gusto (taninos firmes, crianza larga) creo que te encajaría. ¿Te reservo 2 antes de que se agote?</p>
+                  <div style="margin-top: 10px; display: flex; gap: 8px;">
+                    <button style="background: var(--accent); color: #fff; padding: 6px 14px; border-radius: 4px; font-size: 11px;">Sí, reserva 2</button>
+                    <button style="border: 1px solid var(--accent); color: var(--accent); padding: 6px 14px; border-radius: 4px; font-size: 11px;">Cuéntame más</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Próximamente -->
+              <div style="margin-top: 24px;">
+                <div class="mono" style="font-size: 10px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">Próximamente · sólo socios</div>
+                <div style="display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;">
+                  <div style="border: 1px solid var(--line); padding: 12px 16px; border-radius: 4px; font-size: 12px;"><strong style="color: var(--accent);">18 may · 19:00</strong> · Cata vertical Pedro Vallejo</div>
+                  <div style="border: 1px solid var(--line); padding: 12px 16px; border-radius: 4px; font-size: 12px;"><strong style="color: var(--accent);">8–10 sep</strong> · Vendimia Solera · finca</div>
+                  <div style="border: 1px solid var(--line); padding: 12px 16px; border-radius: 4px; font-size: 12px;"><strong style="color: var(--gold);">22 oct · 18:00</strong> · Roadshow Vendimias V · sólo Inversor</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB · AVATAR INÉS -->
+      <div class="panel" data-panel="avatar">
+        <div class="browser">
+          <div class="browser-bar">
+            <span class="dot" style="background:#ff5f57"></span>
+            <span class="dot" style="background:#febc2e"></span>
+            <span class="dot" style="background:#28c840"></span>
+            <span class="browser-url">app.valdescuro.es / ines</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 320px 1fr; min-height: 540px;">
+            <div style="background: #fbf8f0; border-right: 1px solid var(--line); padding: 24px 22px;">
+              <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 14px 0;">
+                <div style="width: 72px; height: 84px; background: linear-gradient(to bottom, var(--accent) 65%, var(--gold) 65%); border-radius: 4px 4px 50% 50%;"></div>
+                <h4 class="serif" style="font-size: 20px; margin-top: 12px;">Inés-IA</h4>
+                <div class="mono" style="font-size: 9.5px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase; margin-top: 4px;">Avatar enólogo · Valdescuro</div>
+              </div>
+              <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line);">
+                <div class="mono" style="font-size: 9.5px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">Lo que Inés sabe de ti</div>
+                <ul style="margin-top: 8px; font-size: 12px; color: var(--ink-soft); display: flex; flex-direction: column; gap: 6px;">
+                  <li>· Socio Solera desde 2024</li>
+                  <li>· 18 botellas catadas en app</li>
+                  <li>· Perfil: taninos firmes, crianzas largas</li>
+                  <li>· 2 catas en finca · vendimia 2025</li>
+                  <li>· Interesa Ribera del Duero y Toro</li>
+                  <li>· No rechaza Vendimias V (curioso)</li>
+                </ul>
+              </div>
+              <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line);">
+                <div class="mono" style="font-size: 9.5px; color: var(--accent); letter-spacing: .12em; text-transform: uppercase;">Privacidad</div>
+                <p style="font-size: 11px; color: var(--ink-soft); margin-top: 6px; line-height: 1.5;">Datos en UE · DPIA realizada · puedes revocar el consentimiento desde tu perfil.</p>
+              </div>
+            </div>
+            <div style="padding: 24px 28px; display: flex; flex-direction: column;">
+              <div style="font-size: 10px; color: var(--ink-soft); text-align: center; padding-bottom: 10px;">— hoy · 18:42 —</div>
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div class="bubble">Buenas tardes Carlos. Han llegado las muestras del 14 Pagos 2022. He cruzado tu histórico de catas y creo que te va a encantar — taninos firmes, fruta negra, mucho recorrido. Sólo hemos guardado 240 botellas para socios.</div>
+                <div class="bubble bubble-user">¿Cuándo se podrá probar antes de comprar?</div>
+                <div class="bubble">El 18 de mayo organizamos cata vertical en finca con Pedro Vallejo (enólogo) y María Valdescuro (cuarta generación). 12 plazas para socios Solera. ¿Te reservo una?</div>
+                <div class="bubble bubble-user">Sí, reserva una. Y cuéntame de Vendimias V, ¿qué es exactamente?</div>
+                <div class="bubble">
+                  Vendimias V es el vehículo de coinversión privada del Círculo. Permite a los socios <strong>Inversor</strong> participar en la compra de viñedo histórico y bodegas pequeñas — ticket desde 25.000 €. Está pensado para socios que ya disfrutan del vino y quieren participar en el negocio. ¿Te paso el deck o prefieres que María Valdescuro te llame?
+                  <div style="margin-top: 8px; display: flex; gap: 6px;">
+                    <button style="background: var(--accent); color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 11px;">Pasar el deck</button>
+                    <button style="border: 1px solid var(--accent); color: var(--accent); padding: 6px 12px; border-radius: 4px; font-size: 11px;">Que me llame</button>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line); display: flex; gap: 8px; align-items: center;">
+                <input type="text" placeholder="Escribe a Inés o pulsa para hablar…" style="flex: 1; border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; font-size: 13px;" />
+                <button style="background: var(--accent); color: #fff; width: 36px; height: 36px; border-radius: 999px;">●</button>
+              </div>
+              <div style="font-size: 10px; color: var(--ink-soft); text-align: center; margin-top: 8px;">Las recomendaciones de Inés-IA no sustituyen a tu sumiller. Para reservas urgentes, contacta con el equipo del Círculo.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB · RRPP -->
+      <div class="panel" data-panel="rrpp">
+        <div class="browser">
+          <div class="browser-bar">
+            <span class="dot" style="background:#ff5f57"></span>
+            <span class="dot" style="background:#febc2e"></span>
+            <span class="dot" style="background:#28c840"></span>
+            <span class="browser-url">admin.valdescuro.es / panel</span>
+          </div>
+          <div style="display: flex; min-height: 540px;">
+            <div class="app-side">
+              <div class="vald-mark mb-5" style="margin-bottom: 20px;">
+                <span class="vald-symbol"></span>
+                <span class="vald-name" style="font-size: 12px;">VALDESCURO <span style="color: var(--ink-soft); font-size: 9px;">·admin·</span></span>
+              </div>
+              <div class="nav-item active"><span class="nav-icon"></span> Bandeja diaria</div>
+              <div class="nav-item"><span class="nav-icon"></span> Socios</div>
+              <div class="nav-item"><span class="nav-icon"></span> Allocation 2026</div>
+              <div class="nav-item"><span class="nav-icon"></span> Catas y eventos</div>
+              <div class="nav-item"><span class="nav-icon"></span> Vendimias V</div>
+              <div class="nav-item"><span class="nav-icon"></span> AIE · gastos cert.</div>
+              <div class="nav-item"><span class="nav-icon"></span> Cobros · Stripe</div>
+              <div class="nav-item"><span class="nav-icon"></span> Cumplimiento RGPD</div>
+            </div>
+            <div style="flex: 1; padding: 28px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 18px; border-bottom: 1px solid var(--line);">
+                <div>
+                  <div class="mono" style="font-size: 10px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">María Valdescuro · 30-abr-2026</div>
+                  <h3 class="serif" style="font-size: 22px; margin-top: 4px;">Tu jornada — bandeja del Círculo</h3>
+                </div>
+                <div style="text-align: right;">
+                  <div class="serif" style="font-size: 22px; color: var(--accent);">6</div>
+                  <div class="mono" style="font-size: 10px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">decisiones que requieren tu visto</div>
+                </div>
+              </div>
+
+              <div style="margin-top: 18px; display: grid; gap: 8px;">
+                <div style="border: 1px solid var(--line); padding: 14px 16px; border-radius: 4px; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center;">
+                  <span class="pill bg-accent-soft">Allocation</span>
+                  <div style="font-size: 13px;"><strong>Carlos M.</strong> · interesado en 14 Pagos 2022 · 2 botellas · vía Inés-IA</div>
+                  <div style="display: flex; gap: 6px;">
+                    <button style="background: var(--accent); color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 11px;">Aprobar</button>
+                  </div>
+                </div>
+                <div style="border: 1px solid var(--line); padding: 14px 16px; border-radius: 4px; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center;">
+                  <span class="pill bg-gold-soft">Vendimias V</span>
+                  <div style="font-size: 13px;"><strong>Inés P.</strong> · interés en Vendimias V · ticket previsto 50.000 €</div>
+                  <div style="display: flex; gap: 6px;">
+                    <button style="background: var(--accent); color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 11px;">Llamada · jueves</button>
+                  </div>
+                </div>
+                <div style="border: 1px solid var(--line); padding: 14px 16px; border-radius: 4px; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center;">
+                  <span class="pill bg-moss-soft">Cata 18 may</span>
+                  <div style="font-size: 13px;"><strong>11/12 plazas</strong> · falta 1 · ¿abrir lista de espera?</div>
+                  <div style="display: flex; gap: 6px;">
+                    <button style="background: var(--accent); color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 11px;">Abrir</button>
+                  </div>
+                </div>
+                <div style="border: 1px solid var(--line); padding: 14px 16px; border-radius: 4px; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center;">
+                  <span class="pill bg-slate-soft">Renovación</span>
+                  <div style="font-size: 13px;"><strong>Roberto C.</strong> · Solera vence 30-jun · 92 % engagement · prerrenovación auto</div>
+                  <div style="display: flex; gap: 6px;">
+                    <button style="background: var(--accent); color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 11px;">Confirmar</button>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
+                <div class="marker-card">
+                  <div class="marker-num">214</div>
+                  <div class="marker-label">Socios activos</div>
+                  <div class="marker-trend">+18 este mes</div>
+                </div>
+                <div class="marker-card">
+                  <div class="marker-num">87 %</div>
+                  <div class="marker-label">Renovación Solera</div>
+                  <div class="marker-trend">objetivo &gt; 80%</div>
+                </div>
+                <div class="marker-card">
+                  <div class="marker-num">42</div>
+                  <div class="marker-label">Inversor · perfil alto</div>
+                  <div class="marker-trend">14 ya en Vendimias V</div>
+                </div>
+                <div class="marker-card">
+                  <div class="marker-num">112 k€</div>
+                  <div class="marker-label">Allocation 2026 reservada</div>
+                  <div class="marker-trend">68 % de la edición</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB · SIMULADOR -->
+      <div class="panel" data-panel="simulador">
+        <div class="browser">
+          <div class="browser-bar">
+            <span class="dot" style="background:#ff5f57"></span>
+            <span class="dot" style="background:#febc2e"></span>
+            <span class="dot" style="background:#28c840"></span>
+            <span class="browser-url">deck.valdescuro.es / inversores</span>
+          </div>
+          <div style="padding: 32px; background: #fbf8f0;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 16px; border-bottom: 1px solid var(--line);">
+              <div>
+                <div class="mono" style="font-size: 10px; color: var(--accent); letter-spacing: .12em; text-transform: uppercase;">Modelo financiero · escenario base</div>
+                <h3 class="serif" style="font-size: 22px; margin-top: 4px;">Simulador del Círculo y Vendimias V</h3>
+              </div>
+              <span class="pill bg-gold-soft">Año 3 proyectado</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 22px;">
+              <!-- Sliders -->
+              <div style="display: flex; flex-direction: column; gap: 18px;">
+                <div class="slider-wrap">
+                  <div class="slider-label"><span>Socios Vendimia (980 €/año)</span><span class="v" id="vV1">220</span></div>
+                  <input type="range" id="rV1" min="0" max="500" value="220" step="10">
+                </div>
+                <div class="slider-wrap">
+                  <div class="slider-label"><span>Socios Solera (2.400 €/año)</span><span class="v" id="vV2">280</span></div>
+                  <input type="range" id="rV2" min="0" max="500" value="280" step="10">
+                </div>
+                <div class="slider-wrap">
+                  <div class="slider-label"><span>Socios Inversor (6.500 €/año)</span><span class="v" id="vV3">60</span></div>
+                  <input type="range" id="rV3" min="0" max="200" value="60" step="5">
+                </div>
+                <div class="slider-wrap">
+                  <div class="slider-label"><span>Inversores en Vendimias V</span><span class="v" id="vVV">38</span></div>
+                  <input type="range" id="rVV" min="0" max="100" value="38" step="1">
+                </div>
+                <div class="slider-wrap">
+                  <div class="slider-label"><span>Ticket medio Vendimias V (€)</span><span class="v" id="vTicket">55.000 €</span></div>
+                  <input type="range" id="rTicket" min="25000" max="200000" value="55000" step="5000">
+                </div>
+              </div>
+
+              <!-- Outputs -->
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div class="marker-card" style="padding: 18px;">
+                  <div class="marker-label">Ingresos cuotas anuales · Año 3</div>
+                  <div class="marker-num" id="oCuotas" style="color: var(--accent); margin-top: 6px;">1.279.600 €</div>
+                  <div style="font-size: 11px; color: var(--ink-soft); margin-top: 6px;">Vendimia + Solera + Inversor</div>
+                </div>
+                <div class="marker-card" style="padding: 18px;">
+                  <div class="marker-label">Ingresos experiencias y vino exclusivo</div>
+                  <div class="marker-num" id="oExp" style="color: var(--accent); margin-top: 6px;">623.000 €</div>
+                  <div style="font-size: 11px; color: var(--ink-soft); margin-top: 6px;">~30 % adicional sobre cuotas (catas, eventos, ediciones limitadas)</div>
+                </div>
+                <div class="marker-card" style="padding: 18px;">
+                  <div class="marker-label">Capital captado en Vendimias V (acumulado)</div>
+                  <div class="marker-num" id="oVV" style="color: var(--accent); margin-top: 6px;">2.090.000 €</div>
+                  <div style="font-size: 11px; color: var(--ink-soft); margin-top: 6px;">Inversores × ticket medio</div>
+                </div>
+                <div class="marker-card" style="padding: 18px; background: var(--accent); color: #fff; border-color: var(--accent);">
+                  <div class="marker-label" style="color: rgba(255,255,255,.75);">Crecimiento total bodega + ecosistema</div>
+                  <div class="marker-num" id="oGrowth" style="color: #fff; margin-top: 6px;">+27 %</div>
+                  <div style="font-size: 11px; opacity: .85; margin-top: 6px;">vs. facturación bodega aislada (4,8 M€/año actuales)</div>
+                </div>
+              </div>
+            </div>
+
+            <p style="font-size: 11px; color: var(--ink-soft); margin-top: 22px; text-align: center;">Simulador interactivo · cifras de ejemplo · entregable real personalizado al cliente</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Niveles y modelo económico -->
+<section data-panel="panel-aterrizaje" class="bg-card border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <span class="num">06</span>
+    <h2 class="serif text-3xl md:text-4xl mt-3">Niveles del Círculo · cuota y allocation</h2>
+    <p class="text-ink-soft mt-3 max-w-3xl">Tres tramos. Cada nivel tiene cuota anual + alta + allocation de añadas + acceso a la vertical de inversión.</p>
+
+    <div class="grid md:grid-cols-3 gap-6 mt-10">
+      <div class="card p-7 card-accent">
+        <span class="pill bg-accent-soft">Estándar</span>
+        <h3 class="serif text-2xl mt-3">Vendimia</h3>
+        <div class="serif text-3xl mt-4">980 €/año</div>
+        <div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-1">+ alta 600 €</div>
+        <ul class="mt-5 space-y-2 text-sm text-ink-soft">
+          <li class="flex gap-3"><span class="arrow">→</span> 6 botellas/año del vino del mes</li>
+          <li class="flex gap-3"><span class="arrow">→</span> 2 catas presenciales / año</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Avatar Inés-IA básico</li>
+        </ul>
+      </div>
+      <div class="card p-7 card-moss">
+        <span class="pill bg-moss-soft">Reserva</span>
+        <h3 class="serif text-2xl mt-3">Solera</h3>
+        <div class="serif text-3xl mt-4">2.400 €/año</div>
+        <div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-1">+ alta 1.500 €</div>
+        <ul class="mt-5 space-y-2 text-sm text-ink-soft">
+          <li class="flex gap-3"><span class="arrow">→</span> 24 botellas + ediciones limitadas</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Vendimia anual con la familia</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Avatar Inés-IA completo</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Acceso a la AIE (deducciones)</li>
+        </ul>
+      </div>
+      <div class="card p-7 card-gold">
+        <span class="pill bg-gold-soft">Gran reserva</span>
+        <h3 class="serif text-2xl mt-3">Inversor</h3>
+        <div class="serif text-3xl mt-4">6.500 €/año</div>
+        <div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-1">+ alta 3.000 € · ticket Vendimias V desde 25.000 €</div>
+        <ul class="mt-5 space-y-2 text-sm text-ink-soft">
+          <li class="flex gap-3"><span class="arrow">→</span> Allocation de barrica propia</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Acceso a Vendimias V (vehículo coinversión)</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Voto en compras de viñedo</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Deducción IRPF agregada vía AIE</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Tabla impacto financiero -->
+    <h3 class="serif text-xl mt-14">Impacto financiero proyectado</h3>
+    <div class="mt-5 border border-line overflow-hidden">
+      <table class="w-full text-sm">
+        <thead class="bg-paper">
+          <tr class="text-left">
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Concepto</th>
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft text-right">Año 1</th>
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft text-right">Año 2</th>
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft text-right">Año 3</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line">
+          <tr>
+            <td class="p-4">Socios captados (acumulado)</td>
+            <td class="p-4 text-right serif">120</td>
+            <td class="p-4 text-right serif">300</td>
+            <td class="p-4 text-right serif">560</td>
+          </tr>
+          <tr class="bg-paper/40">
+            <td class="p-4">Ingresos cuotas + alta</td>
+            <td class="p-4 text-right serif">235 k€</td>
+            <td class="p-4 text-right serif">680 k€</td>
+            <td class="p-4 text-right serif">1,28 M€</td>
+          </tr>
+          <tr>
+            <td class="p-4">Ingresos experiencias y vino exclusivo</td>
+            <td class="p-4 text-right serif">90 k€</td>
+            <td class="p-4 text-right serif">310 k€</td>
+            <td class="p-4 text-right serif">620 k€</td>
+          </tr>
+          <tr class="bg-paper/40">
+            <td class="p-4">Capital captado en Vendimias V</td>
+            <td class="p-4 text-right serif">—</td>
+            <td class="p-4 text-right serif">2,1 M€</td>
+            <td class="p-4 text-right serif">4,8 M€</td>
+          </tr>
+          <tr>
+            <td class="p-4">ARPU medio bodega + ecosistema</td>
+            <td class="p-4 text-right serif text-accent">+12 %</td>
+            <td class="p-4 text-right serif text-accent">+18 %</td>
+            <td class="p-4 text-right serif text-accent">+27 %</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-ink-soft mt-3 mono uppercase tracking-widest">Cifras de ejemplo · caso ficticio · validar con modelo financiero del cliente</p>
+  </div>
+</section>
+
+<!-- Roadmap accionable -->
+<section data-panel="panel-equipo" class="bg-paper border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <span class="num">07</span>
+    <h2 class="serif text-3xl md:text-4xl mt-3">Plan accionable · semana a semana</h2>
+    <p class="text-ink-soft mt-3 max-w-3xl">No un calendario flotante. Cada paso tiene responsable, dependencia y entregable verificable. Esta es exactamente la tabla que entregamos junto al Blueprint de la Cápsula 01.</p>
+
+    <div class="mt-10 border border-line overflow-hidden bg-white">
+      <table class="w-full text-sm">
+        <thead style="background: #fbf8f0;">
+          <tr class="text-left">
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Semana / Mes</th>
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Hito</th>
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Responsable</th>
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Entregable verificable</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line">
+          <tr><td class="p-4 serif">S1–2</td><td class="p-4">Brainstorm + Blueprint Cápsula 01</td><td class="p-4">Praxia + familia Valdescuro</td><td class="p-4 text-ink-soft">Dossier 32 pp + prototipo HTML + modelo financiero</td></tr>
+          <tr style="background: #fbf8f0;"><td class="p-4 serif">M1–2</td><td class="p-4">Constitución de las 5 entidades nuevas</td><td class="p-4">Notario · Praxia coordina</td><td class="p-4 text-ink-soft">Escrituras + alta IAE + reglamento Círculo</td></tr>
+          <tr><td class="p-4 serif">M2–4</td><td class="p-4">Diseño UX/UI + identidad visual</td><td class="p-4">Diseñador externo · Praxia dirige</td><td class="p-4 text-ink-soft">Mockups Figma aprobados · marca Círculo</td></tr>
+          <tr style="background: #fbf8f0;"><td class="p-4 serif">M2–5</td><td class="p-4">MVP software · módulos 01–03 (identidad, avatar, catálogo)</td><td class="p-4">Dev senior + IA engineer · Praxia dirige</td><td class="p-4 text-ink-soft">Build navegable en staging</td></tr>
+          <tr><td class="p-4 serif">M4–6</td><td class="p-4">Captación 80 socios fundadores · programa "Founding 100"</td><td class="p-4">María Valdescuro + RRPP</td><td class="p-4 text-ink-soft">200 k€ ingresos cerrados (cuotas + alta)</td></tr>
+          <tr style="background: #fbf8f0;"><td class="p-4 serif">M6–9</td><td class="p-4">V1 completa · módulos 04–06 (experiencias, vertical, pagos)</td><td class="p-4">Dev senior · Praxia dirige</td><td class="p-4 text-ink-soft">Sistema completo en producción</td></tr>
+          <tr><td class="p-4 serif">M6–9</td><td class="p-4">Avatar Inés-IA con voz clonada + memoria longitudinal</td><td class="p-4">IA engineer + María</td><td class="p-4 text-ink-soft">Inés-IA activa para 100 socios</td></tr>
+          <tr style="background: #fbf8f0;"><td class="p-4 serif">M9–10</td><td class="p-4">DPIA + RGPD + análisis EU AI Act</td><td class="p-4">DPO + abogado</td><td class="p-4 text-ink-soft">Documentación firmada · cumplimiento total</td></tr>
+          <tr><td class="p-4 serif">M9–12</td><td class="p-4">Lanzamiento Vendimias V + roadshow privado</td><td class="p-4">Praxia + María</td><td class="p-4 text-ink-soft">Cierre 2,1 M€ comprometidos · primer deal cerrado</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-10 grid md:grid-cols-3 gap-6">
+      <div class="card p-6">
+        <span class="pill bg-accent-soft">Equipo externo</span>
+        <h3 class="serif text-lg mt-3">Quién hace qué</h3>
+        <ul class="text-sm text-ink-soft mt-3 space-y-2">
+          <li class="flex gap-3"><span class="arrow">→</span> 1 dev senior full-stack (4 meses)</li>
+          <li class="flex gap-3"><span class="arrow">→</span> 1 IA engineer (2 meses parcial)</li>
+          <li class="flex gap-3"><span class="arrow">→</span> 1 diseñador UX/UI (5 semanas)</li>
+          <li class="flex gap-3"><span class="arrow">→</span> 1 abogado mercantil (puntual)</li>
+          <li class="flex gap-3"><span class="arrow">→</span> 1 DPO externo (puntual)</li>
+        </ul>
+      </div>
+      <div class="card p-6">
+        <span class="pill bg-gold-soft">Inversión Cápsula 02</span>
+        <h3 class="serif text-lg mt-3">Coste total aterrizaje</h3>
+        <ul class="text-sm text-ink-soft mt-3 space-y-2">
+          <li class="flex gap-3"><span class="arrow">→</span> Honorarios Praxia · 105.000 €</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Equipo externo · ~85.000 €</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Infra y APIs (12 meses) · 16.000 €</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Legal y notaría · 11.000 €</li>
+          <li class="flex gap-3 pt-2 border-t border-line text-ink"><span class="arrow">→</span> <strong>Total año 1: 217.000 €</strong></li>
+        </ul>
+      </div>
+      <div class="card p-6">
+        <span class="pill" style="background: var(--moss-soft); color: var(--moss);">ROI esperado</span>
+        <h3 class="serif text-lg mt-3">Recuperación</h3>
+        <ul class="text-sm text-ink-soft mt-3 space-y-2">
+          <li class="flex gap-3"><span class="arrow">→</span> Mes 6: cubre OPEX nuevo (200 k€)</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Mes 14: paga Cápsula 02 entera</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Año 2: ARPU bodega +18 %</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Año 3: facturación total +27 %</li>
+          <li class="flex gap-3 pt-2 border-t border-line text-ink"><span class="arrow">→</span> <strong>+1,3 M€ ingresos / año 3</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Riesgos y mitigaciones -->
+<section data-panel="panel-disclaimer" class="bg-card border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <span class="num">08</span>
+    <h2 class="serif text-3xl md:text-4xl mt-3">Riesgos y mitigaciones</h2>
+    <p class="text-ink-soft mt-3 max-w-3xl">No vendemos sólo posibilidades. Tipificamos los riesgos reales para que el cliente los firme con conocimiento.</p>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-10">
+      <div class="card p-6">
+        <span class="pill bg-accent-soft">Fiscal</span>
+        <h3 class="serif text-lg mt-3">Recalificación de la asociación</h3>
+        <p class="text-sm text-ink-soft mt-2">Si la asociación factura experiencias o vino, Hacienda puede recalificar la actividad como mercantil.</p>
+        <p class="text-sm text-accent mt-3"><span class="font-medium">Mitigación:</span> Asociación cobra sólo cuota; experiencias y vino los factura siempre Valdescuro Experiencias S.L.</p>
+      </div>
+      <div class="card p-6">
+        <span class="pill bg-moss-soft">Regulatorio</span>
+        <h3 class="serif text-lg mt-3">Vendimias V no es fondo de inversión colectiva</h3>
+        <p class="text-sm text-ink-soft mt-2">Si supera 150 inversores y publicidad masiva, riesgo de SGIIC y supervisión CNMV.</p>
+        <p class="text-sm text-accent mt-3"><span class="font-medium">Mitigación:</span> club de inversión privado con &lt;150 socios, tickets ≥25.000 €, sin publicidad pública. Asesoría CNMV en mes 8.</p>
+      </div>
+      <div class="card p-6">
+        <span class="pill bg-gold-soft">RGPD + EU AI Act</span>
+        <h3 class="serif text-lg mt-3">Avatar trata datos sensibles</h3>
+        <p class="text-sm text-ink-soft mt-2">Voz, gustos, salud. EU AI Act riesgo limitado.</p>
+        <p class="text-sm text-accent mt-3"><span class="font-medium">Mitigación:</span> consentimiento por categoría, datos en UE, DPA con LiveAvatar y LLM, DPIA documentada.</p>
+      </div>
+      <div class="card p-6">
+        <span class="pill bg-slate-soft">Familiar</span>
+        <h3 class="serif text-lg mt-3">Conflictos de gobernanza intergeneracional</h3>
+        <p class="text-sm text-ink-soft mt-2">Tres generaciones, distintos apetitos al riesgo.</p>
+        <p class="text-sm text-accent mt-3"><span class="font-medium">Mitigación:</span> protocolo familiar v2 + consejo asesor con voz pero sin voto, separando bodega histórica del Holding.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cierre -->
+<section data-panel="panel-cierre" style="background: #2a0d10; color: #ffffff;">
+  <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+    <span class="serif" style="color: #b08d3a; font-size: 18px; font-weight: 600;">·</span>
+    <h2 class="serif" style="color: #ffffff; font-size: clamp(28px, 5vw, 48px); line-height: 1.1; margin-top: 12px; font-weight: 600;">Esto es lo que entregamos en 14 días.</h2>
+    <p style="color: rgba(255,255,255,.85); font-size: 17px; line-height: 1.6; margin-top: 22px; max-width: 640px; margin-left: auto; margin-right: auto;">
+      Caso ficticio · Bodega Valdescuro nunca ha existido. Lo que sí es real es el método, la estética y los componentes — exactamente los que se construyen en una Cápsula 01 con un cliente. Si quieres este nivel de claridad para tu proyecto, hablemos.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
+      <a href="https://cal.com/marta-escobar-rojas-teatxg/30min" target="_blank" rel="noopener" style="background: #ffffff; color: #2a0d10; padding: 16px 28px; border-radius: 4px; font-weight: 600;" class="hover:opacity-90">Reservar 30 min con Marta · gratis</a>
+      <button type="button" onclick="if(window.PraxiaChat&&window.PraxiaChat.open){window.PraxiaChat.open()}else{document.querySelector('.pchat-fab')&&document.querySelector('.pchat-fab').click()}" style="border: 1px solid rgba(255,255,255,.6); color: #ffffff; padding: 16px 28px; border-radius: 4px; background: transparent; cursor: pointer; font: inherit;" class="hover:bg-white hover:text-ink transition">Hablar con el asistente</button>
+    </div>
+    <div class="mt-6 flex flex-wrap justify-center gap-6 text-sm" style="color: rgba(255,255,255,.7);">
+      <a href="index.html#capsulas" class="hover:text-white underline-offset-4 hover:underline">Ver detalle de cápsulas y precios →</a>
+      <a href="mailto:info@praxia-atelier.net" class="hover:text-white underline-offset-4 hover:underline">info@praxia-atelier.net</a>
+    </div>
+    <div class="mono" style="color: rgba(255,255,255,.65); letter-spacing: .12em; text-transform: uppercase; font-size: 11px; margin-top: 48px;">
+      · Praxia Atelier · Caso Bodega Valdescuro v1.0 · 2026 ·
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-line bg-paper">
+  <div class="max-w-6xl mx-auto px-6 py-10 text-sm text-ink-soft">
+    <p class="mono text-[11px] uppercase tracking-widest">Aviso · Caso de demostración</p>
+    <p class="mt-2 max-w-3xl">
+      "Bodega Valdescuro" es un caso ficticio creado por Praxia Atelier exclusivamente con fines comerciales y de demostración del método del estudio. Cualquier parecido con bodegas reales es coincidencia. Las cifras, niveles del club y proyecciones son ilustrativas. Para un proyecto real, todo el contenido se construye y valida con el cliente.
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.querySelector(`.panel[data-panel="${tab}"]`).classList.add('active');
+    });
+  });
+
+  // Simulador económico
+  const fmt = (n) => Math.round(n).toLocaleString('es-ES');
+  function recalcular() {
+    const v1 = +document.getElementById('rV1').value;
+    const v2 = +document.getElementById('rV2').value;
+    const v3 = +document.getElementById('rV3').value;
+    const vv = +document.getElementById('rVV').value;
+    const ticket = +document.getElementById('rTicket').value;
+
+    document.getElementById('vV1').textContent = fmt(v1);
+    document.getElementById('vV2').textContent = fmt(v2);
+    document.getElementById('vV3').textContent = fmt(v3);
+    document.getElementById('vVV').textContent = vv;
+    document.getElementById('vTicket').textContent = fmt(ticket) + ' €';
+
+    // cálculo cuotas
+    const cuotas = v1 * 980 + v2 * 2400 + v3 * 6500;
+    // experiencias y vino exclusivo: ~30% adicional sobre cuotas
+    const exp = Math.round(cuotas * 0.32);
+    // vehículo coinversión
+    const vveh = vv * ticket;
+    // crecimiento total ecosistema vs bodega aislada (4,8 M€)
+    const totalEcosistema = cuotas + exp;
+    const growth = (totalEcosistema / 4800000) * 100;
+
+    document.getElementById('oCuotas').textContent = fmt(cuotas) + ' €';
+    document.getElementById('oExp').textContent = fmt(exp) + ' €';
+    document.getElementById('oVV').textContent = fmt(vveh) + ' €';
+    document.getElementById('oGrowth').textContent = '+' + growth.toFixed(0) + ' %';
+  }
+  document.querySelectorAll('input[type=range]').forEach(r => r.addEventListener('input', recalcular));
+  recalcular();
+</script>
+
+<script>
+window.PRAXIA_DECK_PANELS = [
+  { href: 'index.html', label: 'Estudio', dataI18n: 'nav-estudio' },
+  { id: 'panel-intro', label: 'Punto de partida' },
+  { id: 'panel-partida', label: 'El reto' },
+  { id: 'panel-ideas', label: '3 ideas' },
+  { id: 'panel-juridico', label: 'Jurídico' },
+  { id: 'panel-software', label: 'Software' },
+  { id: 'panel-modelo', label: 'Modelo económico' },
+  { id: 'panel-aterrizaje', label: 'Aterrizaje' },
+  { id: 'panel-equipo', label: 'Equipo' },
+  { id: 'panel-disclaimer', label: 'Alcance' },
+  { id: 'panel-cierre', label: 'Cierre' },
+  { href: 'index.html#casos', label: 'Otros casos', dataI18n: 'nav-otros-casos' },
+  { href: 'index.html#contacto', label: 'Contacto', dataI18n: 'nav-contacto' }
+];
+window.PRAXIA_DECK_CTA = { label: 'Reservar diagnóstico', href: 'index.html#contacto' };
+</script>
+<link rel="stylesheet" href="praxia-deck.css">
+<script src="praxia-deck.js" defer></script>
+<!-- Praxia Chatbox · cargado externo (un solo archivo para todas las páginas) -->
+<link rel="stylesheet" href="praxia-chatbox.css">
+<script src="praxia-chatbox.js" defer></script>
+<script src="praxia-i18n.js" defer></script>
+
+</body>
+</html>

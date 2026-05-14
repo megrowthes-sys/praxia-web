@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Cuadrante de decisión · qué automatizar con IA en real estate</title>
+  <desc id="desc">Matriz de dos ejes — frecuencia de la tarea y coste del error — que clasifica cuatro zonas de decisión sobre cuándo aplicar IA en una operadora inmobiliaria.</desc>
+
+  <defs>
+    <style>
+      .paper { fill: #faf8f3; }
+      .ink { fill: #1a1f2e; }
+      .ink-soft { fill: #44485a; }
+      .line { stroke: #e6e1d6; stroke-width: 1.5; }
+      .axis { stroke: #1a1f2e; stroke-width: 2; }
+      .accent { fill: #b9522e; }
+      .accent-soft { fill: #f3ddd0; }
+      .moss { fill: #4a5d3a; }
+      .moss-soft { fill: #d8dfcd; }
+      .gold { fill: #b08d3a; }
+      .gold-soft { fill: #f1e6c5; }
+      .slate-soft { fill: #d2dce4; }
+      .serif { font-family: "Fraunces", Georgia, serif; font-weight: 500; }
+      .sans { font-family: "IBM Plex Sans", system-ui, sans-serif; }
+      .mono { font-family: "JetBrains Mono", ui-monospace, monospace; letter-spacing: .14em; text-transform: uppercase; }
+    </style>
+  </defs>
+
+  <!-- Fondo paper -->
+  <rect class="paper" width="1200" height="800" />
+
+  <!-- Marco editorial -->
+  <rect class="line" fill="none" x="40" y="40" width="1120" height="720" />
+
+  <!-- Cabecera -->
+  <text class="mono" x="80" y="100" font-size="13" fill="#b9522e">Praxia Atelier · Cuadrante de decisión</text>
+  <text class="serif" x="80" y="150" font-size="36" fill="#1a1f2e">Cuándo automatizar con IA en una operadora de real estate</text>
+  <text class="sans" x="80" y="190" font-size="16" fill="#44485a">Dos ejes que decidir antes de meter IA en una capa del negocio</text>
+
+  <!-- Línea divisoria -->
+  <line class="line" x1="80" y1="220" x2="1120" y2="220" />
+
+  <!-- ============================================================
+       MATRIZ 2x2
+       Origen del cuadro: x=280, y=270
+       Tamaño: 800 x 380
+       Eje Y a la izquierda con espacio cómodo (200 px desde marco)
+       Eje X debajo con espacio cómodo (60 px hasta marco inferior)
+  ============================================================ -->
+
+  <!-- Cuadrantes -->
+  <!-- Q1 · Superior izq: BAJA freq + ALTO coste · Persona estratégica -->
+  <rect class="moss-soft" x="280" y="270" width="400" height="190" opacity="0.5" />
+
+  <!-- Q2 · Superior der: ALTA freq + ALTO coste · IA + supervisión -->
+  <rect class="gold-soft" x="680" y="270" width="400" height="190" opacity="0.55" />
+
+  <!-- Q3 · Inferior izq: BAJA freq + BAJO coste · Mejor manual -->
+  <rect class="slate-soft" x="280" y="460" width="400" height="190" opacity="0.45" />
+
+  <!-- Q4 · Inferior der: ALTA freq + BAJO coste · AUTOMATIZAR · destacado -->
+  <rect class="accent-soft" x="680" y="460" width="400" height="190" />
+  <rect fill="none" stroke="#b9522e" stroke-width="3" x="680" y="460" width="400" height="190" />
+
+  <!-- Ejes principales sobre la matriz (cruz central de referencia) -->
+  <line class="axis" x1="280" y1="650" x2="1080" y2="650" />
+  <line class="axis" x1="280" y1="270" x2="280" y2="650" />
+
+  <!-- ============================================================
+       EJE Y · etiquetas a la izquierda con SEPARACIÓN CLARA
+       Título eje rotado a x=120 (lejos de los marcadores Alto/Bajo)
+       Marcadores Alto/Bajo en x=210 (junto al eje pero sin solaparse)
+  ============================================================ -->
+
+  <!-- Título eje Y · vertical, lejos del eje -->
+  <text class="mono" font-size="11" fill="#44485a" transform="rotate(-90, 120, 460)" x="120" y="460" text-anchor="middle">Coste del error</text>
+
+  <!-- Marcadores Alto / Bajo · horizontales, separados del título y del eje -->
+  <text class="mono" x="210" y="290" font-size="10" fill="#1a1f2e" text-anchor="end">Alto</text>
+  <text class="mono" x="210" y="640" font-size="10" fill="#1a1f2e" text-anchor="end">Bajo</text>
+
+  <!-- ============================================================
+       EJE X · etiquetas debajo
+  ============================================================ -->
+
+  <!-- Marcadores Baja / Alta · debajo del eje -->
+  <text class="mono" x="290" y="680" font-size="10" fill="#1a1f2e">Baja</text>
+  <text class="mono" x="1070" y="680" font-size="10" fill="#1a1f2e" text-anchor="end">Alta</text>
+
+  <!-- Título eje X · centrado y separado -->
+  <text class="mono" x="680" y="710" font-size="11" fill="#44485a" text-anchor="middle">Frecuencia de la tarea</text>
+
+  <!-- ============================================================
+       CONTENIDO DE LOS CUADRANTES
+       Padding interno consistente: 20 px desde el borde
+  ============================================================ -->
+
+  <!-- Q1 · Persona estratégica -->
+  <text class="mono" x="300" y="300" font-size="11" fill="#4a5d3a">01 · Persona</text>
+  <text class="serif" x="300" y="333" font-size="19" fill="#1a1f2e">Decisión estratégica humana</text>
+  <text class="sans" x="300" y="365" font-size="13" fill="#44485a">Decisión final de inversión</text>
+  <text class="sans" x="300" y="388" font-size="13" fill="#44485a">Negociación de compra y venta</text>
+  <text class="sans" x="300" y="411" font-size="13" fill="#44485a">Conflictos sensibles con inquilinos</text>
+  <text class="sans" x="300" y="434" font-size="13" fill="#44485a">Llamada difícil con coinversor</text>
+
+  <!-- Q2 · IA con supervisión -->
+  <text class="mono" x="700" y="300" font-size="11" fill="#b08d3a">02 · IA + supervisión humana</text>
+  <text class="serif" x="700" y="333" font-size="19" fill="#1a1f2e">IA propone, persona valida</text>
+  <text class="sans" x="700" y="365" font-size="13" fill="#44485a">Análisis comparativo de mercado</text>
+  <text class="sans" x="700" y="388" font-size="13" fill="#44485a">Reporting trimestral a coinversores</text>
+  <text class="sans" x="700" y="411" font-size="13" fill="#44485a">Prescoring de oportunidades</text>
+  <text class="sans" x="700" y="434" font-size="13" fill="#44485a">Borradores de comunicación clave</text>
+
+  <!-- Q3 · Mejor manual -->
+  <text class="mono" x="300" y="490" font-size="11" fill="#4b5d6e">03 · Mejor manual</text>
+  <text class="serif" x="300" y="523" font-size="19" fill="#1a1f2e">No vale la pena automatizar</text>
+  <text class="sans" x="300" y="555" font-size="13" fill="#44485a">Tareas únicas o muy esporádicas</text>
+  <text class="sans" x="300" y="578" font-size="13" fill="#44485a">Casos donde diseñar la IA</text>
+  <text class="sans" x="300" y="601" font-size="13" fill="#44485a">cuesta más que hacerlo a mano</text>
+
+  <!-- Q4 · AUTOMATIZAR · destacado -->
+  <text class="mono" x="700" y="490" font-size="11" fill="#b9522e">04 · Automatizar con IA</text>
+  <text class="serif" x="700" y="525" font-size="21" fill="#1a1f2e">Aquí la IA crea valor real</text>
+  <text class="sans" x="700" y="560" font-size="13" fill="#1a1f2e">Comunicación operativa con inquilinos</text>
+  <text class="sans" x="700" y="583" font-size="13" fill="#1a1f2e">Filtrado de portales</text>
+  <text class="sans" x="700" y="606" font-size="13" fill="#1a1f2e">Recordatorios y reservas</text>
+  <text class="sans" x="700" y="629" font-size="13" fill="#1a1f2e">Sincronización de back office</text>
+
+  <!-- Pie · marca -->
+  <text class="mono" x="80" y="780" font-size="10" fill="#44485a">© 2026 · Praxia Atelier · praxia-atelier.net</text>
+</svg>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Avatar conversacional · Praxia Atelier</title>
+<meta name="description" content="El avatar de Praxia aún no está disponible. Mientras tanto, reserva 30 min con Marta y te enviamos un one-pager gratis con tres movimientos accionables para tu proyecto." />
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --paper: #f7f4ec;
+    --ink: #1a1a1a;
+    --ink-soft: #5a5a5a;
+    --line: #e6e0d4;
+    --accent: #b08a4f;
+    --accent-soft: #ebe2cf;
+    --card: #fbf8f1;
+  }
+  body { background: var(--paper); color: var(--ink); font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; }
+  .serif { font-family: "Playfair Display", Georgia, serif; }
+  .mono { font-family: "JetBrains Mono", "Courier New", monospace; }
+  .bg-paper { background: var(--paper); }
+  .bg-card { background: var(--card); }
+  .bg-accent { background: var(--accent); color: var(--paper); }
+  .bg-accent-soft { background: var(--accent-soft); }
+  .border-line { border-color: var(--line); }
+  .text-ink { color: var(--ink); }
+  .text-ink-soft { color: var(--ink-soft); }
+  .text-accent { color: var(--accent); }
+  .underline-soft { background-image: linear-gradient(var(--accent), var(--accent)); background-position: 0 95%; background-repeat: no-repeat; background-size: 100% 2px; padding-bottom: 2px; }
+  .grid-bg { background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 56px 56px; }
+</style>
+</head>
+<body class="text-ink">
+
+<!-- Top bar -->
+<header class="border-b border-line bg-paper sticky top-0 z-30">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <div class="w-7 h-7 border border-ink flex items-center justify-center">
+        <span class="serif text-lg leading-none">P</span>
+      </div>
+      <div class="leading-tight">
+        <div class="serif text-lg">Praxia <span class="text-ink-soft">Atelier</span></div>
+        <div class="mono text-[10px] text-ink-soft tracking-widest uppercase">Ecosystem architecture</div>
+      </div>
+    </a>
+    <a href="index.html" class="text-sm text-ink-soft hover:text-ink">← Volver a la home</a>
+  </div>
+</header>
+
+<!-- Hero · estado actual del avatar -->
+<section class="relative overflow-hidden border-b border-line">
+  <div class="absolute inset-0 grid-bg opacity-30 pointer-events-none"></div>
+  <div class="relative max-w-3xl mx-auto px-6 py-16 md:py-20 text-center">
+    <span class="inline-block bg-accent-soft text-accent mono text-[11px] uppercase tracking-widest px-3 py-1 rounded-sm">En construcción</span>
+    <h1 class="serif text-4xl md:text-5xl mt-6 leading-[1.1]">
+      El avatar conversacional <br/>
+      <span class="underline-soft">aún no está listo.</span>
+    </h1>
+    <p class="text-ink-soft text-lg mt-6 max-w-2xl mx-auto">
+      Estamos terminando de afinarlo para que entienda tu proyecto con la misma profundidad con la que lo entiende Marta. Cuando esté, te avisamos.
+    </p>
+    <p class="text-ink-soft text-base mt-4 max-w-2xl mx-auto">
+      Mientras tanto, hay algo mejor que esperar.
+    </p>
+  </div>
+</section>
+
+<!-- Propuesta concreta · CTA fuerte -->
+<section class="bg-card border-b border-line">
+  <div class="max-w-3xl mx-auto px-6 py-20">
+    <div class="text-center">
+      <span class="mono text-[11px] uppercase tracking-widest text-accent">Llamada de diagnóstico</span>
+      <h2 class="serif text-3xl md:text-4xl mt-4 leading-tight">
+        30 minutos con Marta. <br/>
+        Y un <span class="underline-soft">one-pager gratis</span> con tres movimientos para tu proyecto.
+      </h2>
+    </div>
+
+    <div class="mt-12 grid md:grid-cols-3 gap-6">
+      <div class="bg-paper border border-line p-6 rounded-sm">
+        <div class="mono text-[10px] uppercase tracking-widest text-accent">01</div>
+        <h3 class="serif text-lg mt-2">Reservas la llamada</h3>
+        <p class="text-sm text-ink-soft mt-3 leading-relaxed">
+          30 minutos por videollamada. Marta te escucha, te hace preguntas concretas y entiende qué tienes entre manos.
+        </p>
+      </div>
+      <div class="bg-paper border border-line p-6 rounded-sm">
+        <div class="mono text-[10px] uppercase tracking-widest text-accent">02</div>
+        <h3 class="serif text-lg mt-2">Hablamos de tu caso</h3>
+        <p class="text-sm text-ink-soft mt-3 leading-relaxed">
+          Sin guion comercial. Si Praxia no encaja con tu proyecto, te lo decimos. Si encaja, te explicamos cómo trabajamos.
+        </p>
+      </div>
+      <div class="bg-paper border border-line p-6 rounded-sm">
+        <div class="mono text-[10px] uppercase tracking-widest text-accent">03</div>
+        <h3 class="serif text-lg mt-2">Recibes el one-pager</h3>
+        <p class="text-sm text-ink-soft mt-3 leading-relaxed">
+          En 48 horas te llega un PDF con <strong class="text-ink">tres movimientos accionables específicos para tu proyecto</strong>. Los que daríamos si trabajáramos juntos. Sin contratar nada.
+        </p>
+      </div>
+    </div>
+
+    <!-- Disclaimer de honestidad -->
+    <div class="mt-10 border-l-2 border-accent pl-5 max-w-2xl mx-auto">
+      <p class="text-ink-soft text-base leading-relaxed italic">
+        Sin compromiso. Si después decides que quieres seguir con Praxia, perfecto. Si no, te quedas con el one-pager y te ahorras decisiones equivocadas. Esa honestidad es parte de cómo trabajamos.
+      </p>
+    </div>
+
+    <!-- CTA principal -->
+    <div class="mt-12 flex flex-col items-center gap-4">
+      <a href="https://cal.com/marta-escobar-rojas-teatxg/30min" target="_blank" rel="noopener"
+         class="inline-block bg-ink text-paper px-8 py-4 text-base rounded-sm hover:bg-accent transition font-medium">
+        Reservar 30 min con Marta · gratis
+      </a>
+      <p class="mono text-[11px] uppercase tracking-widest text-ink-soft">
+        Sin tarjeta · Sin compromiso · One-pager garantizado
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Detalle del one-pager · qué incluye exactamente -->
+<section class="bg-paper border-b border-line">
+  <div class="max-w-4xl mx-auto px-6 py-20">
+    <div class="text-center mb-12">
+      <span class="mono text-[11px] uppercase tracking-widest text-accent">El one-pager incluye</span>
+      <h2 class="serif text-2xl md:text-3xl mt-3">Tres movimientos accionables — escritos para tu caso, no plantillas.</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 text-sm">
+      <div>
+        <div class="serif text-2xl text-accent">·</div>
+        <h4 class="serif text-lg mt-2">Movimiento 1 · Lo que desbloquea</h4>
+        <p class="text-ink-soft mt-3 leading-relaxed">
+          La pieza que, si la mueves, hace que el resto avance. Suele ser legal, jurídico o de modelo — lo que la mayoría posterga.
+        </p>
+      </div>
+      <div>
+        <div class="serif text-2xl text-accent">·</div>
+        <h4 class="serif text-lg mt-2">Movimiento 2 · Lo que profesionaliza</h4>
+        <p class="text-ink-soft mt-3 leading-relaxed">
+          El cambio que te hace parecer (y operar) tres niveles más arriba. Materiales, posicionamiento, capa de IA, presentación.
+        </p>
+      </div>
+      <div>
+        <div class="serif text-2xl text-accent">·</div>
+        <h4 class="serif text-lg mt-2">Movimiento 3 · Lo que escala</h4>
+        <p class="text-ink-soft mt-3 leading-relaxed">
+          La automatización o sistematización que, una vez instalada, te ahorra horas o multiplica capacidad sin contratar a nadie.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-10 text-center">
+      <p class="text-ink-soft text-sm">
+        Cada movimiento tiene un porqué, un cómo y un coste estimado. Es un documento que puedes ejecutar tú o pasar a otro proveedor — el valor es tuyo.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA secundaria · refuerzo -->
+<section class="bg-ink text-paper">
+  <div class="max-w-3xl mx-auto px-6 py-16 text-center">
+    <h2 class="serif text-2xl md:text-3xl leading-tight">
+      Sin coste para ti. <br/>
+      Sin discurso de venta. <br/>
+      Solo claridad sobre tu proyecto.
+    </h2>
+    <div class="mt-10">
+      <a href="https://cal.com/marta-escobar-rojas-teatxg/30min" target="_blank" rel="noopener"
+         class="inline-block bg-paper text-ink px-8 py-4 text-base rounded-sm hover:bg-accent hover:text-paper transition font-medium">
+        Reservar 30 min ahora
+      </a>
+    </div>
+    <p class="mono text-[10px] uppercase tracking-widest text-paper opacity-60 mt-8">
+      Praxia Atelier · Madrid · 2026
+    </p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-paper border-t border-line">
+  <div class="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between gap-6 text-sm text-ink-soft">
+    <div>
+      <div class="serif text-lg text-ink">Praxia Atelier</div>
+      <div class="mono text-[11px] uppercase tracking-widest mt-1">Madrid · 2026</div>
+    </div>
+    <div class="flex gap-6">
+      <a href="aviso-legal.html" class="hover:text-ink">Aviso legal</a>
+      <a href="privacidad.html" class="hover:text-ink">Privacidad</a>
+      <a href="mailto:info@praxia-atelier.net" class="hover:text-ink">info@praxia-atelier.net</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Praxia Chatbox · cargado externo (un solo archivo para todas las páginas) -->
+<link rel="stylesheet" href="praxia-chatbox.css">
+<script src="praxia-chatbox.js" defer></script>
+<script src="praxia-i18n.js" defer></script>
+
+</body>
+</html>

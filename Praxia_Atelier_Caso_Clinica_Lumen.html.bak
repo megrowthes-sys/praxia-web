@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Caso · Clínica Lumen · Praxia Atelier</title>
+<meta name="description" content="Caso ficticio · Cómo Praxia Atelier transformaría una clínica de medicina integrativa en una plataforma de longevidad con membresía, IA y vehículo de coinversión." />
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1f2e;
+    --ink-soft: #44485a;
+    --paper: #f4f7f5;       /* verde muy claro · clínica */
+    --line: #d8e0db;
+    --accent: #2d6a5f;      /* verde sage / clínica */
+    --accent-soft: #cee2dc;
+    --gold: #b08d3a;
+    --gold-soft: #f1e6c5;
+    --slate: #4b5d6e;
+    --slate-soft: #d2dce4;
+    --warm: #b9522e;
+    --warm-soft: #f3ddd0;
+  }
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .serif { font-family: "Fraunces", Georgia, serif; font-optical-sizing: auto; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .text-accent { color: var(--accent); }
+  .bg-accent { background: var(--accent); color: #fff; }
+  .bg-accent-soft { background: var(--accent-soft); color: var(--accent); }
+  .bg-gold-soft { background: var(--gold-soft); color: var(--gold); }
+  .bg-slate-soft { background: var(--slate-soft); color: var(--slate); }
+  .bg-warm-soft { background: var(--warm-soft); color: var(--warm); }
+  .border-line { border-color: var(--line); }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+  .num { font-family: "Fraunces", serif; font-weight: 600; font-size: 14px; color: var(--accent); }
+  .underline-soft { background-image: linear-gradient(var(--accent), var(--accent)); background-position: 0 95%; background-repeat: no-repeat; background-size: 100% 2px; padding-bottom: 2px; }
+  .grid-bg {
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 4px; }
+  .card-accent { border-left: 3px solid var(--accent); }
+  .card-gold { border-left: 3px solid var(--gold); }
+  .card-warm { border-left: 3px solid var(--warm); }
+  .arrow { font-family: "JetBrains Mono", monospace; color: var(--accent); }
+
+  /* Tabs */
+  .tabs { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 1px solid var(--line); margin-bottom: 24px; }
+  .tab-btn {
+    padding: 12px 22px;
+    border: 0;
+    background: transparent;
+    color: var(--ink-soft);
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all .15s ease;
+  }
+  .tab-btn:hover { color: var(--ink); }
+  .tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    font-weight: 600;
+  }
+  .panel { display: none; animation: fadein .25s ease; }
+  .panel.active { display: block; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  /* Mockup frame (browser-like) */
+  .browser {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(20, 30, 35, .08);
+  }
+  .browser-bar {
+    background: linear-gradient(to bottom, #f1f3f1, #e8ece9);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .dot { width: 12px; height: 12px; border-radius: 999px; }
+  .browser-url {
+    flex: 1;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 5px 12px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    margin-left: 6px;
+  }
+
+  /* Mockup landing pública */
+  .lumen-mark {
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .lumen-symbol { width: 22px; height: 22px; border: 1.5px solid var(--accent); border-radius: 999px; display: flex; align-items: center; justify-content: center; }
+  .lumen-symbol::after { content: ""; width: 8px; height: 8px; background: var(--accent); border-radius: 999px; }
+  .lumen-name { font-family: "Fraunces", serif; font-size: 16px; letter-spacing: .04em; }
+
+  /* App sidebar */
+  .app-side {
+    background: #fafbfa;
+    border-right: 1px solid var(--line);
+    width: 200px;
+    padding: 16px 12px;
+    flex-shrink: 0;
+  }
+  .nav-item { padding: 8px 10px; border-radius: 4px; font-size: 13px; color: var(--ink-soft); display: flex; align-items: center; gap: 10px; cursor: pointer; }
+  .nav-item.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  .nav-icon { width: 14px; height: 14px; border-radius: 3px; background: currentColor; opacity: .6; }
+
+  /* Health markers */
+  .marker { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 14px; }
+  .marker-num { font-family: "Fraunces", serif; font-size: 28px; line-height: 1; }
+  .marker-label { font-family: "JetBrains Mono", monospace; font-size: 9.5px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase; margin-top: 6px; }
+  .marker-trend { font-size: 11px; margin-top: 6px; }
+  .trend-up { color: var(--accent); }
+  .trend-down { color: var(--warm); }
+
+  /* Avatar bubble */
+  .bubble {
+    background: var(--accent-soft);
+    border-radius: 14px 14px 14px 4px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--ink);
+    max-width: 78%;
+    line-height: 1.5;
+  }
+  .bubble-user {
+    background: var(--ink);
+    color: #fff;
+    border-radius: 14px 14px 4px 14px;
+    margin-left: auto;
+  }
+
+  /* Simulator */
+  .slider-wrap { display: flex; flex-direction: column; gap: 4px; }
+  .slider-label { display: flex; justify-content: space-between; font-size: 12px; }
+  .slider-label .v { font-family: "Fraunces", serif; font-weight: 600; color: var(--accent); }
+  input[type=range] { -webkit-appearance: none; height: 4px; background: var(--line); border-radius: 999px; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: var(--accent); border-radius: 999px; cursor: pointer; }
+
+  /* Roadmap */
+  .step { background: #fff; border: 1px solid var(--line); padding: 18px; }
+  .step-num { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--accent); letter-spacing: .12em; text-transform: uppercase; }
+
+  .ribbon {
+    display: inline-block;
+    background: var(--gold-soft);
+    color: var(--gold);
+    padding: 3px 10px;
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body class="text-ink">
+
+<!-- Top bar -->
+<header class="border-b border-line bg-paper sticky top-0 z-30">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-7 h-7 border border-ink flex items-center justify-center">
+        <span class="serif text-lg leading-none">P</span>
+      </div>
+      <div class="leading-tight">
+        <div class="serif text-lg">Praxia <span class="text-ink-soft">Atelier</span></div>
+        <div class="mono text-[10px] text-ink-soft tracking-widest uppercase">Caso · Clínica Lumen</div>
+      </div>
+    </div>
+    <span class="ribbon hidden md:inline-block">Caso ficticio · prototipo accionable</span>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="relative overflow-hidden border-b border-line">
+  <div class="absolute inset-0 grid-bg opacity-30 pointer-events-none"></div>
+  <div class="relative max-w-6xl mx-auto px-6 py-20 md:py-24">
+    <div class="flex flex-wrap gap-2 mb-6">
+      <span class="pill bg-accent-soft">Health-tech · longevidad</span>
+      <span class="pill bg-warm-soft">Madrid</span>
+      <span class="pill bg-gold-soft">PYME 1,8 M€</span>
+      <span class="pill bg-slate-soft">Cápsula 01 + 02</span>
+    </div>
+    <h1 class="serif text-4xl md:text-6xl leading-[1.05] max-w-4xl">
+      Clínica <span class="underline-soft">Lumen</span>
+    </h1>
+    <p class="serif text-xl md:text-2xl text-ink-soft mt-4 max-w-3xl italic">
+      De clínica privada de medicina integrativa a plataforma de longevidad con membresía, avatar de seguimiento y vehículo de coinversión entre pacientes.
+    </p>
+    <p class="text-base md:text-lg text-ink-soft mt-8 max-w-3xl">
+      Caso ficticio creado por Praxia Atelier para mostrar, end-to-end y con mockups navegables, cómo se diseña un ecosistema sobre una clínica consolidada — multiplicando ARPU sin canibalizar la consulta médica y abriendo dos verticales: SaaS para profesionales asociados y vehículo de coinversión privada.
+    </p>
+
+    <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-px bg-line border border-line">
+      <div class="bg-paper p-6">
+        <div class="serif text-3xl">×3,4</div>
+        <div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-2">ARPU paciente / año 3</div>
+      </div>
+      <div class="bg-paper p-6">
+        <div class="serif text-3xl">800</div>
+        <div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-2">socios premium objetivo</div>
+      </div>
+      <div class="bg-paper p-6">
+        <div class="serif text-3xl">3,5 M€</div>
+        <div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-2">vehículo coinversión año 2</div>
+      </div>
+      <div class="bg-paper p-6">
+        <div class="serif text-3xl">14 días</div>
+        <div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-2">para entregar el blueprint</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Brainstorm -->
+<section class="bg-white border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-12 gap-10">
+    <div class="md:col-span-4">
+      <span class="num">01</span>
+      <h2 class="serif text-3xl mt-3">El punto de partida</h2>
+      <p class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-3">Brainstorm · Día 0</p>
+    </div>
+    <div class="md:col-span-8 space-y-5 text-ink-soft text-lg leading-relaxed">
+      <p>
+        <span class="text-ink font-medium">Clínica Lumen S.L.</span> abrió en 2022 en Madrid. Médica fundadora: <span class="text-ink font-medium">Dra. Elena Marés</span>, internista con especialidad en medicina integrativa y longevidad. Equipo: 6 profesionales (2 médicos, 1 nutricionista, 1 fisioterapeuta, 1 psicóloga, 1 coach). Facturan <span class="text-ink font-medium">1,8 M€/año</span>, paciente medio gasta 2.400 €/año en consultas + analíticas + tratamientos.
+      </p>
+      <p>
+        Lo que está pasando: las clínicas competidoras (Neolife, SHA Wellness, Sanitas Clinic) están profesionalizándose con membresía premium, IA de seguimiento y modelos de suscripción. Elena se está quedando atrás. Tiene <span class="text-ink font-medium">el contenido y la confianza médica</span>, pero le falta la capa de producto digital. Y los pacientes premium le están pidiendo "algo más" — seguimiento entre consultas, comunidad, acceso a tratamientos en otros centros.
+      </p>
+      <p class="border-l-2 border-accent pl-5 text-ink">
+        En la sesión de brainstorm convertimos la clínica en una plataforma con tres palancas que multiplican el ARPU del paciente: <span class="font-medium">membresía Lumen Plus, avatar Sofia para seguimiento entre consultas, y SaaS Lumen Practitioners</span> para que otros médicos certificados se sumen al ecosistema.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Diagnóstico -->
+<section class="bg-paper border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <span class="num">02</span>
+    <h2 class="serif text-3xl md:text-4xl mt-3">Las tres palancas del nuevo modelo</h2>
+    <p class="text-ink-soft mt-3 max-w-3xl">Cada palanca por separado podría ser un producto. Juntas forman un sistema en el que cada pieza alimenta a las otras.</p>
+
+    <div class="grid md:grid-cols-3 gap-6 mt-10">
+      <div class="card p-7 card-accent">
+        <span class="pill bg-accent-soft">Palanca 1</span>
+        <h3 class="serif text-xl mt-3">Lumen Plus · membresía premium</h3>
+        <p class="text-ink-soft text-sm mt-3">Cuota anual con consultas incluidas, analíticas semestrales, acceso ilimitado al avatar Sofia, descuentos en tratamientos y eventos exclusivos sobre longevidad.</p>
+        <p class="text-ink-soft text-sm mt-3"><span class="text-accent font-medium">Por qué funciona:</span> convierte facturación reactiva (paciente paga cuando viene) en recurrente (cuota anual fija). Mejora cash-flow predictible y lifetime value.</p>
+      </div>
+      <div class="card p-7 card-gold">
+        <span class="pill bg-gold-soft">Palanca 2</span>
+        <h3 class="serif text-xl mt-3">Sofia · avatar de longevidad</h3>
+        <p class="text-ink-soft text-sm mt-3">Avatar con IA que conoce el historial del paciente, le acompaña entre consultas, le recuerda hábitos, le interpreta analíticas y deriva al médico cuando detecta señales relevantes.</p>
+        <p class="text-ink-soft text-sm mt-3"><span class="text-accent font-medium">Por qué funciona:</span> aumenta retención (paciente "vinculado" cada día, no sólo en consulta). Genera datos de comportamiento que mejoran el cuidado real.</p>
+      </div>
+      <div class="card p-7 card-warm">
+        <span class="pill bg-warm-soft">Palanca 3</span>
+        <h3 class="serif text-xl mt-3">Lumen Practitioners · SaaS B2B</h3>
+        <p class="text-ink-soft text-sm mt-3">Otros médicos certificados se suman al ecosistema, atienden pacientes Lumen en sus ciudades, comparten protocolos clínicos. Comisión por sesión + cuota mensual SaaS.</p>
+        <p class="text-ink-soft text-sm mt-3"><span class="text-accent font-medium">Por qué funciona:</span> escala la marca Lumen sin abrir clínicas físicas. Convierte la metodología de Elena en producto licenciado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOCKUPS NAVEGABLES -->
+<section class="bg-white border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <span class="num">03</span>
+    <h2 class="serif text-3xl md:text-4xl mt-3">El producto, navegable</h2>
+    <p class="text-ink-soft mt-3 max-w-3xl">Pulsa cada pestaña para ver el producto desde tres perspectivas: el paciente, el médico y los números. Es el mismo formato y nivel de detalle que entregamos a un cliente, pero aquí construido sobre una clínica ficticia para que puedas verlo abierto.</p>
+
+    <div class="mt-10">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="landing">Landing pública</button>
+        <button class="tab-btn" data-tab="paciente">Área del paciente</button>
+        <button class="tab-btn" data-tab="avatar">Avatar Sofia</button>
+        <button class="tab-btn" data-tab="medico">Back office médico</button>
+        <button class="tab-btn" data-tab="simulador">Simulador económico</button>
+      </div>
+
+      <!-- TAB · LANDING -->
+      <div class="panel active" data-panel="landing">
+        <div class="browser">
+          <div class="browser-bar">
+            <span class="dot" style="background:#ff5f57"></span>
+            <span class="dot" style="background:#febc2e"></span>
+            <span class="dot" style="background:#28c840"></span>
+            <span class="browser-url">https://clinicalumen.es</span>
+          </div>
+          <div style="background: #fafbfa;">
+            <!-- Top nav -->
+            <div style="border-bottom: 1px solid var(--line); padding: 16px 28px; display: flex; align-items: center; justify-content: space-between; background: #fff;">
+              <div class="lumen-mark">
+                <span class="lumen-symbol"></span>
+                <span class="lumen-name">LUMEN</span>
+              </div>
+              <div style="display: flex; gap: 24px; font-size: 13px; color: var(--ink-soft);">
+                <span>Método</span>
+                <span>Profesionales</span>
+                <span>Membresía</span>
+                <span>Áreas</span>
+                <span>Reservar consulta</span>
+              </div>
+              <button style="background: var(--accent); color: #fff; padding: 8px 16px; border-radius: 4px; font-size: 12px;">Acceder a Lumen Plus</button>
+            </div>
+            <!-- Hero -->
+            <div style="padding: 70px 28px; max-width: 760px;">
+              <span class="pill bg-accent-soft">Medicina integrativa de longevidad · Madrid</span>
+              <h3 class="serif" style="font-size: 38px; line-height: 1.1; margin-top: 16px;">Tu salud no es un examen anual.</h3>
+              <p class="serif" style="font-size: 22px; color: var(--ink-soft); font-style: italic; margin-top: 8px;">Es una conversación que sostenemos contigo cada día.</p>
+              <p style="font-size: 14px; color: var(--ink-soft); margin-top: 20px; max-width: 540px;">Lumen Plus es la primera membresía de medicina integrativa con seguimiento continuo, analíticas avanzadas y un avatar clínico que conoce tu historial.</p>
+              <div style="margin-top: 28px; display: flex; gap: 12px;">
+                <button style="background: var(--accent); color: #fff; padding: 12px 22px; border-radius: 4px; font-size: 13px;">Solicitar invitación</button>
+                <button style="border: 1px solid var(--ink); padding: 12px 22px; border-radius: 4px; font-size: 13px;">Ver el método</button>
+              </div>
+            </div>
+            <!-- Bandera de membresia -->
+            <div style="border-top: 1px solid var(--line); background: #fff; padding: 32px 28px;">
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                <div>
+                  <div class="mono" style="font-size: 10px; color: var(--accent); letter-spacing: .12em; text-transform: uppercase;">Lumen Essential</div>
+                  <div class="serif" style="font-size: 22px; margin-top: 6px;">1.200 €/año</div>
+                  <p style="font-size: 12px; color: var(--ink-soft); margin-top: 6px;">2 consultas + analítica anual + avatar Sofia.</p>
+                </div>
+                <div>
+                  <div class="mono" style="font-size: 10px; color: var(--accent); letter-spacing: .12em; text-transform: uppercase;">Lumen Plus · más popular</div>
+                  <div class="serif" style="font-size: 22px; margin-top: 6px;">3.600 €/año</div>
+                  <p style="font-size: 12px; color: var(--ink-soft); margin-top: 6px;">4 consultas + analíticas semestrales + tratamientos con descuento + comunidad.</p>
+                </div>
+                <div>
+                  <div class="mono" style="font-size: 10px; color: var(--accent); letter-spacing: .12em; text-transform: uppercase;">Lumen Founders</div>
+                  <div class="serif" style="font-size: 22px; margin-top: 6px;">12.000 €/año</div>
+                  <p style="font-size: 12px; color: var(--ink-soft); margin-top: 6px;">Plus + acceso al vehículo de coinversión + voto en protocolos + atención sin lista de espera.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB · PACIENTE -->
+      <div class="panel" data-panel="paciente">
+        <div class="browser">
+          <div class="browser-bar">
+            <span class="dot" style="background:#ff5f57"></span>
+            <span class="dot" style="background:#febc2e"></span>
+            <span class="dot" style="background:#28c840"></span>
+            <span class="browser-url">app.clinicalumen.es / mi-salud</span>
+          </div>
+          <div style="display: flex; min-height: 540px;">
+            <!-- Sidebar -->
+            <div class="app-side">
+              <div class="lumen-mark mb-5" style="margin-bottom: 20px;">
+                <span class="lumen-symbol"></span>
+                <span class="lumen-name" style="font-size: 14px;">LUMEN</span>
+              </div>
+              <div class="nav-item active"><span class="nav-icon"></span> Mi salud</div>
+              <div class="nav-item"><span class="nav-icon"></span> Sofia</div>
+              <div class="nav-item"><span class="nav-icon"></span> Próximas citas</div>
+              <div class="nav-item"><span class="nav-icon"></span> Analíticas</div>
+              <div class="nav-item"><span class="nav-icon"></span> Tratamientos</div>
+              <div class="nav-item"><span class="nav-icon"></span> Comunidad</div>
+              <div class="nav-item"><span class="nav-icon"></span> Vehículo · Founders</div>
+              <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--line);">
+                <div class="nav-item"><span class="nav-icon"></span> Mi perfil</div>
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div style="flex: 1; padding: 28px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 18px; border-bottom: 1px solid var(--line);">
+                <div>
+                  <div class="mono" style="font-size: 10px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">Hola, Carlos</div>
+                  <h3 class="serif" style="font-size: 24px; margin-top: 4px;">Tu salud esta semana</h3>
+                </div>
+                <span class="pill bg-accent-soft">Lumen Plus</span>
+              </div>
+
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px;">
+                <div class="marker">
+                  <div class="marker-num">7,4 h</div>
+                  <div class="marker-label">Sueño profundo</div>
+                  <div class="marker-trend trend-up">↑ 0,6 h vs últ. mes</div>
+                </div>
+                <div class="marker">
+                  <div class="marker-num">62</div>
+                  <div class="marker-label">FC reposo · ppm</div>
+                  <div class="marker-trend trend-up">↓ 4 ppm</div>
+                </div>
+                <div class="marker">
+                  <div class="marker-num">48</div>
+                  <div class="marker-label">VO2 máx · ml/kg/min</div>
+                  <div class="marker-trend trend-up">↑ percentil 78</div>
+                </div>
+                <div class="marker">
+                  <div class="marker-num">94 mg/dL</div>
+                  <div class="marker-label">Glucosa media</div>
+                  <div class="marker-trend trend-down">↑ leve · revisar</div>
+                </div>
+              </div>
+
+              <div style="margin-top: 22px; background: var(--accent-soft); border-radius: 6px; padding: 16px 18px; display: flex; gap: 14px; align-items: flex-start;">
+                <div style="width: 32px; height: 32px; background: var(--accent); border-radius: 999px; flex-shrink: 0;"></div>
+                <div>
+                  <div class="mono" style="font-size: 9.5px; color: var(--accent); letter-spacing: .12em; text-transform: uppercase;">Sofia · avatar Lumen</div>
+                  <p style="font-size: 13px; margin-top: 4px; line-height: 1.5;">Carlos, tu glucosa media ha subido un 6 % en las últimas dos semanas. Mirando tu registro de comidas y sueño, veo que coincide con varias cenas tarde. ¿Te apetece que lo hablemos? También puedo proponerte una consulta breve con la Dra. Marés.</p>
+                  <div style="margin-top: 10px; display: flex; gap: 8px;">
+                    <button style="background: var(--accent); color: #fff; padding: 6px 14px; border-radius: 4px; font-size: 11px;">Hablar con Sofia</button>
+                    <button style="border: 1px solid var(--accent); color: var(--accent); padding: 6px 14px; border-radius: 4px; font-size: 11px;">Pedir consulta breve</button>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: 24px;">
+                <div class="mono" style="font-size: 10px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">Próximamente</div>
+                <div style="display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;">
+                  <div style="border: 1px solid var(--line); padding: 12px 16px; border-radius: 4px; font-size: 12px;"><strong style="color: var(--accent);">Mar 12 · 09:00</strong> · Analítica semestral</div>
+                  <div style="border: 1px solid var(--line); padding: 12px 16px; border-radius: 4px; font-size: 12px;"><strong style="color: var(--accent);">Mar 18 · 18:30</strong> · Consulta Dra. Marés</div>
+                  <div style="border: 1px solid var(--line); padding: 12px 16px; border-radius: 4px; font-size: 12px;"><strong style="color: var(--accent);">Mar 24 · 19:00</strong> · Charla longevidad · sólo Founders</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB · AVATAR -->
+      <div class="panel" data-panel="avatar">
+        <div class="browser">
+          <div class="browser-bar">
+            <span class="dot" style="background:#ff5f57"></span>
+            <span class="dot" style="background:#febc2e"></span>
+            <span class="dot" style="background:#28c840"></span>
+            <span class="browser-url">app.clinicalumen.es / sofia</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 320px 1fr; min-height: 540px;">
+            <!-- Side perfil -->
+            <div style="background: #fafbfa; border-right: 1px solid var(--line); padding: 24px 22px;">
+              <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 14px 0;">
+                <div style="width: 72px; height: 72px; background: linear-gradient(135deg, var(--accent), var(--gold)); border-radius: 999px;"></div>
+                <h4 class="serif" style="font-size: 20px; margin-top: 12px;">Sofia</h4>
+                <div class="mono" style="font-size: 9.5px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase; margin-top: 4px;">Avatar clínico Lumen</div>
+              </div>
+              <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line);">
+                <div class="mono" style="font-size: 9.5px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">Lo que Sofia sabe de ti</div>
+                <ul style="margin-top: 8px; font-size: 12px; color: var(--ink-soft); display: flex; flex-direction: column; gap: 6px;">
+                  <li>· Historial clínico desde 2024</li>
+                  <li>· 12 analíticas · última 02-mar</li>
+                  <li>· 8 consultas con Dra. Marés</li>
+                  <li>· Wearable Oura · sincronizado</li>
+                  <li>· Hábitos: dieta mediterránea, 4×/sem deporte</li>
+                  <li>· Objetivos: bajar glucosa, dormir mejor</li>
+                </ul>
+              </div>
+              <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line);">
+                <div class="mono" style="font-size: 9.5px; color: var(--accent); letter-spacing: .12em; text-transform: uppercase;">Privacidad</div>
+                <p style="font-size: 11px; color: var(--ink-soft); margin-top: 6px; line-height: 1.5;">Datos en UE · cifrado · DPIA realizada · puedes borrar tu historial cuando quieras.</p>
+              </div>
+            </div>
+
+            <!-- Chat -->
+            <div style="padding: 24px 28px; display: flex; flex-direction: column;">
+              <div style="font-size: 10px; color: var(--ink-soft); text-align: center; padding-bottom: 10px;">— hoy · 09:14 —</div>
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div class="bubble">Buenos días Carlos. He revisado tu última semana. Has dormido mejor (7,4 h de sueño profundo, +0,6 vs el mes pasado), pero veo que la glucosa media subió ligeramente. ¿Te apetece que miremos juntos qué puede estar pasando?</div>
+                <div class="bubble bubble-user">Sí, tres cenas tarde por trabajo. ¿Pasa algo?</div>
+                <div class="bubble">Es muy probable que sea eso. La Dra. Marés siempre dice que el horario de la cena puede mover la curva de glucosa más que el plato en sí. ¿Quieres que te proponga 3 cosas concretas para esta semana?</div>
+                <div class="bubble bubble-user">Vale</div>
+                <div class="bubble">
+                  <strong>1.</strong> Cenar antes de las 21:00 al menos 4 días.<br>
+                  <strong>2.</strong> Una caminata de 15 min después de cenar.<br>
+                  <strong>3.</strong> Si vuelve a subir, te agendo consulta breve con la Dra. Marés (no urgente, conversación de seguimiento). ¿Te parece?
+                </div>
+              </div>
+
+              <div style="margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line); display: flex; gap: 8px; align-items: center;">
+                <input type="text" placeholder="Escribe a Sofia o pulsa para hablar…" style="flex: 1; border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; font-size: 13px;" />
+                <button style="background: var(--accent); color: #fff; width: 36px; height: 36px; border-radius: 999px;">●</button>
+              </div>
+              <div style="font-size: 10px; color: var(--ink-soft); text-align: center; margin-top: 8px;">Sofia no sustituye a tu médico. Para casos urgentes, contacta con la clínica.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB · MEDICO -->
+      <div class="panel" data-panel="medico">
+        <div class="browser">
+          <div class="browser-bar">
+            <span class="dot" style="background:#ff5f57"></span>
+            <span class="dot" style="background:#febc2e"></span>
+            <span class="dot" style="background:#28c840"></span>
+            <span class="browser-url">admin.clinicalumen.es / panel</span>
+          </div>
+          <div style="display: flex; min-height: 540px;">
+            <div class="app-side">
+              <div class="lumen-mark mb-5" style="margin-bottom: 20px;">
+                <span class="lumen-symbol"></span>
+                <span class="lumen-name" style="font-size: 14px;">LUMEN <span style="color: var(--ink-soft); font-size: 10px;">·admin·</span></span>
+              </div>
+              <div class="nav-item active"><span class="nav-icon"></span> Panel diario</div>
+              <div class="nav-item"><span class="nav-icon"></span> Pacientes</div>
+              <div class="nav-item"><span class="nav-icon"></span> Alertas Sofia</div>
+              <div class="nav-item"><span class="nav-icon"></span> Calendario</div>
+              <div class="nav-item"><span class="nav-icon"></span> Practitioners</div>
+              <div class="nav-item"><span class="nav-icon"></span> Cobros · Stripe</div>
+              <div class="nav-item"><span class="nav-icon"></span> Vehículo coinversión</div>
+              <div class="nav-item"><span class="nav-icon"></span> Cumplimiento RGPD</div>
+            </div>
+            <div style="flex: 1; padding: 28px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 18px; border-bottom: 1px solid var(--line);">
+                <div>
+                  <div class="mono" style="font-size: 10px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">Dra. Elena Marés · 14-mar-2026</div>
+                  <h3 class="serif" style="font-size: 22px; margin-top: 4px;">Tu jornada — bandeja de hoy</h3>
+                </div>
+                <div style="text-align: right;">
+                  <div class="serif" style="font-size: 22px; color: var(--accent);">8</div>
+                  <div class="mono" style="font-size: 10px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">decisiones que requieren tu visto bueno</div>
+                </div>
+              </div>
+
+              <div style="margin-top: 18px; display: grid; gap: 8px;">
+                <div style="border: 1px solid var(--line); padding: 14px 16px; border-radius: 4px; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center;">
+                  <span class="pill bg-warm-soft">Alerta Sofia</span>
+                  <div style="font-size: 13px;"><strong>Carlos M.</strong> · glucosa +6 % · Sofia ya ha dado pautas. ¿Programamos consulta breve?</div>
+                  <div style="display: flex; gap: 6px;">
+                    <button style="background: var(--accent); color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 11px;">Sí, agendar</button>
+                    <button style="border: 1px solid var(--line); padding: 6px 12px; border-radius: 4px; font-size: 11px;">Esperar 7d</button>
+                  </div>
+                </div>
+                <div style="border: 1px solid var(--line); padding: 14px 16px; border-radius: 4px; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center;">
+                  <span class="pill bg-accent-soft">Alta Plus</span>
+                  <div style="font-size: 13px;"><strong>Marina G.</strong> · upgrade Essential → Plus · acepta protocolo · 3.600 €/año</div>
+                  <div style="display: flex; gap: 6px;">
+                    <button style="background: var(--accent); color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 11px;">Confirmar</button>
+                  </div>
+                </div>
+                <div style="border: 1px solid var(--line); padding: 14px 16px; border-radius: 4px; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center;">
+                  <span class="pill bg-gold-soft">Founders</span>
+                  <div style="font-size: 13px;"><strong>Iván R.</strong> · interés en vehículo de coinversión · ticket previsto 35.000 €</div>
+                  <div style="display: flex; gap: 6px;">
+                    <button style="background: var(--accent); color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 11px;">Llamada</button>
+                  </div>
+                </div>
+                <div style="border: 1px solid var(--line); padding: 14px 16px; border-radius: 4px; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center;">
+                  <span class="pill bg-slate-soft">Practitioner</span>
+                  <div style="font-size: 13px;"><strong>Dr. Pablo Ríos</strong> (Valencia) · solicita certificación Lumen · 18 años exp.</div>
+                  <div style="display: flex; gap: 6px;">
+                    <button style="background: var(--accent); color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 11px;">Entrevista</button>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
+                <div class="marker">
+                  <div class="marker-num">487</div>
+                  <div class="marker-label">Pacientes activos</div>
+                  <div class="marker-trend trend-up">+34 este mes</div>
+                </div>
+                <div class="marker">
+                  <div class="marker-num">312</div>
+                  <div class="marker-label">Socios Plus</div>
+                  <div class="marker-trend trend-up">tasa renovación 91 %</div>
+                </div>
+                <div class="marker">
+                  <div class="marker-num">14</div>
+                  <div class="marker-label">Practitioners certificados</div>
+                  <div class="marker-trend trend-up">3 entrevistas pendientes</div>
+                </div>
+                <div class="marker">
+                  <div class="marker-num">38 %</div>
+                  <div class="marker-label">Tasa derivación Sofia</div>
+                  <div class="marker-trend trend-up">objetivo &gt; 30%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB · SIMULADOR -->
+      <div class="panel" data-panel="simulador">
+        <div class="browser">
+          <div class="browser-bar">
+            <span class="dot" style="background:#ff5f57"></span>
+            <span class="dot" style="background:#febc2e"></span>
+            <span class="dot" style="background:#28c840"></span>
+            <span class="browser-url">deck.clinicalumen.es / inversores</span>
+          </div>
+          <div style="padding: 32px; background: #fafbfa;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 16px; border-bottom: 1px solid var(--line);">
+              <div>
+                <div class="mono" style="font-size: 10px; color: var(--accent); letter-spacing: .12em; text-transform: uppercase;">Modelo financiero · escenario base</div>
+                <h3 class="serif" style="font-size: 22px; margin-top: 4px;">Simulador para inversores y CFO</h3>
+              </div>
+              <span class="pill bg-gold-soft">Año 3 proyectado</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 22px;">
+              <!-- Sliders -->
+              <div style="display: flex; flex-direction: column; gap: 18px;">
+                <div class="slider-wrap">
+                  <div class="slider-label"><span>Socios Plus al año 3</span><span class="v" id="vSocios">800</span></div>
+                  <input type="range" id="rSocios" min="200" max="1500" value="800" step="50">
+                </div>
+                <div class="slider-wrap">
+                  <div class="slider-label"><span>Cuota anual media (€)</span><span class="v" id="vCuota">3.600 €</span></div>
+                  <input type="range" id="rCuota" min="2000" max="6000" value="3600" step="100">
+                </div>
+                <div class="slider-wrap">
+                  <div class="slider-label"><span>Practitioners certificados</span><span class="v" id="vPract">14</span></div>
+                  <input type="range" id="rPract" min="0" max="60" value="14" step="1">
+                </div>
+                <div class="slider-wrap">
+                  <div class="slider-label"><span>Founders en vehículo coinversión</span><span class="v" id="vFound">28</span></div>
+                  <input type="range" id="rFound" min="0" max="80" value="28" step="1">
+                </div>
+                <div class="slider-wrap">
+                  <div class="slider-label"><span>Ticket medio Founder (€)</span><span class="v" id="vTicket">25.000 €</span></div>
+                  <input type="range" id="rTicket" min="10000" max="100000" value="25000" step="5000">
+                </div>
+              </div>
+
+              <!-- Outputs -->
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div class="marker" style="padding: 18px;">
+                  <div class="marker-label">Ingresos recurrentes año 3</div>
+                  <div class="marker-num" id="oRecurrentes" style="color: var(--accent); margin-top: 6px;">2.880.000 €</div>
+                  <div style="font-size: 11px; color: var(--ink-soft); margin-top: 6px;">Socios Plus × cuota anual</div>
+                </div>
+                <div class="marker" style="padding: 18px;">
+                  <div class="marker-label">SaaS Practitioners (mensual × 12)</div>
+                  <div class="marker-num" id="oSaas" style="color: var(--accent); margin-top: 6px;">39.480 €</div>
+                  <div style="font-size: 11px; color: var(--ink-soft); margin-top: 6px;">SaaS 235 €/mes + comisiones consultas referidas</div>
+                </div>
+                <div class="marker" style="padding: 18px;">
+                  <div class="marker-label">Capital captado en Vehículo Lumen Founders</div>
+                  <div class="marker-num" id="oVehiculo" style="color: var(--accent); margin-top: 6px;">700.000 €</div>
+                  <div style="font-size: 11px; color: var(--ink-soft); margin-top: 6px;">Founders × ticket medio · año 3</div>
+                </div>
+                <div class="marker" style="padding: 18px; background: var(--accent); color: #fff; border-color: var(--accent);">
+                  <div class="marker-label" style="color: rgba(255,255,255,.7);">ARPU paciente medio · año 3</div>
+                  <div class="marker-num" id="oARPU" style="color: #fff; margin-top: 6px;">×3,4</div>
+                  <div style="font-size: 11px; opacity: .8; margin-top: 6px;">vs. modelo actual (consulta única + recetas)</div>
+                </div>
+              </div>
+            </div>
+
+            <p style="font-size: 11px; color: var(--ink-soft); margin-top: 22px; text-align: center;">Simulador interactivo · cifras de ejemplo · entregable real personalizado al cliente</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Roadmap accionable -->
+<section class="bg-paper border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <span class="num">04</span>
+    <h2 class="serif text-3xl md:text-4xl mt-3">Plan accionable · semana a semana</h2>
+    <p class="text-ink-soft mt-3 max-w-3xl">No un calendario flotante. Cada paso tiene responsable, dependencia y entregable verificable. Esta es exactamente la tabla que entregamos junto al Blueprint de la Cápsula 01.</p>
+
+    <div class="mt-10 border border-line overflow-hidden bg-white">
+      <table class="w-full text-sm">
+        <thead style="background: #fafbfa;">
+          <tr class="text-left">
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Semana</th>
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Hito</th>
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Responsable</th>
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Entregable verificable</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line">
+          <tr><td class="p-4 serif">S1</td><td class="p-4">Brainstorm + Blueprint Cápsula 01</td><td class="p-4">Praxia + Elena</td><td class="p-4 text-ink-soft">Dossier 28 pp + prototipo HTML + modelo financiero</td></tr>
+          <tr style="background: #fafbfa;"><td class="p-4 serif">S2</td><td class="p-4">Constitución Lumen Holding S.L. y AIE I+D+i Salud</td><td class="p-4">Notario · Praxia coordina</td><td class="p-4 text-ink-soft">Escrituras + alta IAE</td></tr>
+          <tr><td class="p-4 serif">S3–4</td><td class="p-4">Diseño UX/UI app paciente y back office</td><td class="p-4">Diseñador externo · Praxia dirige</td><td class="p-4 text-ink-soft">Mockups Figma aprobados</td></tr>
+          <tr style="background: #fafbfa;"><td class="p-4 serif">S5–8</td><td class="p-4">Desarrollo MVP · módulos identidad, paciente, Sofia</td><td class="p-4">Dev senior + IA engineer · Praxia dirige</td><td class="p-4 text-ink-soft">Build navegable en staging</td></tr>
+          <tr><td class="p-4 serif">S9</td><td class="p-4">DPIA + cumplimiento sanitario · validación EU AI Act</td><td class="p-4">DPO + abogado sanitario</td><td class="p-4 text-ink-soft">Documentación firmada</td></tr>
+          <tr style="background: #fafbfa;"><td class="p-4 serif">S10</td><td class="p-4">Captación 80 socios fundadores Plus + 5 Founders</td><td class="p-4">Elena + equipo clínica</td><td class="p-4 text-ink-soft">200 k€ ingresos cerrados</td></tr>
+          <tr><td class="p-4 serif">S11–14</td><td class="p-4">Desarrollo SaaS Practitioners + integración Stripe Connect</td><td class="p-4">Dev senior · Praxia dirige</td><td class="p-4 text-ink-soft">3 practitioners piloto en producción</td></tr>
+          <tr style="background: #fafbfa;"><td class="p-4 serif">S15–18</td><td class="p-4">Avatar Sofia v1 con voz clonada Elena · memoria longitudinal</td><td class="p-4">IA engineer + Elena</td><td class="p-4 text-ink-soft">Sofia activa para 100 socios</td></tr>
+          <tr><td class="p-4 serif">S19–24</td><td class="p-4">Lanzamiento vehículo Lumen Founders + roadshow privado</td><td class="p-4">Praxia + Elena</td><td class="p-4 text-ink-soft">Cierre 1,2 M€ comprometidos</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-10 grid md:grid-cols-3 gap-6">
+      <div class="card p-6">
+        <span class="pill bg-accent-soft">Equipo externo</span>
+        <h3 class="serif text-lg mt-3">Quién hace qué</h3>
+        <ul class="text-sm text-ink-soft mt-3 space-y-2">
+          <li class="flex gap-3"><span class="arrow">→</span> 1 dev senior full-stack (3 meses)</li>
+          <li class="flex gap-3"><span class="arrow">→</span> 1 IA engineer (2 meses parcial)</li>
+          <li class="flex gap-3"><span class="arrow">→</span> 1 diseñador UX/UI (5 semanas)</li>
+          <li class="flex gap-3"><span class="arrow">→</span> 1 abogado sanitario (puntual)</li>
+          <li class="flex gap-3"><span class="arrow">→</span> 1 DPO externo (puntual)</li>
+        </ul>
+      </div>
+      <div class="card p-6">
+        <span class="pill bg-gold-soft">Inversión Cápsula 02</span>
+        <h3 class="serif text-lg mt-3">Coste total aterrizaje</h3>
+        <ul class="text-sm text-ink-soft mt-3 space-y-2">
+          <li class="flex gap-3"><span class="arrow">→</span> Honorarios Praxia · 95.000 €</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Equipo externo · ~70.000 €</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Infra y APIs (12 meses) · 14.000 €</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Legal y notaría · 8.000 €</li>
+          <li class="flex gap-3 pt-2 border-t border-line text-ink"><span class="arrow">→</span> <strong>Total año 1: 187.000 €</strong></li>
+        </ul>
+      </div>
+      <div class="card p-6">
+        <span class="pill bg-warm-soft">ROI esperado</span>
+        <h3 class="serif text-lg mt-3">Recuperación</h3>
+        <ul class="text-sm text-ink-soft mt-3 space-y-2">
+          <li class="flex gap-3"><span class="arrow">→</span> Mes 10: cubre OPEX nuevo</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Mes 14: paga Cápsula 02 entera</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Año 2: ARPU paciente ×2,1</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Año 3: ARPU paciente ×3,4</li>
+          <li class="flex gap-3 pt-2 border-t border-line text-ink"><span class="arrow">→</span> <strong>+1,2 M€ ingresos / año 3</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Riesgos -->
+<section class="bg-white border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <span class="num">05</span>
+    <h2 class="serif text-3xl md:text-4xl mt-3">Riesgos y mitigaciones</h2>
+    <p class="text-ink-soft mt-3 max-w-3xl">El sector salud no admite improvisación. Cada riesgo está tipificado con su mitigación firmada en el blueprint.</p>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-10">
+      <div class="card p-6">
+        <span class="pill bg-accent-soft">Sanitario</span>
+        <h3 class="serif text-lg mt-3">Sofia podría ser clasificada como dispositivo médico</h3>
+        <p class="text-sm text-ink-soft mt-2">Si el avatar emite diagnósticos o decisiones clínicas, MDR 2017/745 exige certificación CE.</p>
+        <p class="text-sm text-accent mt-3"><span class="font-medium">Mitigación:</span> Sofia es asistente educativo, NO emite diagnósticos. Toda decisión clínica la valida la Dra. Marés. Disclaimer en cada sesión + log auditable.</p>
+      </div>
+      <div class="card p-6">
+        <span class="pill bg-warm-soft">EU AI Act</span>
+        <h3 class="serif text-lg mt-3">Sistema de IA en salud · alto riesgo</h3>
+        <p class="text-sm text-ink-soft mt-2">EU AI Act clasifica IA de salud como sistema de alto riesgo si toma decisiones autónomas.</p>
+        <p class="text-sm text-accent mt-3"><span class="font-medium">Mitigación:</span> Sofia trabaja como "asistente bajo supervisión humana" — clasificación de riesgo limitado. Documentación EU AI Act completa antes del go-live.</p>
+      </div>
+      <div class="card p-6">
+        <span class="pill bg-gold-soft">RGPD · datos de salud</span>
+        <h3 class="serif text-lg mt-3">Datos categoría especial</h3>
+        <p class="text-sm text-ink-soft mt-2">Historial clínico + biométricos = datos sensibles RGPD art. 9.</p>
+        <p class="text-sm text-accent mt-3"><span class="font-medium">Mitigación:</span> consentimiento explícito por categoría, datos en UE, cifrado at-rest y in-transit, DPIA documentada, DPO externo certificado.</p>
+      </div>
+      <div class="card p-6">
+        <span class="pill bg-slate-soft">Vehículo coinversión</span>
+        <h3 class="serif text-lg mt-3">Lumen Founders no es fondo regulado</h3>
+        <p class="text-sm text-ink-soft mt-2">Si supera 150 inversores o se publicita, riesgo de SGIIC y supervisión CNMV.</p>
+        <p class="text-sm text-accent mt-3"><span class="font-medium">Mitigación:</span> club privado &lt;150 socios, tickets desde 25 k€, sin publicidad pública. Asesoría CNMV antes del primer cierre.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cierre -->
+<section style="background: #0e2a26; color: #ffffff;">
+  <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+    <span class="serif" style="color: #b08d3a; font-size: 18px; font-weight: 600;">·</span>
+    <h2 class="serif" style="color: #ffffff; font-size: clamp(28px, 5vw, 48px); line-height: 1.1; margin-top: 12px; font-weight: 600;">Esto es lo que entregamos en 14 días.</h2>
+    <p style="color: rgba(255,255,255,.85); font-size: 17px; line-height: 1.6; margin-top: 22px; max-width: 640px; margin-left: auto; margin-right: auto;">
+      Caso ficticio · Clínica Lumen nunca ha existido. Lo que sí es real es el método, las pantallas, el roadmap y los riesgos — exactamente lo que se construye en una Cápsula 01 con un cliente. Si tu clínica, tu despacho o tu negocio operativo necesita un sistema así, hablemos.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
+      <a href="mailto:info@praxia-atelier.net" style="background: #ffffff; color: #0e2a26; padding: 16px 28px; border-radius: 4px; font-weight: 600;" class="hover:opacity-90">info@praxia-atelier.net</a>
+      <a href="Praxia_Atelier_Landing.html" style="border: 1px solid rgba(255,255,255,.6); color: #ffffff; padding: 16px 28px; border-radius: 4px;" class="hover:bg-white hover:text-ink transition">Empezar por un Strategy Sprint · desde 990 €</a>
+    </div>
+    <div class="mono" style="color: rgba(255,255,255,.65); letter-spacing: .12em; text-transform: uppercase; font-size: 11px; margin-top: 48px;">
+      · Praxia Atelier · Caso Clínica Lumen v1.0 · 2026 ·
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-line bg-paper">
+  <div class="max-w-6xl mx-auto px-6 py-10 text-sm text-ink-soft">
+    <p class="mono text-[11px] uppercase tracking-widest">Aviso · Caso de demostración</p>
+    <p class="mt-2 max-w-3xl">
+      "Clínica Lumen", "Dra. Elena Marés" y "Sofia" son ficticios, creados por Praxia Atelier exclusivamente con fines comerciales y de demostración. Cualquier parecido con clínicas, profesionales o productos reales es coincidencia. Las pantallas, cifras y proyecciones son ilustrativas. En un proyecto real todo el contenido se construye y valida con el cliente bajo NDA.
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.querySelector(`.panel[data-panel="${tab}"]`).classList.add('active');
+    });
+  });
+
+  // Simulator
+  const fmt = (n) => n.toLocaleString('es-ES');
+  function recalcular() {
+    const socios = +document.getElementById('rSocios').value;
+    const cuota = +document.getElementById('rCuota').value;
+    const pract = +document.getElementById('rPract').value;
+    const found = +document.getElementById('rFound').value;
+    const ticket = +document.getElementById('rTicket').value;
+
+    document.getElementById('vSocios').textContent = fmt(socios);
+    document.getElementById('vCuota').textContent = fmt(cuota) + ' €';
+    document.getElementById('vPract').textContent = pract;
+    document.getElementById('vFound').textContent = found;
+    document.getElementById('vTicket').textContent = fmt(ticket) + ' €';
+
+    const recurrentes = socios * cuota;
+    const saas = pract * (235 * 12 + 1500); // 235/mes + 1500 anual comisiones
+    const vehiculo = found * ticket;
+    const arpuActual = 2400;
+    const arpuNuevo = (recurrentes + saas/3) / Math.max(socios, 1);
+    const ratio = (arpuNuevo / arpuActual);
+
+    document.getElementById('oRecurrentes').textContent = fmt(recurrentes) + ' €';
+    document.getElementById('oSaas').textContent = fmt(saas) + ' €';
+    document.getElementById('oVehiculo').textContent = fmt(vehiculo) + ' €';
+    document.getElementById('oARPU').textContent = '×' + ratio.toFixed(1).replace('.', ',');
+  }
+  document.querySelectorAll('input[type=range]').forEach(r => r.addEventListener('input', recalcular));
+  recalcular();
+</script>
+
+<!-- Praxia Chatbox · cargado externo (un solo archivo para todas las páginas) -->
+<link rel="stylesheet" href="praxia-chatbox.css">
+<script src="praxia-chatbox.js" defer></script>
+
+</body>
+</html>

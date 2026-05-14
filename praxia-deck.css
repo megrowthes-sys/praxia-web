@@ -1,0 +1,193 @@
+/* ========== Praxia Deck (panel navigation) ========== */
+  :root { --deck-header-h: 64px; }
+  body.deck-mode { overflow: hidden; }
+  body.deck-mode .praxia-deck-shell {
+    position: fixed;
+    inset: var(--deck-header-h) 0 0 0;
+    overflow: hidden;
+  }
+  .praxia-deck { position: relative; height: 100%; }
+  .praxia-deck > section[data-panel] {
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(20px);
+    transition: opacity .35s ease, transform .35s ease, visibility 0s linear .35s;
+    background: var(--paper);
+  }
+  .praxia-deck > section[data-panel].is-active {
+    opacity: 1; visibility: visible; transform: translateX(0);
+    transition: opacity .35s ease, transform .35s ease, visibility 0s;
+    z-index: 2;
+  }
+  .praxia-deck > section[data-panel-continue] { display: none; }
+  .praxia-deck > section[data-panel].is-active.has-continues ~ section[data-panel-continue].is-continuation-active { display: block; position: relative; }
+
+  .deck-header {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: var(--deck-header-h);
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    z-index: 50;
+    display: flex; align-items: center;
+  }
+  .deck-header-inner {
+    width: 100%; padding: 0 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .deck-brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; text-decoration: none; color: var(--ink); }
+  .deck-brand .mark { width: 32px; height: 32px; border: 1px solid var(--ink); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .deck-brand .mark span { font-family: "Fraunces", serif; font-size: 20px; line-height: 1; color: var(--ink); }
+  .deck-brand .name-stack { display: flex; flex-direction: column; line-height: 1; gap: 2px; }
+  .deck-brand .name { font-family: "Fraunces", serif; font-size: 18px; line-height: 1; color: var(--ink); white-space: nowrap; }
+  .deck-brand .tagline {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1;
+    white-space: nowrap;
+  }
+  /* legacy fallback if any page has the old single-line .name span structure */
+  .deck-brand .name .soft { color: var(--ink-soft); }
+
+  .deck-stepper {
+    flex: 1;
+    overflow-x: auto; overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    display: flex; gap: 6px; padding: 0 4px; align-items: center;
+  }
+  .deck-stepper::-webkit-scrollbar { display: none; }
+  .deck-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--ink-soft);
+    font-size: 12px; line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all .15s ease;
+    flex-shrink: 0;
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+  }
+  .deck-chip .num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; color: var(--accent); font-weight: 500;
+  }
+  .deck-chip:hover { border-color: var(--ink); color: var(--ink); }
+  .deck-chip.is-active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .deck-chip.is-active .num { color: var(--accent-soft); }
+  .deck-chip-link { text-decoration: none; }
+  .deck-chip-link:hover { text-decoration: none; }
+
+  /* Slot for the language switcher injected by praxia-i18n.js + the CTA */
+  .deck-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .deck-cta {
+    flex-shrink: 0;
+    background: var(--accent); color: #fff;
+    font-size: 12px; padding: 8px 14px;
+    border-radius: 2px; text-decoration: none;
+    white-space: nowrap;
+  }
+  .deck-cta:hover { opacity: .9; }
+
+  .deck-nav-btn {
+    position: fixed; top: 50%;
+    transform: translateY(-50%);
+    width: 44px; height: 44px;
+    border-radius: 999px;
+    background: #fff; border: 1px solid var(--line);
+    color: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; z-index: 40;
+    box-shadow: 0 2px 12px rgba(26,31,46,.08);
+    transition: all .15s ease;
+  }
+  .deck-nav-btn:hover { border-color: var(--ink); transform: translateY(-50%) scale(1.05); }
+  .deck-nav-btn[disabled] { opacity: 0; pointer-events: none; }
+  .deck-nav-btn.prev { left: 16px; }
+  .deck-nav-btn.next { right: 16px; }
+
+  .deck-progress {
+    position: fixed; bottom: 16px; left: 50%;
+    transform: translateX(-50%);
+    background: rgba(26,31,46,.85); color: var(--paper);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; padding: 6px 14px;
+    border-radius: 999px; z-index: 40;
+    backdrop-filter: blur(8px);
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    /* Header height becomes auto-grow to fit wrapped chips. We use a sensible
+       upper bound so the deck panel below knows where to start. */
+    :root { --deck-header-h: 144px; }
+    .deck-header { height: auto; min-height: var(--deck-header-h); }
+    .deck-header-inner { flex-wrap: wrap; padding: 8px 12px; gap: 8px; }
+    .deck-brand { flex: 1; min-width: 0; }
+    .deck-actions { margin-left: auto; }
+
+    /* Chips wrap to multiple rows so EVERY chip is visible without horizontal
+       scroll. This is far more intuitive than a hidden scrollable strip. */
+    .deck-stepper {
+      width: 100%;
+      order: 2;
+      padding: 4px 0 0 0;
+      flex-wrap: wrap;
+      overflow: visible;
+      gap: 6px;
+      justify-content: flex-start;
+    }
+    .deck-chip {
+      flex-shrink: 1;
+      padding: 6px 10px;
+      font-size: 11.5px;
+    }
+    .deck-cta { display: none; }    /* keep header compact on mobile */
+    .deck-nav-btn { display: none; }
+    .praxia-deck > section[data-panel] { padding-bottom: 100px; }
+    body.deck-mode .praxia-deck-shell {
+      inset: var(--deck-header-h) 0 0 0;
+      height: calc(100dvh - var(--deck-header-h));
+    }
+    /* On mobile the header may grow due to chip wrap. Use the actual header
+       size at runtime: the JS sets a CSS variable so the panel docks right. */
+    body.deck-mode[data-header-h] .praxia-deck-shell {
+      inset: var(--actual-header-h, var(--deck-header-h)) 0 0 0;
+      height: calc(100dvh - var(--actual-header-h, var(--deck-header-h)));
+    }
+    .deck-progress { bottom: 12px; font-size: 10px; padding: 5px 12px; }
+  }
+  @media (max-width: 480px) {
+    .deck-brand .name { font-size: 16px; }
+    .deck-brand .name .soft { display: none; }
+    .deck-brand .tagline { font-size: 8px; letter-spacing: 0.15em; }
+    .deck-chip { font-size: 11px; padding: 5px 9px; }
+  }
+  @media (max-width: 360px) {
+    /* extra-small phones: drop tagline to keep brand and switcher legible */
+    .deck-brand .tagline { display: none; }
+  }
+
+  .praxia-deck > section[data-panel].is-active > * { animation: panelIn .45s ease both; }
+  @keyframes panelIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  body.deck-mode > header.site-header-original { display: none !important; }
+  body:not(.deck-mode) .deck-header,
+  body:not(.deck-mode) .deck-nav-btn,
+  body:not(.deck-mode) .deck-progress { display: none; }

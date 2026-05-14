@@ -1,0 +1,885 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Caso · Mesa de Trabajo · Estudio Lúmina</title>
+<meta name="description" content="Caso founder-cliente · Cómo Estudio Lúmina aplica su propio método para operar el estudio: 8 departamentos, ecosistema completo, dashboards y simuladores." />
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1f2e;
+    --ink-soft: #44485a;
+    --paper: #faf8f3;
+    --line: #e6e1d6;
+    --accent: #b9522e;       /* terracota Lúmina */
+    --accent-soft: #f3ddd0;
+    --moss: #4a5d3a;
+    --moss-soft: #d8dfcd;
+    --gold: #b08d3a;
+    --gold-soft: #f1e6c5;
+    --slate: #4b5d6e;
+    --slate-soft: #d2dce4;
+  }
+  html, body { background: var(--paper); color: var(--ink); font-family: "IBM Plex Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  .serif { font-family: "Fraunces", Georgia, serif; font-optical-sizing: auto; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .text-accent { color: var(--accent); }
+  .bg-accent { background: var(--accent); color: #fff; }
+  .bg-accent-soft { background: var(--accent-soft); color: var(--accent); }
+  .bg-moss-soft { background: var(--moss-soft); color: var(--moss); }
+  .bg-gold-soft { background: var(--gold-soft); color: var(--gold); }
+  .bg-slate-soft { background: var(--slate-soft); color: var(--slate); }
+  .border-line { border-color: var(--line); }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+  .num { font-family: "Fraunces", serif; font-weight: 600; font-size: 14px; color: var(--accent); }
+  .underline-soft { background-image: linear-gradient(var(--accent), var(--accent)); background-position: 0 95%; background-repeat: no-repeat; background-size: 100% 2px; padding-bottom: 2px; }
+  .grid-bg { background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 56px 56px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 4px; }
+  .card-accent { border-left: 3px solid var(--accent); }
+  .card-moss { border-left: 3px solid var(--moss); }
+  .card-gold { border-left: 3px solid var(--gold); }
+  .card-slate { border-left: 3px solid var(--slate); }
+  .arrow { font-family: "JetBrains Mono", monospace; color: var(--accent); }
+
+  /* Tabs */
+  .tabs { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 1px solid var(--line); margin-bottom: 24px; overflow-x: auto; }
+  .tab-btn { padding: 12px 18px; border: 0; background: transparent; color: var(--ink-soft); font-family: "IBM Plex Sans", sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all .15s ease; white-space: nowrap; }
+  .tab-btn:hover { color: var(--ink); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+  .panel { display: none; animation: fadein .25s ease; }
+  .panel.active { display: block; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  /* Mockup frame */
+  .browser { background: #fff; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(20, 30, 35, .08); }
+  .browser-bar { background: linear-gradient(to bottom, #f5f0e6, #ece6d8); border-bottom: 1px solid var(--line); padding: 10px 14px; display: flex; align-items: center; gap: 8px; }
+  .dot { width: 12px; height: 12px; border-radius: 999px; }
+  .browser-url { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 5px 12px; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--ink-soft); margin-left: 6px; }
+
+  /* Notion-like layout */
+  .notion-side { background: #fbf8f0; border-right: 1px solid var(--line); width: 220px; padding: 14px 10px; flex-shrink: 0; min-height: 540px; }
+  .notion-item { padding: 6px 10px; border-radius: 4px; font-size: 13px; color: var(--ink-soft); display: flex; align-items: center; gap: 8px; cursor: pointer; }
+  .notion-item.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  .notion-section { font-family: "JetBrains Mono", monospace; font-size: 9.5px; color: var(--ink-soft); letter-spacing: .14em; text-transform: uppercase; padding: 14px 10px 6px; }
+
+  /* Stats card */
+  .marker-card { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 14px; }
+  .marker-num { font-family: "Fraunces", serif; font-size: 24px; line-height: 1; }
+  .marker-label { font-family: "JetBrains Mono", monospace; font-size: 9.5px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase; margin-top: 6px; }
+  .marker-trend { font-size: 11px; margin-top: 6px; color: var(--accent); }
+
+  /* Kanban */
+  .kanban-col { background: #fbf8f0; border-radius: 6px; padding: 10px; min-height: 200px; }
+  .kanban-col-title { font-family: "JetBrains Mono", monospace; font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px; }
+  .kanban-card { background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 10px; margin-bottom: 6px; font-size: 12px; }
+
+  /* Property list (notion-like) */
+  .prop-row { display: grid; grid-template-columns: 140px 1fr; gap: 10px; padding: 6px 0; font-size: 13px; border-bottom: 1px solid var(--line); }
+  .prop-key { color: var(--ink-soft); font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+
+  /* Department card */
+  .dept-card { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 18px; transition: all .2s ease; cursor: pointer; }
+  .dept-card:hover { box-shadow: 0 12px 30px rgba(20,30,35,.08); transform: translateY(-2px); border-color: var(--accent); }
+  .dept-icon { font-size: 28px; line-height: 1; }
+  .dept-num { font-family: "JetBrains Mono", monospace; font-size: 10px; color: var(--accent); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px; }
+
+  /* Slider */
+  .slider-wrap { display: flex; flex-direction: column; gap: 4px; }
+  .slider-label { display: flex; justify-content: space-between; font-size: 12px; }
+  .slider-label .v { font-family: "Fraunces", serif; font-weight: 600; color: var(--accent); }
+  input[type=range] { -webkit-appearance: none; height: 4px; background: var(--line); border-radius: 999px; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: var(--accent); border-radius: 999px; cursor: pointer; }
+
+  .ribbon { display: inline-block; background: var(--gold-soft); color: var(--gold); padding: 3px 10px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; }
+</style>
+</head>
+<body class="text-ink">
+
+<!-- Top bar -->
+<header class="site-header-original border-b border-line bg-paper sticky top-0 z-30">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-7 h-7 border border-ink flex items-center justify-center">
+        <span class="serif text-lg leading-none">P</span>
+      </div>
+      <div class="leading-tight">
+        <div class="serif text-lg">Lúmina <span class="text-ink-soft">Atelier</span></div>
+        <div class="mono text-[10px] text-ink-soft tracking-widest uppercase">Caso · Mesa de Trabajo</div>
+      </div>
+    </div>
+    <span class="ribbon hidden md:inline-block">Founder-cliente · prototipo accionable</span>
+  </div>
+</header>
+
+<!-- Hero -->
+<section data-panel="panel-intro" class="relative overflow-hidden border-b border-line">
+  <div class="absolute inset-0 grid-bg opacity-30 pointer-events-none"></div>
+  <div class="relative max-w-6xl mx-auto px-6 py-20 md:py-24">
+    <div class="flex flex-wrap gap-2 mb-4">
+      <span class="pill bg-accent-soft">Caso ficticio</span>
+      <span class="pill bg-moss-soft">Estudio demostrativo</span>
+      <span class="pill bg-gold-soft">Una persona · pool freelance</span>
+      <span class="pill bg-slate-soft">Módulos M00–M06</span>
+    </div>
+    <div class="border-l-4 border-accent bg-accent-soft p-4 mb-6 max-w-3xl">
+      <p class="text-sm text-ink"><strong>Caso ficticio.</strong> "Estudio Lúmina" es un consultor inventado que usamos para mostrar cómo se monta un backoffice operativo completo. Cifras, nombres y precios son ilustrativos — no corresponden a ningún cliente ni proveedor real.</p>
+    </div>
+    <h1 class="serif text-4xl md:text-6xl leading-[1.05] max-w-4xl">
+      Mesa de <span class="underline-soft">Trabajo</span>
+    </h1>
+    <p class="serif text-xl md:text-2xl text-ink-soft mt-4 max-w-3xl italic">
+      Cómo Estudio Lúmina aplica su propio método para operar el estudio. 8 departamentos, ecosistema completo, freelances coordinados, todo desde una persona.
+    </p>
+    <p class="text-base md:text-lg text-ink-soft mt-8 max-w-3xl">
+      Caso founder-cliente · El estudio no solo diseña ecosistemas para clientes — los ejecuta sobre sí mismo. Lo que ves aquí es el backoffice operativo de Lúmina: el método de las 8 capas aplicado al propio estudio, listo para crecer sin perder coherencia.
+    </p>
+
+    <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-px bg-line border border-line">
+      <div class="bg-paper p-6"><div class="serif text-3xl">8</div><div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-2">departamentos</div></div>
+      <div class="bg-paper p-6"><div class="serif text-3xl">7</div><div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-2">cápsulas comerciales</div></div>
+      <div class="bg-paper p-6"><div class="serif text-3xl">1</div><div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-2">persona al frente</div></div>
+      <div class="bg-paper p-6"><div class="serif text-3xl">∞</div><div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-2">pool freelance escalable</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Vista panorámica · 8 departamentos -->
+<section data-panel="panel-vista" class="bg-white border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <span class="num">01</span>
+    <h2 class="serif text-3xl md:text-4xl mt-3">Vista panorámica · los 8 departamentos</h2>
+    <p class="text-ink-soft mt-3 max-w-3xl">El estudio funciona como una sola estructura coherente. Cada departamento tiene su propio sistema operativo, sus plantillas y sus métricas — pero todos hablan el mismo idioma. Pulsa cualquier pestaña abajo para ver el detalle.</p>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
+      <div class="dept-card" onclick="goTab('direccion')">
+        <div class="dept-icon">📊</div>
+        <div class="dept-num mt-3">00 · Dirección</div>
+        <h3 class="serif text-lg">General Management</h3>
+        <p class="text-sm text-ink-soft mt-2">OKRs trimestrales · plan estratégico anual · calendario maestro · política de decisiones.</p>
+      </div>
+      <div class="dept-card" onclick="goTab('comercial')">
+        <div class="dept-icon">💼</div>
+        <div class="dept-num mt-3">01 · Comercial</div>
+        <h3 class="serif text-lg">Pipeline y conversión</h3>
+        <p class="text-sm text-ink-soft mt-2">Funnel · CRM Leads · scripts · plantillas propuesta · onboarding cliente.</p>
+      </div>
+      <div class="dept-card" onclick="goTab('marketing')">
+        <div class="dept-icon">📣</div>
+        <div class="dept-num mt-3">02 · Marketing</div>
+        <h3 class="serif text-lg">Captación y contenido</h3>
+        <p class="text-sm text-ink-soft mt-2">Calendario editorial · banco ángulos · LinkedIn · newsletter · KPIs.</p>
+      </div>
+      <div class="dept-card" onclick="goTab('operaciones')">
+        <div class="dept-icon">⚙️</div>
+        <div class="dept-num mt-3">03 · Operaciones</div>
+        <h3 class="serif text-lg">Procesos y SOPs</h3>
+        <p class="text-sm text-ink-soft mt-2">Mapa de procesos · 8 SOPs (uno por cápsula) · carpeta cliente · coordinación freelance.</p>
+      </div>
+      <div class="dept-card" onclick="goTab('producto')">
+        <div class="dept-icon">📦</div>
+        <div class="dept-num mt-3">04 · Producto</div>
+        <h3 class="serif text-lg">Catálogo y método</h3>
+        <p class="text-sm text-ink-soft mt-2">7 cápsulas · plantillas reutilizables · banco prompts · método 8 capas.</p>
+      </div>
+      <div class="dept-card" onclick="goTab('legal')">
+        <div class="dept-icon">⚖️</div>
+        <div class="dept-num mt-3">05 · Legal</div>
+        <h3 class="serif text-lg">Contratos y propiedad</h3>
+        <p class="text-sm text-ink-soft mt-2">NDA · 8 contratos por cápsula · acuerdo freelance · IP · cancelación.</p>
+      </div>
+      <div class="dept-card" onclick="goTab('finanzas')">
+        <div class="dept-icon">💰</div>
+        <div class="dept-num mt-3">06 · Finanzas</div>
+        <h3 class="serif text-lg">Modelo y forecast</h3>
+        <p class="text-sm text-ink-soft mt-2">Modelo financiero 18m · pipeline ponderado · política cash · margen real.</p>
+      </div>
+      <div class="dept-card" onclick="goTab('rrhh')">
+        <div class="dept-icon">👥</div>
+        <div class="dept-num mt-3">07 · RRHH</div>
+        <h3 class="serif text-lg">Pool y aprendices</h3>
+        <p class="text-sm text-ink-soft mt-2">Pool freelance · onboarding · tarifas · programa aprendices · contratación interna.</p>
+      </div>
+    </div>
+
+    <div class="mt-6 grid md:grid-cols-2 gap-4">
+      <div class="dept-card" onclick="goTab('partners')" style="border-color: var(--accent);">
+        <div class="dept-icon">🤝</div>
+        <div class="dept-num mt-3">08 · Partners y referidos</div>
+        <h3 class="serif text-lg">Canal indirecto</h3>
+        <p class="text-sm text-ink-soft mt-2">Programa partners (despachos, agencias) · programa amigos · pipeline referidos · acuerdo modelo.</p>
+      </div>
+      <div class="dept-card" onclick="goTab('recursos')" style="border-color: var(--accent);">
+        <div class="dept-icon">📚</div>
+        <div class="dept-num mt-3">99 · Recursos comunes</div>
+        <h3 class="serif text-lg">Biblioteca transversal</h3>
+        <p class="text-sm text-ink-soft mt-2">Banco prompts · plantillas · glosario · método 8 capas · casos demo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Detalle departamentos · tabs navegables -->
+<section data-panel="panel-detalle" class="bg-paper border-b border-line" id="detalle">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <span class="num">02</span>
+    <h2 class="serif text-3xl md:text-4xl mt-3">El backoffice por dentro</h2>
+    <p class="text-ink-soft mt-3 max-w-3xl">Cada pestaña muestra cómo está montado un departamento. Datos de ejemplo, dashboards reales, fórmulas que funcionan. Es la versión Lúmina de la consigna que aplicamos a clientes: planos navegables.</p>
+
+    <div class="mt-10">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="direccion">📊 Dirección</button>
+        <button class="tab-btn" data-tab="comercial">💼 Comercial</button>
+        <button class="tab-btn" data-tab="marketing">📣 Marketing</button>
+        <button class="tab-btn" data-tab="operaciones">⚙️ Operaciones</button>
+        <button class="tab-btn" data-tab="producto">📦 Producto</button>
+        <button class="tab-btn" data-tab="legal">⚖️ Legal</button>
+        <button class="tab-btn" data-tab="finanzas">💰 Finanzas</button>
+        <button class="tab-btn" data-tab="rrhh">👥 RRHH</button>
+        <button class="tab-btn" data-tab="partners">🤝 Partners</button>
+        <button class="tab-btn" data-tab="recursos">📚 Recursos</button>
+      </div>
+
+      <!-- DIRECCIÓN -->
+      <div class="panel active" data-panel="direccion">
+        <div class="browser">
+          <div class="browser-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="browser-url">notion.so/lumina/direccion</span></div>
+          <div style="padding: 24px 28px; background: #fff;">
+            <div class="mono text-[10px] uppercase tracking-widest text-ink-soft">Trimestre actual · Q2 2026</div>
+            <h3 class="serif text-2xl mt-2">OKRs Lúmina · abril–junio</h3>
+
+            <div class="mt-6 grid md:grid-cols-3 gap-4">
+              <div class="card card-accent p-5">
+                <div class="mono text-[10px] uppercase tracking-widest text-accent">Objetivo 1</div>
+                <h4 class="serif text-lg mt-2">Cerrar 6 clientes</h4>
+                <ul class="mt-4 space-y-2 text-sm text-ink-soft">
+                  <li class="flex justify-between"><span>KR1 · 3 Diagnósticos M00</span><strong style="color: var(--accent);">2/3</strong></li>
+                  <li class="flex justify-between"><span>KR2 · 2 Planos Maestros M01</span><strong style="color: var(--accent);">1/2</strong></li>
+                  <li class="flex justify-between"><span>KR3 · 1 Pack GTM</span><strong style="color: var(--accent);">0/1</strong></li>
+                </ul>
+              </div>
+              <div class="card card-moss p-5">
+                <div class="mono text-[10px] uppercase tracking-widest text-accent">Objetivo 2</div>
+                <h4 class="serif text-lg mt-2">Posicionamiento marca</h4>
+                <ul class="mt-4 space-y-2 text-sm text-ink-soft">
+                  <li class="flex justify-between"><span>KR1 · 12 posts LinkedIn</span><strong style="color: var(--accent);">5/12</strong></li>
+                  <li class="flex justify-between"><span>KR2 · 1 newsletter mensual</span><strong style="color: var(--accent);">2/3</strong></li>
+                  <li class="flex justify-between"><span>KR3 · 50 nuevas conexiones</span><strong style="color: var(--accent);">28/50</strong></li>
+                </ul>
+              </div>
+              <div class="card card-gold p-5">
+                <div class="mono text-[10px] uppercase tracking-widest text-accent">Objetivo 3</div>
+                <h4 class="serif text-lg mt-2">Pool freelance ×3</h4>
+                <ul class="mt-4 space-y-2 text-sm text-ink-soft">
+                  <li class="flex justify-between"><span>KR1 · 3 devs validados</span><strong style="color: var(--accent);">1/3</strong></li>
+                  <li class="flex justify-between"><span>KR2 · 2 diseñadores</span><strong style="color: var(--accent);">2/2</strong></li>
+                  <li class="flex justify-between"><span>KR3 · 1 abogado mercantil</span><strong style="color: var(--accent);">0/1</strong></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-8 grid md:grid-cols-2 gap-4">
+              <div class="card p-5">
+                <div class="mono text-[10px] uppercase tracking-widest text-ink-soft">Reporting mes anterior</div>
+                <h4 class="serif text-lg mt-1">Lo que aprendí en marzo</h4>
+                <ul class="mt-3 text-sm text-ink-soft space-y-1.5">
+                  <li>· Diagnóstico Express convierte a Plano Maestro en 50% (mejor que esperado).</li>
+                  <li>· Outreach LinkedIn frío funciona peor que referidos (1/40 vs 4/10).</li>
+                  <li>· Casos demo navegables son la pieza más decisiva en primera reunión.</li>
+                </ul>
+              </div>
+              <div class="card p-5">
+                <div class="mono text-[10px] uppercase tracking-widest text-ink-soft">Decisión del mes</div>
+                <h4 class="serif text-lg mt-1">Subir precio del Plano Maestro</h4>
+                <p class="text-sm text-ink-soft mt-3">Tras varias firmas sin objeción al precio, se sube la tarifa base un escalón. Próxima revisión: tras 6 firmas más.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMERCIAL -->
+      <div class="panel" data-panel="comercial">
+        <div class="browser">
+          <div class="browser-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="browser-url">notion.so/lumina/comercial/pipeline</span></div>
+          <div style="padding: 24px 28px; background: #fff;">
+            <div class="flex justify-between items-end mb-4">
+              <div>
+                <div class="mono text-[10px] uppercase tracking-widest text-ink-soft">CRM · Pipeline kanban</div>
+                <h3 class="serif text-2xl mt-1">Leads en curso</h3>
+              </div>
+              <div class="flex gap-3 text-sm">
+                <span class="pill bg-accent-soft">🔥 4 calientes</span>
+                <span class="pill bg-gold-soft">🟡 7 tibios</span>
+                <span class="pill bg-slate-soft">❄️ 3 fríos</span>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-5 gap-3 mt-4">
+              <div class="kanban-col">
+                <div class="kanban-col-title">Nuevo · 5</div>
+                <div class="kanban-card"><strong>Carla M.</strong><br><span class="text-ink-soft text-[11px]">Coach wellness · score 65</span></div>
+                <div class="kanban-card"><strong>Iván R.</strong><br><span class="text-ink-soft text-[11px]">Real estate · score 92 🔥</span></div>
+                <div class="kanban-card"><strong>Rosa V.</strong><br><span class="text-ink-soft text-[11px]">Family office · score 88 🔥</span></div>
+              </div>
+              <div class="kanban-col">
+                <div class="kanban-col-title">Contactado · 3</div>
+                <div class="kanban-card"><strong>Pedro G.</strong><br><span class="text-ink-soft text-[11px]">Health-tech · score 72</span></div>
+                <div class="kanban-card"><strong>Marina L.</strong><br><span class="text-ink-soft text-[11px]">EdTech · score 58</span></div>
+              </div>
+              <div class="kanban-col">
+                <div class="kanban-col-title">Llamada agendada · 2</div>
+                <div class="kanban-card" style="border-left: 3px solid var(--accent);"><strong>Alejandro F.</strong><br><span class="text-ink-soft text-[11px]">Bodega familiar · viernes 10:00</span></div>
+                <div class="kanban-card" style="border-left: 3px solid var(--accent);"><strong>Inés del C.</strong><br><span class="text-ink-soft text-[11px]">Clínica · martes 16:00</span></div>
+              </div>
+              <div class="kanban-col">
+                <div class="kanban-col-title">Propuesta enviada · 2</div>
+                <div class="kanban-card" style="border-left: 3px solid var(--gold);"><strong>Estudio Velada</strong><br><span class="text-ink-soft text-[11px]">Pack GTM · €€€€</span></div>
+                <div class="kanban-card" style="border-left: 3px solid var(--gold);"><strong>Hotel Boutique</strong><br><span class="text-ink-soft text-[11px]">M01 Plano Maestro · €€€</span></div>
+              </div>
+              <div class="kanban-col">
+                <div class="kanban-col-title">Firmado · 2</div>
+                <div class="kanban-card" style="border-left: 3px solid var(--moss); background: var(--moss-soft);"><strong>Santiago B.</strong><br><span class="text-ink-soft text-[11px]">M00 Diagnóstico · €€ ✓</span></div>
+                <div class="kanban-card" style="border-left: 3px solid var(--moss); background: var(--moss-soft);"><strong>Lucía P.</strong><br><span class="text-ink-soft text-[11px]">M01 Plano Maestro · €€€ ✓</span></div>
+              </div>
+            </div>
+
+            <div class="mt-8 grid md:grid-cols-4 gap-3">
+              <div class="marker-card"><div class="marker-num">14</div><div class="marker-label">Leads vivos</div><div class="marker-trend">+6 esta semana</div></div>
+              <div class="marker-card"><div class="marker-num">38 %</div><div class="marker-label">Conversión M00→M01</div><div class="marker-trend">objetivo 30%</div></div>
+              <div class="marker-card"><div class="marker-num">€€€</div><div class="marker-label">Ticket medio</div><div class="marker-trend">↑ 12% vs Q1</div></div>
+              <div class="marker-card"><div class="marker-num">42 d</div><div class="marker-label">Ciclo medio venta</div><div class="marker-trend">objetivo &lt;30d</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MARKETING -->
+      <div class="panel" data-panel="marketing">
+        <div class="browser">
+          <div class="browser-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="browser-url">notion.so/lumina/marketing/calendario</span></div>
+          <div style="padding: 24px 28px; background: #fff;">
+            <div class="mono text-[10px] uppercase tracking-widest text-ink-soft">Calendario editorial · 90 días</div>
+            <h3 class="serif text-2xl mt-1">Plan de contenido Q2</h3>
+
+            <div class="mt-5 border border-line overflow-hidden">
+              <table class="w-full text-sm">
+                <thead style="background: #fbf8f0;">
+                  <tr class="text-left">
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Semana</th>
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Post largo LinkedIn</th>
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Cortos</th>
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Newsletter</th>
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Estado</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-line">
+                  <tr><td class="p-3">S1</td><td class="p-3">"Lo que la IA no escucha"</td><td class="p-3">3</td><td class="p-3">—</td><td class="p-3"><span class="pill bg-moss-soft">Publicado</span></td></tr>
+                  <tr style="background: #fbf8f0;"><td class="p-3">S2</td><td class="p-3">"Cómo profesionalizar una operadora pequeña"</td><td class="p-3">2</td><td class="p-3">—</td><td class="p-3"><span class="pill bg-moss-soft">Publicado</span></td></tr>
+                  <tr><td class="p-3">S3</td><td class="p-3">"Tres ideas dispersas, un sistema"</td><td class="p-3">3</td><td class="p-3">Notas del estudio · abril</td><td class="p-3"><span class="pill bg-accent-soft">En revisión</span></td></tr>
+                  <tr style="background: #fbf8f0;"><td class="p-3">S4</td><td class="p-3">"El método de las 8 capas"</td><td class="p-3">2</td><td class="p-3">—</td><td class="p-3"><span class="pill bg-gold-soft">Borrador</span></td></tr>
+                  <tr><td class="p-3">S5</td><td class="p-3">"Qué cuesta no diseñar el modelo económico"</td><td class="p-3">3</td><td class="p-3">—</td><td class="p-3"><span class="pill bg-slate-soft">Pendiente</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-8">
+              <div class="mono text-[10px] uppercase tracking-widest text-ink-soft mb-3">Banco de 20 ángulos editoriales</div>
+              <div class="flex flex-wrap gap-2">
+                <span class="pill bg-accent-soft">Método</span>
+                <span class="pill bg-accent-soft">Casos</span>
+                <span class="pill bg-accent-soft">IA aplicada</span>
+                <span class="pill bg-accent-soft">Errores comunes</span>
+                <span class="pill bg-accent-soft">Tendencias</span>
+                <span class="pill bg-accent-soft">Story founder</span>
+                <span class="pill bg-accent-soft">Anti-pattern</span>
+                <span class="pill bg-accent-soft">Plantilla</span>
+              </div>
+            </div>
+
+            <div class="mt-6 grid md:grid-cols-4 gap-3">
+              <div class="marker-card"><div class="marker-num">3.200</div><div class="marker-label">Alcance LinkedIn / sem</div><div class="marker-trend">↑ 28%</div></div>
+              <div class="marker-card"><div class="marker-num">8 %</div><div class="marker-label">Engagement</div><div class="marker-trend">vs 4% benchmark</div></div>
+              <div class="marker-card"><div class="marker-num">14</div><div class="marker-label">Leads MQL / mes</div><div class="marker-trend">objetivo 20</div></div>
+              <div class="marker-card"><div class="marker-num">142</div><div class="marker-label">Suscriptores newsletter</div><div class="marker-trend">+34 mes</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OPERACIONES -->
+      <div class="panel" data-panel="operaciones">
+        <div class="browser">
+          <div class="browser-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="browser-url">notion.so/lumina/operaciones/sops</span></div>
+          <div style="padding: 24px 28px; background: #fff;">
+            <div class="mono text-[10px] uppercase tracking-widest text-ink-soft">SOPs por cápsula · biblioteca</div>
+            <h3 class="serif text-2xl mt-1">Procesos documentados</h3>
+
+            <div class="mt-5 grid md:grid-cols-2 gap-3">
+              <div class="card p-4 card-accent"><strong>SOP · Módulo M00 Diagnóstico Express</strong><div class="text-sm text-ink-soft mt-2">14 pasos · plazo 5 días · 1 plantilla memo · checklist 7 items.</div></div>
+              <div class="card p-4 card-accent"><strong>SOP · Módulo M01 Plano Maestro</strong><div class="text-sm text-ink-soft mt-2">28 pasos · plazo 12 días · 4 plantillas · checklist 18 items.</div></div>
+              <div class="card p-4 card-moss"><strong>SOP · Módulo M02 Aterrizaje</strong><div class="text-sm text-ink-soft mt-2">52 pasos · 3-5 meses · coordinación equipo externo · QA semanal.</div></div>
+              <div class="card p-4 card-moss"><strong>SOP · Módulo M03 Mantenimiento</strong><div class="text-sm text-ink-soft mt-2">12 pasos recurrentes mensuales · reporting trimestral · iteración prompts.</div></div>
+              <div class="card p-4 card-gold"><strong>SOP · Módulo M04 Marketing Plano</strong><div class="text-sm text-ink-soft mt-2">18 pasos · 2-3 sem · plan 90 días entregable · 12 piezas modelo.</div></div>
+              <div class="card p-4 card-gold"><strong>SOP · Módulo M05 Operaciones Plano</strong><div class="text-sm text-ink-soft mt-2">22 pasos · 2-3 sem · 8-12 SOPs entregables al cliente.</div></div>
+              <div class="card p-4 card-slate"><strong>SOP · Módulo M06 Comercial Plano</strong><div class="text-sm text-ink-soft mt-2">20 pasos · 2-3 sem · funnel + scripts + plantillas + CRM listo.</div></div>
+              <div class="card p-4 card-slate"><strong>SOP · Pack GTM M04+M05+M06</strong><div class="text-sm text-ink-soft mt-2">5 semanas · coherencia transversal · revisión cruzada al final.</div></div>
+            </div>
+
+            <div class="mt-8 grid md:grid-cols-2 gap-4">
+              <div class="card p-5">
+                <div class="mono text-[10px] uppercase tracking-widest text-ink-soft">Estructura tipo carpeta cliente</div>
+                <pre class="text-xs text-ink-soft mt-3 leading-relaxed">/Cliente_X/
+  ├ 00_contexto/
+  ├ 01_propuesta_firmada/
+  ├ 02_brainstorm/
+  ├ 03_entregables/
+  ├ 04_reuniones/
+  └ 05_facturacion/</pre>
+              </div>
+              <div class="card p-5">
+                <div class="mono text-[10px] uppercase tracking-widest text-ink-soft">Coordinación freelance · checklist</div>
+                <ul class="text-sm text-ink-soft mt-3 space-y-1.5">
+                  <li>✓ NDA firmado antes de brief</li>
+                  <li>✓ Brief escrito · objetivos + plazos + criterios</li>
+                  <li>✓ Acceso a carpeta cliente (limitado)</li>
+                  <li>✓ Tarifa y forma de pago acordada</li>
+                  <li>✓ Política de QA · revisión Lúmina antes de entrega</li>
+                  <li>✓ Comunicación canal único (Slack o WhatsApp)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUCTO -->
+      <div class="panel" data-panel="producto">
+        <div class="browser">
+          <div class="browser-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="browser-url">notion.so/lumina/producto/catalogo</span></div>
+          <div style="padding: 24px 28px; background: #fff;">
+            <div class="mono text-[10px] uppercase tracking-widest text-ink-soft">Catálogo de cápsulas · base de datos</div>
+            <h3 class="serif text-2xl mt-1">Las 7 cápsulas + Pack</h3>
+
+            <div class="mt-5 border border-line overflow-hidden">
+              <table class="w-full text-sm">
+                <thead style="background: #fbf8f0;">
+                  <tr class="text-left">
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Cápsula</th>
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Plazo</th>
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Precio</th>
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Plantillas</th>
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Última rev.</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-line">
+                  <tr><td class="p-3 serif">M00 Diagnóstico Express</td><td class="p-3">1 sem</td><td class="p-3">€€</td><td class="p-3">1</td><td class="p-3">2026-04</td></tr>
+                  <tr style="background:#fbf8f0;"><td class="p-3 serif">M01 Plano Maestro</td><td class="p-3">10–15 d</td><td class="p-3">€€€</td><td class="p-3">4</td><td class="p-3">2026-04</td></tr>
+                  <tr><td class="p-3 serif">M02 Aterrizaje Integral</td><td class="p-3">3–5 m</td><td class="p-3">€€€€</td><td class="p-3">8</td><td class="p-3">2026-04</td></tr>
+                  <tr style="background:#fbf8f0;"><td class="p-3 serif">M03 Mantenimiento Activo</td><td class="p-3">recurrente</td><td class="p-3">€€€/mes</td><td class="p-3">3</td><td class="p-3">2026-04</td></tr>
+                  <tr><td class="p-3 serif">M04 Marketing Plano</td><td class="p-3">2–3 sem</td><td class="p-3">€€€</td><td class="p-3">5</td><td class="p-3">2026-04</td></tr>
+                  <tr style="background:#fbf8f0;"><td class="p-3 serif">M05 Operaciones Plano</td><td class="p-3">2–3 sem</td><td class="p-3">€€€</td><td class="p-3">6</td><td class="p-3">2026-04</td></tr>
+                  <tr><td class="p-3 serif">M06 Comercial Plano</td><td class="p-3">2–3 sem</td><td class="p-3">€€€</td><td class="p-3">5</td><td class="p-3">2026-04</td></tr>
+                  <tr style="background:#fbf8f0;"><td class="p-3 serif">Pack GTM 04+05+06</td><td class="p-3">5 sem</td><td class="p-3">€€€€</td><td class="p-3">14</td><td class="p-3">2026-04</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-8 grid md:grid-cols-2 gap-4">
+              <div class="card p-5 card-accent">
+                <div class="mono text-[10px] uppercase tracking-widest text-accent">Banco de prompts</div>
+                <h4 class="serif text-lg mt-2">42 prompts reutilizables</h4>
+                <ul class="text-sm text-ink-soft mt-3 space-y-1.5">
+                  <li>· 8 prompts de brainstorm (uno por sector)</li>
+                  <li>· 6 prompts generación memo Sprint</li>
+                  <li>· 5 prompts detección riesgos jurídico-fiscales</li>
+                  <li>· 12 prompts redacción comercial</li>
+                  <li>· 11 prompts análisis sectorial</li>
+                </ul>
+              </div>
+              <div class="card p-5 card-moss">
+                <div class="mono text-[10px] uppercase tracking-widest" style="color: var(--moss);">Método 8 capas</div>
+                <h4 class="serif text-lg mt-2">Manual interno</h4>
+                <ul class="text-sm text-ink-soft mt-3 space-y-1.5">
+                  <li>1. Jurídico-fiscal · 2. Producto y software</li>
+                  <li>3. IA aplicada · 4. Modelo económico</li>
+                  <li>5. Storytelling capital · 6. Marketing</li>
+                  <li>7. Operaciones · 8. Comercial</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LEGAL -->
+      <div class="panel" data-panel="legal">
+        <div class="browser">
+          <div class="browser-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="browser-url">notion.so/lumina/legal/biblioteca</span></div>
+          <div style="padding: 24px 28px; background: #fff;">
+            <div class="mono text-[10px] uppercase tracking-widest text-ink-soft">Biblioteca legal · documentos versionados</div>
+            <h3 class="serif text-2xl mt-1">Contratos y plantillas</h3>
+
+            <div class="mt-5 border border-line overflow-hidden">
+              <table class="w-full text-sm">
+                <thead style="background: #fbf8f0;">
+                  <tr class="text-left">
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Documento</th>
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Tipo</th>
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Versión</th>
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Estado</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-line">
+                  <tr><td class="p-3 serif">NDA mutuo</td><td class="p-3">NDA</td><td class="p-3">1.0</td><td class="p-3"><span class="pill bg-moss-soft">Aprobado</span></td></tr>
+                  <tr style="background:#fbf8f0;"><td class="p-3 serif">Contrato M00 Diagnóstico</td><td class="p-3">Contrato</td><td class="p-3">1.0</td><td class="p-3"><span class="pill bg-moss-soft">Aprobado</span></td></tr>
+                  <tr><td class="p-3 serif">Contrato M01 Plano Maestro</td><td class="p-3">Contrato</td><td class="p-3">1.1</td><td class="p-3"><span class="pill bg-moss-soft">Aprobado</span></td></tr>
+                  <tr style="background:#fbf8f0;"><td class="p-3 serif">Contrato M02 Aterrizaje</td><td class="p-3">Contrato</td><td class="p-3">1.0</td><td class="p-3"><span class="pill bg-accent-soft">Revisión legal</span></td></tr>
+                  <tr><td class="p-3 serif">Contrato M03 Mantenimiento</td><td class="p-3">Contrato</td><td class="p-3">0.9</td><td class="p-3"><span class="pill bg-gold-soft">Borrador</span></td></tr>
+                  <tr style="background:#fbf8f0;"><td class="p-3 serif">Acuerdo freelance subcontratado</td><td class="p-3">Plantilla</td><td class="p-3">1.0</td><td class="p-3"><span class="pill bg-moss-soft">Aprobado</span></td></tr>
+                  <tr><td class="p-3 serif">Política IP</td><td class="p-3">Política</td><td class="p-3">1.0</td><td class="p-3"><span class="pill bg-moss-soft">Aprobado</span></td></tr>
+                  <tr style="background:#fbf8f0;"><td class="p-3 serif">Política cancelación</td><td class="p-3">Política</td><td class="p-3">1.0</td><td class="p-3"><span class="pill bg-moss-soft">Aprobado</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-8 grid md:grid-cols-3 gap-4">
+              <div class="card p-5">
+                <div class="mono text-[10px] uppercase tracking-widest text-ink-soft">Sociedad facturadora</div>
+                <p class="text-sm text-ink mt-2"><strong>Lúmina Holding S.L.</strong></p>
+                <p class="text-xs text-ink-soft mt-1">CIF en trámite · notario asignado</p>
+              </div>
+              <div class="card p-5">
+                <div class="mono text-[10px] uppercase tracking-widest text-ink-soft">Marca registrada</div>
+                <p class="text-sm text-ink mt-2"><strong>Estudio Lúmina</strong></p>
+                <p class="text-xs text-ink-soft mt-1">OEPM · pendiente registro</p>
+              </div>
+              <div class="card p-5">
+                <div class="mono text-[10px] uppercase tracking-widest text-ink-soft">Seguro RC</div>
+                <p class="text-sm text-ink mt-2"><strong>Pendiente contratación</strong></p>
+                <p class="text-xs text-ink-soft mt-1">Objetivo: mes 2 (~30€/mes)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FINANZAS -->
+      <div class="panel" data-panel="finanzas">
+        <div class="browser">
+          <div class="browser-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="browser-url">notion.so/lumina/finanzas/modelo</span></div>
+          <div style="padding: 24px; background: #fbf8f0;">
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <div class="mono text-[10px] uppercase tracking-widest text-accent">Modelo financiero · simulador (cifras ficticias)</div>
+                <h3 class="serif text-2xl mt-1">Forecast personal Lúmina</h3>
+                <p class="text-xs text-ink-soft mt-2 max-w-md">Simulador demostrativo. Cifras inventadas para ilustrar la lógica del modelo — no son tarifas reales.</p>
+              </div>
+              <span class="pill bg-gold-soft">Año 1 · 2026</span>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mt-4">
+              <div class="flex flex-col gap-4">
+                <div class="slider-wrap"><div class="slider-label"><span>Diagnósticos M00 / mes</span><span class="v" id="vSp">3</span></div><input type="range" id="rSp" min="0" max="10" value="3" step="1"></div>
+                <div class="slider-wrap"><div class="slider-label"><span>Planos Maestros M01 / mes</span><span class="v" id="vBl">2</span></div><input type="range" id="rBl" min="0" max="6" value="2" step="1"></div>
+                <div class="slider-wrap"><div class="slider-label"><span>Aterrizajes M02 activos</span><span class="v" id="vBu">1</span></div><input type="range" id="rBu" min="0" max="4" value="1" step="1"></div>
+                <div class="slider-wrap"><div class="slider-label"><span>Pack GTM / mes</span><span class="v" id="vPk">1</span></div><input type="range" id="rPk" min="0" max="3" value="1" step="1"></div>
+                <div class="slider-wrap"><div class="slider-label"><span>Gastos personales mensuales (€)</span><span class="v" id="vGa">2.800</span></div><input type="range" id="rGa" min="1500" max="6000" value="2800" step="100"></div>
+              </div>
+              <div class="flex flex-col gap-3">
+                <div class="marker-card"><div class="marker-label">Ingresos brutos / mes</div><div class="marker-num" id="oIng" style="color: var(--accent); margin-top: 6px;">—</div></div>
+                <div class="marker-card"><div class="marker-num" id="oNeto" style="color: var(--accent); margin-top: 6px;">—</div><div class="marker-label">Tras impuestos (25%) y gastos Lúmina (15%)</div></div>
+                <div class="marker-card"><div class="marker-label">Margen disponible (sueldo + ahorro)</div><div class="marker-num" id="oMargen" style="color: var(--accent); margin-top: 6px;">—</div></div>
+                <div class="marker-card" style="background: var(--accent); color: #fff;"><div class="marker-label" style="color: rgba(255,255,255,.75);">Runway si paro de vender hoy</div><div class="marker-num" id="oRun" style="color: #fff; margin-top: 6px;">7 m</div></div>
+              </div>
+            </div>
+
+            <div class="mt-8 grid md:grid-cols-4 gap-3">
+              <div class="marker-card"><div class="marker-num">25 %</div><div class="marker-label">A impuestos</div></div>
+              <div class="marker-card"><div class="marker-num">40 %</div><div class="marker-label">A sueldo personal</div></div>
+              <div class="marker-card"><div class="marker-num">25 %</div><div class="marker-label">A reinversión</div></div>
+              <div class="marker-card"><div class="marker-num">10 %</div><div class="marker-label">A fondo emergencia</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RRHH -->
+      <div class="panel" data-panel="rrhh">
+        <div class="browser">
+          <div class="browser-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="browser-url">notion.so/lumina/rrhh/pool</span></div>
+          <div style="padding: 24px 28px; background: #fff;">
+            <div class="mono text-[10px] uppercase tracking-widest text-ink-soft">Pool de freelances · directorio</div>
+            <h3 class="serif text-2xl mt-1">Equipo extendido</h3>
+
+            <div class="mt-5 border border-line overflow-hidden">
+              <table class="w-full text-sm">
+                <thead style="background: #fbf8f0;">
+                  <tr class="text-left">
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Perfil</th>
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Especialidad</th>
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Tarifa día (€)</th>
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Calidad</th>
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Estado</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-line">
+                  <tr><td class="p-3 serif">Pablo R.</td><td class="p-3">Dev fullstack senior</td><td class="p-3">450</td><td class="p-3">★★★★★</td><td class="p-3"><span class="pill bg-moss-soft">Validado</span></td></tr>
+                  <tr style="background:#fbf8f0;"><td class="p-3 serif">Carmen L.</td><td class="p-3">Diseñadora UX/UI</td><td class="p-3">380</td><td class="p-3">★★★★★</td><td class="p-3"><span class="pill bg-moss-soft">Validada</span></td></tr>
+                  <tr><td class="p-3 serif">Daniel V.</td><td class="p-3">IA engineer</td><td class="p-3">520</td><td class="p-3">★★★★</td><td class="p-3"><span class="pill bg-moss-soft">Validado</span></td></tr>
+                  <tr style="background:#fbf8f0;"><td class="p-3 serif">Almudena T.</td><td class="p-3">Abogada mercantil</td><td class="p-3">90/h</td><td class="p-3">★★★★★</td><td class="p-3"><span class="pill bg-moss-soft">Validada</span></td></tr>
+                  <tr><td class="p-3 serif">Roberto B.</td><td class="p-3">DPO + RGPD</td><td class="p-3">120/h</td><td class="p-3">★★★★</td><td class="p-3"><span class="pill bg-accent-soft">Pendiente prueba</span></td></tr>
+                  <tr style="background:#fbf8f0;"><td class="p-3 serif">Lucía M.</td><td class="p-3">Copy + SEO</td><td class="p-3">300</td><td class="p-3">★★★★</td><td class="p-3"><span class="pill bg-accent-soft">Pendiente prueba</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-8 grid md:grid-cols-2 gap-4">
+              <div class="card p-5 card-accent">
+                <div class="mono text-[10px] uppercase tracking-widest text-accent">Programa Aprendices Lúmina</div>
+                <h4 class="serif text-lg mt-2">Generación 2026 · arranque mes 4</h4>
+                <p class="text-sm text-ink-soft mt-3">Programa de 3-6 meses para perfiles emergentes (estudiantes finales de carrera, recién graduados con interés en consultoría estratégica + IA). Aprenden el método Lúmina ejecutando cápsulas reales bajo supervisión. Retribución por proyecto.</p>
+              </div>
+              <div class="card p-5 card-moss">
+                <div class="mono text-[10px] uppercase tracking-widest" style="color: var(--moss);">Regla incorporación interna</div>
+                <h4 class="serif text-lg mt-2">Cuándo contratar a alguien</h4>
+                <p class="text-sm text-ink-soft mt-3">Cuando hay <strong>5+ clientes activos simultáneos durante 3 meses consecutivos</strong> y visibilidad de pipeline ≥6 meses. Primer perfil: chief of staff o junior consultor. Salario referencia 35-45k.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARTNERS -->
+      <div class="panel" data-panel="partners">
+        <div class="browser">
+          <div class="browser-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="browser-url">notion.so/lumina/partners</span></div>
+          <div style="padding: 24px 28px; background: #fff;">
+            <div class="mono text-[10px] uppercase tracking-widest text-ink-soft">Programa partners · canal indirecto</div>
+            <h3 class="serif text-2xl mt-1">Aliados estratégicos</h3>
+
+            <div class="mt-5 grid md:grid-cols-3 gap-4">
+              <div class="card p-5 card-accent">
+                <span class="pill bg-accent-soft">Tipo 1</span>
+                <h4 class="serif text-lg mt-2">Despachos boutique fiscal-mercantil</h4>
+                <p class="text-sm text-ink-soft mt-3">Ofrecen Lúmina como complemento digital a sus clientes patrimoniales. Comisión <strong>20%</strong> primera factura.</p>
+              </div>
+              <div class="card p-5 card-moss">
+                <span class="pill bg-moss-soft">Tipo 2</span>
+                <h4 class="serif text-lg mt-2">Agencias creativas / diseño</h4>
+                <p class="text-sm text-ink-soft mt-3">Derivan a Lúmina la capa estratégica que ellos no tocan. Comisión <strong>15%</strong> primera factura.</p>
+              </div>
+              <div class="card p-5 card-gold">
+                <span class="pill bg-gold-soft">Tipo 3</span>
+                <h4 class="serif text-lg mt-2">Asesores patrimoniales</h4>
+                <p class="text-sm text-ink-soft mt-3">Ofrecen Lúmina a clientes UHNW para vehículos de coinversión. Comisión <strong>20%</strong> + posibles royalties.</p>
+              </div>
+            </div>
+
+            <div class="mt-8 border border-line overflow-hidden">
+              <table class="w-full text-sm">
+                <thead style="background: #fbf8f0;">
+                  <tr class="text-left">
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Partner</th>
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Tipo</th>
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Deals</th>
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Comisión pagada</th>
+                    <th class="p-3 mono text-[10px] uppercase tracking-widest text-ink-soft">Estado</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-line">
+                  <tr><td class="p-3 serif">Despacho Bel & Asoc.</td><td class="p-3">Fiscal boutique</td><td class="p-3">2</td><td class="p-3">3.200 €</td><td class="p-3"><span class="pill bg-moss-soft">Activo</span></td></tr>
+                  <tr style="background:#fbf8f0;"><td class="p-3 serif">Estudio Velada</td><td class="p-3">Agencia diseño</td><td class="p-3">1</td><td class="p-3">1.350 €</td><td class="p-3"><span class="pill bg-moss-soft">Activo</span></td></tr>
+                  <tr><td class="p-3 serif">Wealth Solutions</td><td class="p-3">Asesor patrimonial</td><td class="p-3">0</td><td class="p-3">0 €</td><td class="p-3"><span class="pill bg-accent-soft">Onboarding</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-6 card p-5">
+              <div class="mono text-[10px] uppercase tracking-widest text-ink-soft">Programa amigos referidos</div>
+              <h4 class="serif text-lg mt-2">Sin comisión · obsequio en especie</h4>
+              <p class="text-sm text-ink-soft mt-3">Si un amigo refiere y se cierra deal, se le obsequia con experiencia (cena, viaje fin de semana, etc.) o crédito futuro en cápsula. No comisión monetaria — preserva la relación.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RECURSOS -->
+      <div class="panel" data-panel="recursos">
+        <div class="browser">
+          <div class="browser-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="browser-url">notion.so/lumina/recursos</span></div>
+          <div style="padding: 24px 28px; background: #fff;">
+            <div class="mono text-[10px] uppercase tracking-widest text-ink-soft">Recursos transversales · biblioteca común</div>
+            <h3 class="serif text-2xl mt-1">Lo que usan todos los departamentos</h3>
+
+            <div class="mt-5 grid md:grid-cols-2 gap-4">
+              <div class="card p-5 card-accent">
+                <h4 class="serif text-lg">📜 Banco de prompts maestro</h4>
+                <p class="text-sm text-ink-soft mt-2">42 prompts versionados, organizados por uso: cualificación, brainstorm, redacción, análisis sectorial, riesgos jurídico-fiscales, generación memo, detección de oportunidades.</p>
+              </div>
+              <div class="card p-5 card-moss">
+                <h4 class="serif text-lg">📐 Biblioteca de plantillas</h4>
+                <p class="text-sm text-ink-soft mt-2">Memo Sprint, dossier Blueprint, modelo financiero, prototipo HTML genérico, roadmap accionable, índice de calidad genérico, propuesta comercial corta y larga.</p>
+              </div>
+              <div class="card p-5 card-gold">
+                <h4 class="serif text-lg">📖 Glosario interno</h4>
+                <p class="text-sm text-ink-soft mt-2">Cápsula, lead caliente/tibio/frío, cliente activo, pipeline, daily, Pack GTM, founder-cliente, scoring, índice de calidad, ocho capas.</p>
+              </div>
+              <div class="card p-5 card-slate">
+                <h4 class="serif text-lg">🧭 Manual del método 8 capas</h4>
+                <p class="text-sm text-ink-soft mt-2">Documento extenso explicando cada una de las 8 capas, con casos de uso, plantillas asociadas, herramientas recomendadas y errores comunes.</p>
+              </div>
+            </div>
+
+            <div class="mt-8">
+              <div class="mono text-[10px] uppercase tracking-widest text-ink-soft mb-3">Casos demo del estudio</div>
+              <div class="grid md:grid-cols-3 gap-3">
+                <div class="card p-4" style="border-left: 3px solid #6b1d23; opacity: .7;"><strong>Bodega ficticia</strong><div class="text-xs text-ink-soft mt-1">Family business · vino</div></div>
+                <div class="card p-4" style="border-left: 3px solid #2d6a5f; opacity: .7;"><strong>Clínica ficticia</strong><div class="text-xs text-ink-soft mt-1">Health-tech · longevidad</div></div>
+                <div class="card p-4" style="border-left: 3px solid #4b5d6e; opacity: .7;"><strong>Operadora ficticia</strong><div class="text-xs text-ink-soft mt-1">Real estate · residencial</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Roadmap de implantación del ecosistema -->
+<section data-panel="panel-encurso" class="bg-white border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <span class="num">03</span>
+    <h2 class="serif text-3xl md:text-4xl mt-3">Roadmap · cómo se construye el ecosistema</h2>
+    <p class="text-ink-soft mt-3 max-w-3xl">5 sprints de 2-3 días cada uno. No producimos todo de golpe — atacamos primero lo que bloquea poder vender.</p>
+
+    <div class="mt-10 border border-line overflow-hidden bg-white">
+      <table class="w-full text-sm">
+        <thead style="background: #fbf8f0;">
+          <tr class="text-left">
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Sprint</th>
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Objetivo</th>
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Departamentos</th>
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Estado</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line">
+          <tr><td class="p-4 serif">S1 · 2-3 días</td><td class="p-4">Lo que bloquea vender · CRM mínimo, plantillas legales, modelo financiero</td><td class="p-4">Comercial · Legal · Finanzas</td><td class="p-4"><span class="pill bg-accent-soft">En curso</span></td></tr>
+          <tr style="background: #fbf8f0;"><td class="p-4 serif">S2 · 2-3 días</td><td class="p-4">Lo que profesionaliza · Marketing 90 días + prototipos</td><td class="p-4">Marketing · Producto</td><td class="p-4"><span class="pill bg-gold-soft">Pendiente</span></td></tr>
+          <tr><td class="p-4 serif">S3 · 2-3 días</td><td class="p-4">Lo que escala · 8 SOPs por cápsula + plantillas reutilizables</td><td class="p-4">Operaciones · Producto</td><td class="p-4"><span class="pill bg-slate-soft">Pendiente</span></td></tr>
+          <tr style="background: #fbf8f0;"><td class="p-4 serif">S4 · 2-3 días</td><td class="p-4">Equipo extendido · pool freelance, programa aprendices, partners</td><td class="p-4">RRHH · Partners</td><td class="p-4"><span class="pill bg-slate-soft">Pendiente</span></td></tr>
+          <tr><td class="p-4 serif">S5 · 2-3 días</td><td class="p-4">Internacionalización · landing en inglés + caso demo internacional</td><td class="p-4">Marketing · Producto</td><td class="p-4"><span class="pill bg-slate-soft">Pendiente</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Cierre -->
+<section data-panel="panel-cierre" style="background: #2a1f15; color: #ffffff;">
+  <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+    <span class="serif" style="color: #b08d3a; font-size: 18px; font-weight: 600;">·</span>
+    <h2 class="serif" style="color: #ffffff; font-size: clamp(28px, 5vw, 48px); line-height: 1.1; margin-top: 12px; font-weight: 600;">El método aplicado a sí mismo.</h2>
+    <p style="color: rgba(255,255,255,.85); font-size: 17px; line-height: 1.6; margin-top: 22px; max-width: 640px; margin-left: auto; margin-right: auto;">
+      Estudio Lúmina no solo diseña ecosistemas — los opera. Lo que ves en este caso es el backoffice real que aplico a mi propio estudio. Si tu negocio necesita esta misma claridad operativa, hablemos.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
+      <a href="https://cal.com/marta-escobar-rojas-teatxg/30min" target="_blank" rel="noopener" style="background: #ffffff; color: #2a1f15; padding: 16px 28px; border-radius: 4px; font-weight: 600;" class="hover:opacity-90">Reservar 30 min con Marta · gratis</a>
+      <button type="button" onclick="if(window.PraxiaChat&&window.PraxiaChat.open){window.PraxiaChat.open()}else{document.querySelector('.pchat-fab')&&document.querySelector('.pchat-fab').click()}" style="border: 1px solid rgba(255,255,255,.6); color: #ffffff; padding: 16px 28px; border-radius: 4px; background: transparent; cursor: pointer; font: inherit;" class="hover:bg-white hover:text-ink transition">Hablar con el asistente</button>
+    </div>
+    <div class="mt-6 flex flex-wrap justify-center gap-6 text-sm" style="color: rgba(255,255,255,.7);">
+      <a href="index.html#capsulas" class="hover:text-white underline-offset-4 hover:underline">Ver detalle de cápsulas y precios →</a>
+      <a href="mailto:info@praxia-atelier.net" class="hover:text-white underline-offset-4 hover:underline">info@praxia-atelier.net</a>
+    </div>
+    <div class="mono" style="color: rgba(255,255,255,.65); letter-spacing: .12em; text-transform: uppercase; font-size: 11px; margin-top: 48px;">
+      · Estudio Lúmina · Caso Mesa de Trabajo v1.0 · 2026 ·
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-line bg-paper">
+  <div class="max-w-6xl mx-auto px-6 py-10 text-sm text-ink-soft">
+    <p class="mono text-[11px] uppercase tracking-widest">Aviso · Caso founder-cliente</p>
+    <p class="mt-2 max-w-3xl">
+      Este caso es la demostración del método de Estudio Lúmina aplicado al propio estudio. Las cifras, métricas y nombres de freelances son ilustrativos. La estructura de los 8 departamentos, las cápsulas y la metodología son reales y forman parte del producto comercial de Lúmina.
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.querySelector(`.panel[data-panel="${tab}"]`).classList.add('active');
+    });
+  });
+
+  function goTab(name) {
+    const btn = document.querySelector(`.tab-btn[data-tab="${name}"]`);
+    if (btn) {
+      btn.click();
+      document.getElementById('detalle').scrollIntoView({behavior:'smooth'});
+    }
+  }
+
+  // Simulator finanzas
+  const fmt = (n) => Math.round(n).toLocaleString('es-ES');
+  function recalc() {
+    const sp = +document.getElementById('rSp').value;
+    const bl = +document.getElementById('rBl').value;
+    const bu = +document.getElementById('rBu').value;
+    const pk = +document.getElementById('rPk').value;
+    const ga = +document.getElementById('rGa').value;
+
+    document.getElementById('vSp').textContent = sp;
+    document.getElementById('vBl').textContent = bl;
+    document.getElementById('vBu').textContent = bu;
+    document.getElementById('vPk').textContent = pk;
+    document.getElementById('vGa').textContent = fmt(ga);
+
+    // Ingresos brutos ficticios para ilustrar el modelo (precios inventados)
+    const ing = sp * 2000 + bl * 16000 + bu * (90000/3) + pk * 22000;
+    const neto = ing * 0.6;  // tras 25% impuestos + 15% gastos Lúmina
+    const margen = neto - ga;
+    const fondoEmergencia = margen * 12 * 0.2;  // ahorro acumulado año
+    const runway = Math.round(fondoEmergencia / ga);
+
+    document.getElementById('oIng').textContent = fmt(ing) + ' €';
+    document.getElementById('oNeto').textContent = fmt(neto) + ' €';
+    document.getElementById('oMargen').textContent = fmt(margen) + ' €';
+    document.getElementById('oRun').textContent = (runway > 0 ? runway : 0) + ' m';
+  }
+  document.querySelectorAll('input[type=range]').forEach(r => r.addEventListener('input', recalc));
+  recalc();
+</script>
+
+<script>
+window.PRAXIA_DECK_PANELS = [
+  { href: 'index.html', label: 'Estudio', dataI18n: 'nav-estudio' },
+  { id: 'panel-intro', label: 'Caso ficticio' },
+  { id: 'panel-vista', label: '8 departamentos' },
+  { id: 'panel-detalle', label: 'Detalle' },
+  { id: 'panel-encurso', label: 'En curso' },
+  { id: 'panel-cierre', label: 'Cierre' },
+  { href: 'index.html#casos', label: 'Otros casos', dataI18n: 'nav-otros-casos' },
+  { href: 'index.html#contacto', label: 'Contacto', dataI18n: 'nav-contacto' }
+];
+window.PRAXIA_DECK_CTA = { label: 'Reservar diagnóstico', href: 'index.html#contacto' };
+</script>
+<link rel="stylesheet" href="praxia-deck.css">
+<script src="praxia-deck.js" defer></script>
+<!-- Praxia Chatbox · cargado externo (un solo archivo para todas las páginas) -->
+<link rel="stylesheet" href="praxia-chatbox.css">
+<script src="praxia-chatbox.js" defer></script>
+<script src="praxia-i18n.js" defer></script>
+
+</body>
+</html>

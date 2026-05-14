@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- ============================================================
+     SEO BÁSICO
+============================================================ -->
+<title>IA en operadoras de real estate: qué automatizar y qué no · Praxia</title>
+<meta name="description" content="IA en real estate sin destruir valor: cuatro tareas donde la IA crea valor real en una operadora inmobiliaria y cuatro donde conviene que siga decidiendo una persona." />
+<meta name="author" content="Marta Escobar Rojas" />
+<meta name="robots" content="index, follow" />
+
+<!-- ============================================================
+     CANONICAL Y HREFLANG
+============================================================ -->
+<link rel="canonical" href="https://praxia-atelier.net/diario/ia-aplicada-operadora-real-estate.html" />
+<link rel="alternate" hreflang="es" href="https://praxia-atelier.net/diario/ia-aplicada-operadora-real-estate.html" />
+<link rel="alternate" hreflang="en" href="https://praxia-atelier.net/diario/ia-aplicada-operadora-real-estate_EN.html" />
+<link rel="alternate" hreflang="x-default" href="https://praxia-atelier.net/diario/ia-aplicada-operadora-real-estate.html" />
+
+<!-- ============================================================
+     OPEN GRAPH
+============================================================ -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="IA en operadoras de real estate: qué automatizar y qué no" />
+<meta property="og:description" content="Cuatro tareas donde la IA crea valor real en una operadora inmobiliaria, y cuatro donde conviene que siga decidiendo una persona." />
+<meta property="og:url" content="https://praxia-atelier.net/diario/ia-aplicada-operadora-real-estate.html" />
+<meta property="og:locale" content="es_ES" />
+<meta property="og:locale:alternate" content="en_US" />
+<meta property="og:image" content="https://praxia-atelier.net/imagenes/diario/ia-real-estate-og.svg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Diario Praxia Atelier · IA en operadoras de real estate · qué automatizar y qué no" />
+<meta property="article:author" content="Marta Escobar Rojas" />
+<meta property="article:published_time" content="2026-05-08" />
+<meta property="article:section" content="IA aplicada" />
+<meta property="article:tag" content="IA en real estate, IA aplicada, operadora inmobiliaria, automatización, RGPD, EU AI Act" />
+
+<!-- ============================================================
+     TWITTER CARD
+============================================================ -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="IA en operadoras de real estate: qué automatizar y qué no" />
+<meta name="twitter:description" content="Cuatro tareas donde la IA crea valor real en una operadora inmobiliaria, y cuatro donde conviene que siga decidiendo una persona." />
+<meta name="twitter:image" content="https://praxia-atelier.net/imagenes/diario/ia-real-estate-og.svg" />
+<meta name="twitter:image:alt" content="Diario Praxia Atelier · IA en operadoras de real estate" />
+
+<!-- ============================================================
+     SCHEMA.ORG · BlogPosting
+============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "IA en operadoras de real estate: qué automatizar y qué no",
+  "description": "Cuatro tareas donde la IA crea valor real en una operadora inmobiliaria, y cuatro donde conviene que siga decidiendo una persona. Lo aprendido diseñando ecosistemas digitales para real estate.",
+  "datePublished": "2026-05-08",
+  "dateModified": "2026-05-08",
+  "timeRequired": "PT7M",
+  "image": "https://praxia-atelier.net/imagenes/diario/ia-real-estate-og.svg",
+  "author": {
+    "@type": "Person",
+    "name": "Marta Escobar Rojas",
+    "url": "https://praxia-atelier.net/#fundadora"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Praxia Atelier",
+    "url": "https://praxia-atelier.net/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://praxia-atelier.net/diario/ia-aplicada-operadora-real-estate.html"
+  },
+  "articleSection": "IA aplicada",
+  "keywords": "IA en real estate, IA aplicada, operadora inmobiliaria, automatización, vehículo de coinversión, RGPD, EU AI Act",
+  "inLanguage": "es-ES",
+  "wordCount": 1500
+}
+</script>
+
+<!-- FAQPage schema · para que ChatGPT, Claude y Perplexity citen el post -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué tareas conviene automatizar con IA en una operadora de real estate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Conviene automatizar con IA las tareas que cumplen tres condiciones: alta frecuencia (ocurren muchas veces al mes), patrón identificable (siguen una lógica repetible) y bajo coste del error (un fallo puntual es asumible y reversible). En real estate, esto incluye filtrado y prescoring de oportunidades de compra, comunicación operativa con inquilinos, generación de borradores de reporting trimestral para coinversores y análisis comparativo de mercado para decisión interna."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué tareas NO conviene automatizar con IA en una operadora inmobiliaria?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Las tareas que combinan baja frecuencia, contexto único y alto coste del error deben seguir descansando en personas: la negociación de compra y venta, la decisión final de inversión, la relación con coinversores en momentos delicados y los conflictos sensibles con inquilinos (impagos, daños, situaciones personales complejas). En estos casos la IA puede preparar información de apoyo, pero la decisión y la presencia humana son lo que sostiene el resultado."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Necesito una tasación profesional aunque use IA para análisis de mercado?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. La IA puede agregar comparables y entregar análisis preliminar útil para decisiones internas del equipo, pero las valoraciones formales requieren tasación profesional certificada cuando la regulación lo exija (financiación bancaria, herencias, garantías). El análisis con IA es apoyo, no sustituye al tasador colegiado."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué normativa hay que cumplir si uso IA en una operadora inmobiliaria?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cualquier sistema con IA que afecte a personas — inquilinos, coinversores, empleados, candidatos — debe cumplir el RGPD (Reglamento General de Protección de Datos) y el EU AI Act, además de las normativas locales aplicables a la actividad inmobiliaria. La consulta jurídica con un abogado especializado es necesaria antes de desplegar IA en decisiones que tengan impacto sobre personas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo decido caso a caso si automatizar una tarea con IA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Antes de automatizar una tarea con IA, conviene aplicar tres preguntas: (1) ¿La tarea ocurre con frecuencia suficiente para justificar el coste de diseño y mantenimiento? (2) ¿El coste de un error puntual es asumible y reversible? (3) ¿Existe revisión humana significativa antes de que la IA actúe sobre la realidad? Solo si las tres salen sí, se automatiza con IA. Si una sale no, se mantiene en manos humanas con herramientas que apoyen, no que sustituyan."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- ============================================================
+     ESTILOS
+============================================================ -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1f2e;
+    --ink-soft: #44485a;
+    --paper: #faf8f3;
+    --line: #e6e1d6;
+    --accent: #b9522e;
+    --accent-soft: #f3ddd0;
+    --moss: #4a5d3a;
+    --moss-soft: #d8dfcd;
+    --gold: #b08d3a;
+    --gold-soft: #f1e6c5;
+  }
+  html, body { background: var(--paper); color: var(--ink); font-family: "IBM Plex Sans", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  .serif { font-family: "Fraunces", Georgia, serif; font-optical-sizing: auto; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .border-line { border-color: var(--line); }
+  .text-ink { color: var(--ink); }
+  .text-ink-soft { color: var(--ink-soft); }
+  .text-accent { color: var(--accent); }
+  .text-moss { color: var(--moss); }
+  .bg-paper { background: var(--paper); }
+  .bg-card { background: #fff; }
+  .bg-accent-soft { background: var(--accent-soft); color: var(--accent); }
+  .bg-moss-soft { background: var(--moss-soft); color: var(--moss); }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+  .underline-accent { background-image: linear-gradient(var(--accent), var(--accent)); background-position: 0 95%; background-repeat: no-repeat; background-size: 100% 2px; padding-bottom: 2px; }
+
+  /* ============ ESTILO EDITORIAL DEL CUERPO ============ */
+  .prose-article { font-size: 18px; line-height: 1.75; color: var(--ink); }
+  .prose-article p { margin-top: 1.5em; }
+  .prose-article p:first-child { margin-top: 0; }
+  .prose-article p.lead {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .prose-article h2 {
+    font-family: "Fraunces", serif;
+    font-size: 30px;
+    line-height: 1.2;
+    margin-top: 2.6em;
+    margin-bottom: .5em;
+    letter-spacing: -.01em;
+    font-weight: 500;
+  }
+  .prose-article h3 {
+    font-family: "Fraunces", serif;
+    font-size: 22px;
+    line-height: 1.3;
+    margin-top: 2em;
+    margin-bottom: .4em;
+    font-weight: 500;
+  }
+  .prose-article a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+  .prose-article a:hover { color: var(--ink); }
+  .prose-article strong { font-weight: 600; color: var(--ink); }
+  .prose-article em { font-style: italic; }
+  .prose-article ul, .prose-article ol { margin-top: 1.5em; padding-left: 1.4em; }
+  .prose-article li { margin-top: .7em; }
+
+  /* Cita ancla central */
+  .pull-quote {
+    margin: 4em -1em;
+    padding: 2.5em 1.5em;
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    font-family: "Fraunces", serif;
+    font-size: 26px;
+    line-height: 1.35;
+    font-style: italic;
+    color: var(--ink);
+  }
+  .pull-quote::before {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    margin-bottom: 1em;
+  }
+
+  /* Bloque "punto clave" */
+  .key-point {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 28px;
+    margin: 3em 0;
+    padding-top: 1.5em;
+    border-top: 1px solid var(--line);
+  }
+  .key-point .marker {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    line-height: 1.5;
+    padding-top: .3em;
+  }
+  .key-point .content { font-size: 17px; line-height: 1.65; }
+  @media (max-width: 768px) {
+    .key-point { grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  /* Doble grid · IA sí vs Persona sí */
+  .dual-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 2.5em 0;
+  }
+  .dual-grid .col-ai, .dual-grid .col-human {
+    padding: 1.6em 1.5em;
+    background: #fff;
+    border: 1px solid var(--line);
+  }
+  .dual-grid .col-ai { border-top: 4px solid var(--accent); }
+  .dual-grid .col-human { border-top: 4px solid var(--moss); }
+  .dual-grid h3 {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 1.2em;
+    font-weight: 600;
+  }
+  .dual-grid .col-ai h3 { color: var(--accent); }
+  .dual-grid .col-human h3 { color: var(--moss); }
+  .dual-grid h4 {
+    font-family: "Fraunces", serif;
+    font-size: 17px;
+    line-height: 1.3;
+    margin-top: 1.4em;
+    font-weight: 500;
+  }
+  .dual-grid h4:first-of-type { margin-top: 0; }
+  .dual-grid p {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin-top: .4em;
+  }
+  @media (max-width: 768px) {
+    .dual-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Disclaimer ético */
+  .disclaimer-box {
+    margin-top: 4em;
+    padding: 2em;
+    border: 1px solid var(--accent);
+    background: #fff;
+    position: relative;
+  }
+  .disclaimer-box::before {
+    content: "Disclaimer ético";
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background: var(--paper);
+    padding: 0 10px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+  }
+</style>
+</head>
+<body class="text-ink">
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header class="border-b border-line bg-paper sticky top-0 z-30">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="../index.html" class="flex items-center gap-3 flex-shrink-0 mr-6 lg:mr-10">
+      <div class="border border-ink flex items-center justify-center flex-shrink-0" style="width:28px; height:28px;">
+        <span class="serif text-lg leading-none">P</span>
+      </div>
+      <div class="leading-tight whitespace-nowrap">
+        <div class="serif text-lg">Praxia <span class="text-ink-soft">Atelier</span></div>
+        <div class="mono text-[10px] text-ink-soft tracking-widest uppercase">Diario</div>
+      </div>
+    </a>
+    <nav class="hidden lg:flex items-center gap-5 text-sm text-ink-soft">
+      <a href="../index.html#metodo" class="hover:text-ink whitespace-nowrap">Método</a>
+      <a href="../index.html#capsulas" class="hover:text-ink whitespace-nowrap">Cápsulas</a>
+      <a href="../index.html#casos" class="hover:text-ink whitespace-nowrap">Casos</a>
+      <a href="../diario.html" class="hover:text-ink whitespace-nowrap">Diario</a>
+      <a href="../insights.html" class="hover:text-ink whitespace-nowrap">Insights</a>
+      <a href="../colaboradores.html" class="hover:text-ink whitespace-nowrap">Colaboradores</a>
+      <a href="../index.html#contacto" class="hover:text-ink whitespace-nowrap">Contacto</a>
+    </nav>
+    <div id="praxia-header-actions" class="flex items-center gap-3 ml-4 flex-shrink-0">
+      <a href="../index.html#contacto" class="text-sm px-4 py-2 rounded-sm hover:opacity-90 whitespace-nowrap" style="background: var(--accent); color: #fff;">Reservar diagnóstico</a>
+    </div>
+  </div>
+</header>
+
+<article>
+
+<!-- ============================================================
+     HERO DEL ARTÍCULO
+============================================================ -->
+<header class="border-b border-line">
+  <div class="max-w-3xl mx-auto px-6 py-16 md:py-20">
+    <a href="../diario.html" class="mono text-[11px] uppercase tracking-widest text-accent hover:underline">← Volver al Diario</a>
+
+    <div class="flex flex-wrap gap-3 items-center mt-8 mono text-[10px] uppercase tracking-widest text-ink-soft">
+      <span>8 mayo 2026</span>
+      <span>·</span>
+      <span>Lectura 7 min</span>
+      <span>·</span>
+      <span class="text-accent">IA aplicada</span>
+    </div>
+
+    <h1 class="serif text-4xl md:text-5xl leading-[1.08] mt-5 font-medium">
+      Qué se puede <span class="underline-accent">automatizar con IA</span> en una operadora de real estate — y qué conviene que siga haciendo una persona.
+    </h1>
+
+    <p class="text-lg md:text-xl text-ink-soft mt-7 leading-relaxed">
+      Hay cuatro tareas donde la IA crea valor real en una operadora inmobiliaria, y cuatro donde destruye más del que crea. La diferencia no la marca la tecnología — la marca la naturaleza de la tarea.
+    </p>
+
+    <div class="flex items-center gap-3 mt-10 mono text-[11px] uppercase tracking-widest text-ink-soft">
+      <span>Por Marta Escobar Rojas</span>
+      <span>·</span>
+      <span>Madrid</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     CUERPO
+============================================================ -->
+<section class="bg-paper">
+  <div class="max-w-3xl mx-auto px-6 py-16 md:py-20 prose-article">
+
+    <p class="lead">
+      La pregunta que más me hacen últimamente operadores y family offices con cartera inmobiliaria es la misma: <em>"¿qué puedo automatizar con IA sin perder el control de lo que de verdad importa?"</em>. La pregunta correcta es otra.
+    </p>
+
+    <p>
+      Real estate es uno de los sectores donde la diferencia entre meter IA bien y meter IA mal se nota más rápido. Una operadora con quince inmuebles en gestión, un vehículo de coinversión privado y un equipo pequeño tiene <strong>cientos de microtareas operativas al mes</strong> — desde valorar una oportunidad de compra hasta responder a un inquilino que pregunta por la caldera. La tentación de automatizarlo todo es enorme. El daño que se puede hacer también.
+    </p>
+
+    <p>
+      Llevo varios años diseñando ecosistemas digitales para real estate, incluyendo proyectos con vehículo de coinversión privado entre socios y operadoras de inmuebles reformados. Lo que voy a contar aquí es lo que he aprendido sobre <strong>dónde la IA suma valor real</strong> y dónde, por el contrario, su uso ingenuo termina costando dinero, reputación o ambas cosas. Si estás considerando meter IA en tu operadora, esto te puede evitar dos o tres errores caros.
+    </p>
+
+    <h2>La pregunta correcta no es "qué automatizo"</h2>
+
+    <p>
+      La pregunta correcta es: <strong>"qué tarea descansa bien en la IA y qué tarea descansa bien en una persona — y por qué"</strong>. Las dos opciones son legítimas. Lo que destruye valor es ponerlas en el lado equivocado.
+    </p>
+
+    <p>
+      La IA es muy buena en tareas con tres propiedades: <strong>volumen alto, patrón identificable y consecuencia limitada del error</strong>. Es muy mala en tareas con la propiedad opuesta — pocas decisiones, contexto único, consecuencia grande del error. La mayoría de los problemas que veo en operadoras inmobiliarias vienen de aplicar IA a tareas del segundo grupo porque <em>técnicamente se puede</em>, sin pensar si <em>operativamente conviene</em>.
+    </p>
+
+    <div class="key-point">
+      <div class="marker">Punto clave 01</div>
+      <div class="content">
+        Antes de meter IA en una operadora, dibuja el mapa de procesos completo y clasifica cada tarea por dos ejes: <em>frecuencia</em> (¿cuántas veces al mes?) y <em>coste del error</em> (¿qué pasa si la IA se equivoca una vez?). Solo automatiza con IA las tareas del cuadrante alta frecuencia + bajo coste de error. El resto, descansa en personas — con herramientas que les apoyen, no que les sustituyan.
+      </div>
+    </div>
+
+    <!-- Infografía editorial · cuadrante de decisión -->
+    <figure style="margin: 3em -1em 3em -1em;">
+      <img src="../imagenes/diario/ia-real-estate-cuadrante.svg"
+           alt="Cuadrante de decisión sobre IA en real estate · dos ejes (frecuencia de la tarea y coste del error) que clasifican cuatro zonas: persona estratégica, IA con supervisión humana, mejor manual, y automatizar con IA"
+           style="width: 100%; height: auto; display: block; border: 1px solid var(--line);"
+           loading="lazy" />
+      <figcaption class="mono" style="font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); text-align: center; margin-top: 1em;">
+        Cuadrante de decisión · dónde la IA aporta valor en una operadora inmobiliaria
+      </figcaption>
+    </figure>
+
+    <h2>Las cuatro tareas de IA en real estate donde sí suma valor real</h2>
+
+    <p>
+      Estas son las cuatro funciones donde he visto que la IA bien diseñada genera ahorro real y mejora la operación de una operadora inmobiliaria pequeña o mediana:
+    </p>
+
+    <h3>01 · Filtrado y prescoring de oportunidades de compra</h3>
+
+    <p>
+      Una operadora con criterios definidos (rango de zonas, metros cuadrados, precio por metro, estado del inmueble, antigüedad del edificio) recibe decenas de oportunidades al mes desde portales, agentes y redes propias. Filtrarlas a mano consume horas de un perfil senior que debería estar negociando, no leyendo fichas. Una IA con un buen prompt y acceso a los criterios <strong>preselecciona, descarta lo que no encaja y deja al equipo solo lo relevante</strong>. El equipo decide; la IA recorta el ruido.
+    </p>
+
+    <h3>02 · Comunicación operativa con inquilinos</h3>
+
+    <p>
+      Las preguntas frecuentes (cuándo se cobra, cómo funciona la caldera, qué hacer si hay una avería menor, cómo solicitar una renovación) son repetitivas y bien estructuradas. Una IA conversacional con base de conocimiento del inmueble y reglas claras de derivación <strong>responde la mayoría de las consultas frecuentes en minutos</strong>, deriva las que requieren juicio a una persona y deja registro de todo. El inquilino siente respuesta inmediata; el equipo se libera de gestionar lo trivial.
+    </p>
+
+    <h3>03 · Reporting periódico para coinversores</h3>
+
+    <p>
+      Una operadora con vehículo de coinversión tiene que reportar trimestralmente a sus socios: ocupación, ingresos, gastos operativos, plusvalías latentes, hitos. Construir ese informe a mano cada trimestre puede llevar varios días. Con los datos bien estructurados en el back office, la IA <strong>genera el primer borrador del informe en minutos</strong> — texto narrativo incluido. El equipo lo revisa, ajusta, valida y firma. Lo que era trabajo de varios días pasa a ser de una mañana.
+    </p>
+
+    <h3>04 · Análisis comparativo de mercado para tasación interna</h3>
+
+    <p>
+      Antes de cerrar una compra o fijar una renta, el equipo necesita comparar con inmuebles similares vendidos o alquilados en la zona. La IA puede <strong>agregar datos de portales públicos, identificar comparables relevantes y entregar un análisis preliminar</strong> mucho más rápido que a mano. <em>Importante:</em> el análisis es preliminar y orientativo, no sustituye una tasación profesional cuando hace falta una; pero como apoyo a la decisión interna del equipo, ahorra tiempo y mejora la consistencia.
+    </p>
+
+    <!-- CITA ANCLA CENTRAL -->
+    <div class="pull-quote">
+      La IA no compite con la persona experta. Compite con la persona experta haciendo trabajo aburrido. Si el equipo humano se libera de las tareas repetitivas, su criterio se nota más donde sí importa — en la mesa de negociación, en la decisión de comprar o no, en la conversación difícil con un socio.
+    </div>
+
+    <h2>Dónde la IA en real estate destruye valor — y conviene que decida una persona</h2>
+
+    <p>
+      Y ahora la otra mitad — la que casi nadie cuenta porque es menos vendible. Estas son las cuatro funciones donde meter IA con criterio simplista <strong>destruye más valor del que crea</strong>:
+    </p>
+
+    <div class="dual-grid">
+      <div class="col-ai">
+        <h3>Funciones · IA</h3>
+        <h4>01 · Prescoring de oportunidades</h4>
+        <p>Filtrado por criterios objetivos. Decide el equipo, la IA recorta el ruido.</p>
+        <h4>02 · Comunicación operativa</h4>
+        <p>Respuestas a preguntas frecuentes con derivación a humano cuando hace falta.</p>
+        <h4>03 · Reporting trimestral</h4>
+        <p>Borradores automáticos a partir de datos del back office. El equipo valida y firma.</p>
+        <h4>04 · Análisis comparativo</h4>
+        <p>Apoyo a decisión interna. No sustituye tasación profesional.</p>
+      </div>
+      <div class="col-human">
+        <h3>Funciones · Persona</h3>
+        <h4>01 · Negociación de compra y venta</h4>
+        <p>Lectura del vendedor, ritmo, sensibilidad a la cifra. La IA no sabe leer una pausa.</p>
+        <h4>02 · Decisión final de inversión</h4>
+        <p>Coherencia con la estrategia del vehículo y del momento. Asunción de riesgo.</p>
+        <h4>03 · Relación con coinversores</h4>
+        <p>Confianza, llamada en momento difícil, gestión de expectativas. Trabajo de presencia.</p>
+        <h4>04 · Conflictos con inquilinos</h4>
+        <p>Casos sensibles (impago, daños, situación personal). Requieren juicio humano y empatía.</p>
+      </div>
+    </div>
+
+    <p>
+      Negociar la compra de un inmueble no es solo procesar una cifra: es leer el ritmo del vendedor, su urgencia, sus dudas, lo que dice y lo que no. <strong>Una IA puede preparar el rango razonable; no puede sentarse en la mesa.</strong> La decisión final de inversión combina números con coherencia estratégica del vehículo, momento del mercado, capacidad de gestión del equipo y aceptación del riesgo. Todo eso es trabajo humano.
+    </p>
+
+    <p>
+      La relación con coinversores es lo más delicado. Cuando un trimestre va peor de lo esperado, el coinversor no quiere recibir un email automático con buenas palabras. Quiere una llamada de la persona que decide, asumiendo lo que pasa y explicándolo en su contexto. <strong>La presencia humana en momentos difíciles es lo que sostiene un vehículo a largo plazo.</strong> Si la IA gestiona esa conversación, el coinversor lo percibe — y la confianza se rompe sin que nadie se dé cuenta hasta que es tarde.
+    </p>
+
+    <p>
+      Y los conflictos con inquilinos — impagos, daños, situaciones personales complejas — requieren el tipo de juicio que solo una persona puede ejercer con responsabilidad. Una IA mal configurada puede generar una respuesta jurídicamente correcta pero humanamente desastrosa. La diferencia entre conservar a un inquilino o entrar en un proceso judicial está muchas veces en una conversación bien llevada — y eso no se automatiza.
+    </p>
+
+    <h2>Cómo decido caso a caso</h2>
+
+    <p>
+      Antes de meter IA en cualquier capa de una operadora, aplico tres preguntas concretas. Si las tres salen sí, automatizo con IA. Si una sale no, lo dejo en manos humanas:
+    </p>
+
+    <ol>
+      <li><strong>¿La tarea ocurre con frecuencia suficiente para justificar el coste de diseño y mantenimiento de la automatización?</strong> Por debajo de cierto volumen, automatizar cuesta más que hacerlo a mano.</li>
+      <li><strong>¿El coste de un error puntual es asumible y reversible?</strong> Una respuesta automática equivocada a un inquilino sobre la caldera se corrige en una llamada. Una decisión automática equivocada de comprar un inmueble cuesta meses y dinero.</li>
+      <li><strong>¿Existe revisión humana significativa antes de actuar?</strong> La IA propone, una persona valida, esa persona firma. Si la IA actúa sola sin filtro humano en una decisión sensible, hay riesgo.</li>
+    </ol>
+
+    <div class="key-point">
+      <div class="marker">Punto clave 02</div>
+      <div class="content">
+        El criterio que mejor me funciona es este: <em>la IA libera al equipo humano de las tareas que no aportan valor humano, no lo reemplaza en las que sí lo aportan</em>. Diseñada así, la operadora opera más rápido, con más consistencia y con mejor experiencia para inquilinos y coinversores. Diseñada al revés, la operadora se vuelve impersonal y pierde lo que la diferenciaba.
+      </div>
+    </div>
+
+    <h2>Lo que me llevo de aplicar IA a operaciones inmobiliarias</h2>
+
+    <p>
+      Después de varios años trabajando en esto, lo que más me ha sorprendido es la cantidad de proyectos que llegan al estudio con la idea de que <em>"la IA va a transformar el negocio"</em> y se sorprenden cuando la respuesta es: <strong>"la IA va a transformar lo aburrido. Lo que diferencia tu negocio sigue siendo trabajo humano".</strong> Es una respuesta menos heroica pero mucho más operativa.
+    </p>
+
+    <p>
+      Si estás operando una cartera inmobiliaria, gestionando un vehículo de coinversión o pensando en montar uno, mi recomendación es esta: <strong>antes de invertir en IA, dibuja el mapa de procesos y clasifica cada tarea</strong>. Lo que descansa en personas, lo apoyas con buenas herramientas. Lo que descansa en IA, lo diseñas con revisión humana en los puntos críticos. La diferencia entre una operadora que escala bien con IA y una que se rompe está en esa clasificación inicial — no en qué modelo de IA usas.
+    </p>
+
+    <!-- ============================================================
+         FAQ visible · refuerza el FAQPage schema y aporta a SEO + AI Visibility
+    ============================================================ -->
+    <h2>Preguntas frecuentes sobre IA en real estate</h2>
+
+    <div style="margin-top: 2em;">
+      <details class="bg-card" style="border: 1px solid var(--line); padding: 1.2em 1.5em; margin-bottom: 12px; border-radius: 2px;">
+        <summary class="serif" style="font-size: 18px; font-weight: 500; cursor: pointer; list-style: none;">
+          ¿Qué tareas conviene automatizar con IA en una operadora de real estate?
+        </summary>
+        <p style="margin-top: 1em; font-size: 16px; color: var(--ink-soft); line-height: 1.65;">
+          Las que cumplen tres condiciones: <strong>alta frecuencia, patrón identificable y bajo coste del error</strong>. En real estate, encajan el filtrado y prescoring de oportunidades, la comunicación operativa con inquilinos, los borradores de reporting trimestral para coinversores y el análisis comparativo de mercado para decisión interna del equipo.
+        </p>
+      </details>
+
+      <details class="bg-card" style="border: 1px solid var(--line); padding: 1.2em 1.5em; margin-bottom: 12px; border-radius: 2px;">
+        <summary class="serif" style="font-size: 18px; font-weight: 500; cursor: pointer; list-style: none;">
+          ¿Qué tareas NO conviene automatizar con IA?
+        </summary>
+        <p style="margin-top: 1em; font-size: 16px; color: var(--ink-soft); line-height: 1.65;">
+          Las que combinan baja frecuencia, contexto único y alto coste del error: la negociación de compra y venta, la decisión final de inversión, la relación con coinversores en momentos delicados y los conflictos sensibles con inquilinos. La IA puede preparar información de apoyo, pero la decisión y la presencia humana son lo que sostiene el resultado.
+        </p>
+      </details>
+
+      <details class="bg-card" style="border: 1px solid var(--line); padding: 1.2em 1.5em; margin-bottom: 12px; border-radius: 2px;">
+        <summary class="serif" style="font-size: 18px; font-weight: 500; cursor: pointer; list-style: none;">
+          ¿Necesito tasación profesional aunque use IA para análisis de mercado?
+        </summary>
+        <p style="margin-top: 1em; font-size: 16px; color: var(--ink-soft); line-height: 1.65;">
+          Sí. La IA puede agregar comparables y entregar análisis preliminar útil para decisiones internas, pero las valoraciones formales requieren <strong>tasación profesional certificada</strong> cuando lo exija la regulación (financiación bancaria, herencias, garantías). El análisis con IA es apoyo, no sustituye al tasador colegiado.
+        </p>
+      </details>
+
+      <details class="bg-card" style="border: 1px solid var(--line); padding: 1.2em 1.5em; margin-bottom: 12px; border-radius: 2px;">
+        <summary class="serif" style="font-size: 18px; font-weight: 500; cursor: pointer; list-style: none;">
+          ¿Qué normativa hay que cumplir si uso IA en una operadora inmobiliaria?
+        </summary>
+        <p style="margin-top: 1em; font-size: 16px; color: var(--ink-soft); line-height: 1.65;">
+          Cualquier sistema con IA que afecte a personas — inquilinos, coinversores, empleados, candidatos — debe cumplir el <strong>RGPD</strong> y el <strong>EU AI Act</strong>, además de las normativas locales aplicables a la actividad inmobiliaria. La consulta jurídica con un abogado especializado es necesaria antes de desplegar IA en decisiones que tengan impacto sobre personas.
+        </p>
+      </details>
+
+      <details class="bg-card" style="border: 1px solid var(--line); padding: 1.2em 1.5em; margin-bottom: 12px; border-radius: 2px;">
+        <summary class="serif" style="font-size: 18px; font-weight: 500; cursor: pointer; list-style: none;">
+          ¿Cómo decido caso a caso si automatizar una tarea con IA?
+        </summary>
+        <p style="margin-top: 1em; font-size: 16px; color: var(--ink-soft); line-height: 1.65;">
+          Aplico tres preguntas: ¿la tarea ocurre con frecuencia suficiente para justificar el coste de diseño y mantenimiento? ¿el coste de un error puntual es asumible y reversible? ¿existe revisión humana significativa antes de actuar? Solo si las tres salen sí, automatizo con IA. Si una sale no, lo dejo en manos humanas con herramientas que apoyen pero no sustituyan.
+        </p>
+      </details>
+    </div>
+
+    <!-- DISCLAIMER ÉTICO -->
+    <div class="disclaimer-box">
+      <p class="text-sm leading-relaxed text-ink-soft" style="margin-top:0;">
+        Este artículo es <strong>contenido editorial</strong> que refleja experiencia operativa propia diseñando ecosistemas digitales con IA aplicada a real estate. <strong>No es asesoramiento jurídico, fiscal, financiero ni de tasación inmobiliaria individualizado.</strong> Marta Escobar Rojas no es tasadora colegiada, agente inmobiliaria registrada ni intermediaria financiera, y Praxia Atelier no presta servicios de profesión regulada.
+      </p>
+      <p class="text-sm leading-relaxed text-ink-soft mt-4">
+        Cualquier sistema con IA aplicada a decisiones que afecten a personas (inquilinos, coinversores, empleados) debe diseñarse cumpliendo el <strong>RGPD</strong>, el <strong>EU AI Act</strong> y las normativas locales aplicables en cada caso. Las valoraciones inmobiliarias formales requieren tasación profesional certificada cuando la regulación lo exija (financiación bancaria, herencias, garantías). El estudio coordina con tasadores, abogados y asesores fiscales colegiados cuando el proyecto lo requiere — la firma y la responsabilidad jurídica corresponden siempre a ellos. Información completa en <a href="../aviso-legal.html#alcance" class="underline">Aviso legal · Alcance de servicios</a>.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA FINAL
+============================================================ -->
+<section class="bg-card border-y border-line">
+  <div class="max-w-3xl mx-auto px-6 py-16 md:py-20 text-center">
+    <span class="pill bg-accent-soft mb-5">¿Estás pensando en meter IA en tu operadora?</span>
+    <h2 class="serif text-3xl md:text-4xl mt-4 leading-tight font-medium">
+      Te ayudo a decidir qué automatizar y qué no — antes de invertir.
+    </h2>
+    <p class="text-ink-soft mt-5 max-w-xl mx-auto leading-relaxed">
+      30 minutos por videollamada. Si seguimos, lo aterrizamos en una Cápsula 01 (Ecosystem Blueprint) o, si necesitas IA conversacional real (Claude API o avatar), en el add-on premium con presupuesto personalizado.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
+      <a href="https://cal.com/marta-escobar-rojas-teatxg/30min" target="_blank" rel="noopener" class="px-5 py-3 text-sm rounded-sm hover:opacity-90" style="background: var(--accent); color: #fff;">
+        Reservar 30 min con Marta · gratis
+      </a>
+      <button type="button" onclick="if(window.PraxiaChat&&window.PraxiaChat.open){window.PraxiaChat.open()}else{document.querySelector('.pchat-fab')&&document.querySelector('.pchat-fab').click()}" class="border border-ink px-5 py-3 text-sm rounded-sm hover:bg-ink hover:text-paper transition" style="background: transparent; cursor: pointer; font: inherit;">
+        Hablar con el asistente
+      </button>
+    </div>
+    <div class="mt-8 flex flex-wrap justify-center gap-6 text-sm text-ink-soft">
+      <a href="../Praxia_Atelier_Caso_Casa_Vento.html" class="hover:text-ink underline-offset-4 hover:underline">Ver caso demo · Casa Vento (real estate) →</a>
+      <a href="../diario.html#suscribir" class="hover:text-ink underline-offset-4 hover:underline">Recibir el próximo Diario</a>
+    </div>
+  </div>
+</section>
+
+<!-- Etiquetas -->
+<section class="bg-paper">
+  <div class="max-w-3xl mx-auto px-6 py-10 border-t border-line">
+    <div class="mono text-[10px] uppercase tracking-widest text-ink-soft mb-3">Etiquetas</div>
+    <div class="flex flex-wrap gap-2">
+      <span class="pill bg-accent-soft">IA aplicada</span>
+      <span class="pill bg-accent-soft">Real estate</span>
+      <span class="pill bg-accent-soft">Operadora inmobiliaria</span>
+      <span class="pill bg-accent-soft">Automatización</span>
+      <span class="pill bg-accent-soft">EU AI Act</span>
+    </div>
+  </div>
+</section>
+
+</article>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="border-t border-line bg-paper">
+  <div class="max-w-6xl mx-auto px-6 py-10">
+    <div class="flex flex-col md:flex-row justify-between gap-6 text-sm text-ink-soft">
+      <div>
+        <div class="serif text-base text-ink">Praxia <span class="text-ink-soft">Atelier</span></div>
+        <div class="mono text-[11px] uppercase tracking-widest mt-1">Ecosystem architecture · est. 2026</div>
+        <div class="mt-3 space-y-1 text-sm">
+          <div><a href="mailto:info@praxia-atelier.net" class="hover:text-ink">info@praxia-atelier.net</a></div>
+          <div><a href="tel:+34629291238" class="hover:text-ink">+34 629 291 238</a></div>
+          <div>Madrid, España</div>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-6 items-start">
+        <a href="../index.html" class="hover:text-ink">Inicio</a>
+        <a href="../diario.html" class="hover:text-ink">Diario</a>
+        <a href="../diario.html#suscribir" class="hover:text-ink">Newsletter</a>
+        <a href="../insights.html" class="hover:text-ink">Insights</a>
+        <a href="../colaboradores.html" class="hover:text-ink">Colaboradores</a>
+        <a href="../aviso-legal.html" class="hover:text-ink">Aviso legal</a>
+        <a href="../aviso-legal.html#alcance" class="hover:text-ink">Alcance de servicios</a>
+        <a href="../privacidad.html" class="hover:text-ink">Política de privacidad</a>
+      </div>
+    </div>
+    <p class="mono text-[10px] uppercase tracking-widest text-ink-soft mt-8 leading-relaxed max-w-3xl">
+      Praxia Atelier es un estudio de consultoría estratégica y diseño. No prestamos servicios de abogacía, asesoría fiscal regulada ni auditoría — esas funciones las ejercen siempre profesionales colegiados con los que coordinamos. <a href="../aviso-legal.html#alcance" class="underline hover:text-ink">Ver alcance →</a>
+    </p>
+    <div class="mono text-[11px] mt-6 pt-6 border-t border-line flex flex-col md:flex-row justify-between gap-2">
+      <span>© 2026 · Marta Escobar Rojas · Praxia Atelier</span>
+      <span>Hecho en Madrid</span>
+    </div>
+  </div>
+</footer>
+
+<link rel="stylesheet" href="../praxia-chatbox.css">
+<script src="../praxia-chatbox.js" defer></script>
+<script src="../praxia-i18n.js" defer></script>
+</body>
+</html>

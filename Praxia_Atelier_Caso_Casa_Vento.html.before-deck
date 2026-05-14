@@ -1,0 +1,917 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Caso · Casa Vento · Praxia Atelier</title>
+<meta name="description" content="Caso ficticio · Cómo Praxia Atelier transformaría un estudio de diseño y reforma de pisos en una operadora con vehículo de coinversión." />
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1f2e;
+    --ink-soft: #44485a;
+    --paper: #f5f1ea;        /* arena cálida · arquitectura */
+    --line: #ddd5c8;
+    --accent: #4b5d6e;       /* azul pizarra · arquitectura */
+    --accent-soft: #d2dce4;
+    --warm: #b9522e;         /* terracota · acento */
+    --warm-soft: #f3ddd0;
+    --gold: #b08d3a;
+    --gold-soft: #f1e6c5;
+    --moss: #4a5d3a;
+    --moss-soft: #d8dfcd;
+  }
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .serif { font-family: "Fraunces", Georgia, serif; font-optical-sizing: auto; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+  .text-accent { color: var(--accent); }
+  .bg-accent { background: var(--accent); color: #fff; }
+  .bg-accent-soft { background: var(--accent-soft); color: var(--accent); }
+  .bg-warm-soft { background: var(--warm-soft); color: var(--warm); }
+  .bg-gold-soft { background: var(--gold-soft); color: var(--gold); }
+  .bg-moss-soft { background: var(--moss-soft); color: var(--moss); }
+  .border-line { border-color: var(--line); }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 600; }
+  .num { font-family: "Fraunces", serif; font-weight: 600; font-size: 14px; color: var(--accent); }
+  .underline-soft { background-image: linear-gradient(var(--accent), var(--accent)); background-position: 0 95%; background-repeat: no-repeat; background-size: 100% 2px; padding-bottom: 2px; }
+  .grid-bg {
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 4px; }
+  .card-accent { border-left: 3px solid var(--accent); }
+  .card-warm { border-left: 3px solid var(--warm); }
+  .card-gold { border-left: 3px solid var(--gold); }
+  .card-moss { border-left: 3px solid var(--moss); }
+  .arrow { font-family: "JetBrains Mono", monospace; color: var(--accent); }
+
+  /* Tabs */
+  .tabs { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 1px solid var(--line); margin-bottom: 24px; }
+  .tab-btn {
+    padding: 12px 22px;
+    border: 0;
+    background: transparent;
+    color: var(--ink-soft);
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all .15s ease;
+  }
+  .tab-btn:hover { color: var(--ink); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+  .panel { display: none; animation: fadein .25s ease; }
+  .panel.active { display: block; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  /* Mockup frame */
+  .browser { background: #fff; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(20, 30, 35, .08); }
+  .browser-bar { background: linear-gradient(to bottom, #f1edea, #e8e3da); border-bottom: 1px solid var(--line); padding: 10px 14px; display: flex; align-items: center; gap: 8px; }
+  .dot { width: 12px; height: 12px; border-radius: 999px; }
+  .browser-url { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 5px 12px; font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--ink-soft); margin-left: 6px; }
+
+  /* Brand mark */
+  .vento-mark { display: inline-flex; align-items: center; gap: 8px; }
+  .vento-symbol { width: 22px; height: 22px; background: var(--accent); position: relative; border-radius: 2px; }
+  .vento-symbol::after { content: ""; position: absolute; inset: 4px; border: 1.5px solid #fff; border-radius: 1px; }
+  .vento-name { font-family: "Fraunces", serif; font-size: 16px; letter-spacing: .14em; }
+
+  /* App sidebar */
+  .app-side { background: #faf7f2; border-right: 1px solid var(--line); width: 200px; padding: 16px 12px; flex-shrink: 0; }
+  .nav-item { padding: 8px 10px; border-radius: 4px; font-size: 13px; color: var(--ink-soft); display: flex; align-items: center; gap: 10px; cursor: pointer; }
+  .nav-item.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  .nav-icon { width: 14px; height: 14px; border-radius: 3px; background: currentColor; opacity: .6; }
+
+  /* Stats card */
+  .marker-card { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 14px; }
+  .marker-num { font-family: "Fraunces", serif; font-size: 26px; line-height: 1; }
+  .marker-label { font-family: "JetBrains Mono", monospace; font-size: 9.5px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase; margin-top: 6px; }
+  .marker-trend { font-size: 11px; margin-top: 6px; color: var(--accent); }
+
+  /* Property card · estilo inmobiliario */
+  .prop-card { background: #fff; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  .prop-img { aspect-ratio: 16/10; background: linear-gradient(135deg, #d2cdc1 0%, #b8b0a0 100%); position: relative; display: flex; align-items: center; justify-content: center; }
+  .prop-img::before { content: ""; position: absolute; inset: 16px; border: 1px solid rgba(255,255,255,.3); }
+  .prop-img-icon { width: 40px; height: 40px; background: rgba(255,255,255,.2); border-radius: 4px; }
+
+  /* Score / índice de calidad */
+  .score-bar { height: 4px; background: var(--line); border-radius: 999px; overflow: hidden; margin-top: 4px; }
+  .score-fill { height: 100%; background: var(--accent); border-radius: 999px; }
+  .score-fill.high { background: var(--moss); }
+  .score-fill.med { background: var(--gold); }
+  .score-fill.low { background: var(--warm); }
+
+  /* Avatar bubble */
+  .bubble { background: var(--accent-soft); border-radius: 14px 14px 14px 4px; padding: 12px 16px; font-size: 13px; color: var(--ink); max-width: 78%; line-height: 1.5; }
+  .bubble-user { background: var(--ink); color: #fff; border-radius: 14px 14px 4px 14px; margin-left: auto; }
+
+  /* Simulator */
+  .slider-wrap { display: flex; flex-direction: column; gap: 4px; }
+  .slider-label { display: flex; justify-content: space-between; font-size: 12px; }
+  .slider-label .v { font-family: "Fraunces", serif; font-weight: 600; color: var(--accent); }
+  input[type=range] { -webkit-appearance: none; height: 4px; background: var(--line); border-radius: 999px; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: var(--accent); border-radius: 999px; cursor: pointer; }
+
+  .ribbon { display: inline-block; background: var(--gold-soft); color: var(--gold); padding: 3px 10px; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; }
+</style>
+</head>
+<body class="text-ink">
+
+<!-- Top bar -->
+<header class="border-b border-line bg-paper sticky top-0 z-30" style="background: var(--paper);">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-7 h-7 border border-ink flex items-center justify-center">
+        <span class="serif text-lg leading-none">P</span>
+      </div>
+      <div class="leading-tight">
+        <div class="serif text-lg">Praxia <span class="text-ink-soft">Atelier</span></div>
+        <div class="mono text-[10px] text-ink-soft tracking-widest uppercase">Caso · Casa Vento</div>
+      </div>
+    </div>
+    <span class="ribbon hidden md:inline-block">Caso ficticio · prototipo accionable</span>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="relative overflow-hidden border-b border-line">
+  <div class="absolute inset-0 grid-bg opacity-30 pointer-events-none"></div>
+  <div class="relative max-w-6xl mx-auto px-6 py-20 md:py-24">
+    <div class="flex flex-wrap gap-2 mb-6">
+      <span class="pill bg-accent-soft">Real estate · residencial</span>
+      <span class="pill bg-warm-soft">Madrid · Salamanca + Chamberí</span>
+      <span class="pill bg-gold-soft">Modelo híbrido alquiler + venta</span>
+      <span class="pill bg-moss-soft">Cápsula 01 + 02</span>
+    </div>
+    <h1 class="serif text-4xl md:text-6xl leading-[1.05] max-w-4xl">
+      Casa <span class="underline-soft">Vento</span>
+    </h1>
+    <p class="serif text-xl md:text-2xl text-ink-soft mt-4 max-w-3xl italic">
+      De estudio de diseño y reforma de pisos a operadora estructurada con vehículo de coinversión, índice de calidad propio y comunidad de inversores premium.
+    </p>
+    <p class="text-base md:text-lg text-ink-soft mt-8 max-w-3xl">
+      Caso ficticio creado por Praxia Atelier para mostrar, end-to-end y con mockups navegables, cómo se diseña un ecosistema sobre una operadora inmobiliaria pequeña — multiplicando capacidad de adquisición sin renunciar al control de calidad y abriendo dos verticales: vehículo de coinversión privada y club de inquilinos premium.
+    </p>
+
+    <div class="mt-14 grid grid-cols-2 md:grid-cols-4 gap-px bg-line border border-line">
+      <div class="bg-paper p-6">
+        <div class="serif text-3xl">×4,2</div>
+        <div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-2">capacidad de compra año 3</div>
+      </div>
+      <div class="bg-paper p-6">
+        <div class="serif text-3xl">11–14 %</div>
+        <div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-2">TIR objetivo coinversor</div>
+      </div>
+      <div class="bg-paper p-6">
+        <div class="serif text-3xl">8,5 M€</div>
+        <div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-2">vehículo coinversión año 2</div>
+      </div>
+      <div class="bg-paper p-6">
+        <div class="serif text-3xl">14 días</div>
+        <div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-2">para entregar el blueprint</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Brainstorm · contexto -->
+<section class="bg-white border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-12 gap-10">
+    <div class="md:col-span-4">
+      <span class="num">01</span>
+      <h2 class="serif text-3xl mt-3">El punto de partida</h2>
+      <p class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-3">Brainstorm · Día 0</p>
+    </div>
+    <div class="md:col-span-8 space-y-5 text-ink-soft text-lg leading-relaxed">
+      <p>
+        <span class="text-ink font-medium">Casa Vento S.L.</span> opera desde 2022 en Madrid. Fundador: <span class="text-ink font-medium">Iván Soler</span>, ex banca privada y ex-Real Estate Capital de un fondo de inversión, que en 2022 dejó el corporativo para montar su propia firma. Equipo actual: 4 personas (1 arquitecta, 1 gestor de obra, 1 comercial, fundador). En 2025 cerraron <span class="text-ink font-medium">7 operaciones</span> (compra + reforma + alquiler/venta) con un ticket medio de inversión de 380 k€ y un margen bruto del 22 % por operación.
+      </p>
+      <p>
+        Lo que está pasando: la demanda de inversores particulares cualificados que quieren entrar en residencial premium reformado <span class="text-ink font-medium">supera con mucho el capital de Iván</span>. Actualmente cierra cada operación con su propio capital y el de 2-3 amigos cercanos vía préstamos privados. Eso le impide escalar — está dejando de comprar 15-20 pisos al año por falta de cash. Y los amigos quieren una estructura más profesional para entrar más cantidad.
+      </p>
+      <p class="border-l-2 border-accent pl-5 text-ink">
+        En la sesión de brainstorm convertimos Casa Vento de "estudio que opera por proyectos" en una <span class="font-medium">operadora con tres palancas</span>: vehículo de coinversión privada que canaliza el capital de inversores cualificados, club de inquilinos premium que sostiene el cash-flow recurrente, e índice de calidad propio que defiende el precio frente a competencia y bancos.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Las tres palancas -->
+<section class="bg-paper border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <span class="num">02</span>
+    <h2 class="serif text-3xl md:text-4xl mt-3">Las tres palancas del nuevo modelo</h2>
+    <p class="text-ink-soft mt-3 max-w-3xl">Cada palanca por separado tendría sentido limitado. Juntas forman un sistema en el que cada pieza alimenta a las otras y baja el coste de capital.</p>
+
+    <div class="grid md:grid-cols-3 gap-6 mt-10">
+      <div class="card p-7 card-accent">
+        <span class="pill bg-accent-soft">Palanca 1</span>
+        <h3 class="serif text-xl mt-3">Vento Capital · vehículo coinversión</h3>
+        <p class="text-ink-soft text-sm mt-3">Sociedad mercantil ad-hoc por bloque de 5–8 operaciones. Inversor entra desde 50.000 €, recibe TIR objetivo 11–14 % a 24–36 meses, sin gestión activa.</p>
+        <p class="text-ink-soft text-sm mt-3"><span class="text-accent font-medium">Por qué funciona:</span> profesionaliza la entrada de capital amigo + amplía a círculos cualificados (médicos, abogados, ejecutivos) sin caer bajo regulación CNMV. Casa Vento factura un management fee del 1,5 % anual + 20 % de carry sobre rendimiento por encima del 8 % preferente.</p>
+      </div>
+      <div class="card p-7 card-warm">
+        <span class="pill bg-warm-soft">Palanca 2</span>
+        <h3 class="serif text-xl mt-3">Vento Living · club inquilinos premium</h3>
+        <p class="text-ink-soft text-sm mt-3">Membresía anual para inquilinos del portfolio de larga estancia. Ofrece soporte conserje, mantenimiento prioritario, decoración trimestral, eventos en pisos modelo, prioridad en mudanzas a otra unidad.</p>
+        <p class="text-ink-soft text-sm mt-3"><span class="text-accent font-medium">Por qué funciona:</span> reduce rotación (de 18 % anual a &lt;9 % objetivo), aumenta NPS, sube el LTV del inquilino. Cuota anual 980 € que se descuenta del primer mes — percepción de gratis para el inquilino, ingreso recurrente para Vento.</p>
+      </div>
+      <div class="card p-7 card-gold">
+        <span class="pill bg-gold-soft">Palanca 3</span>
+        <h3 class="serif text-xl mt-3">Índice de Calidad Casa Vento</h3>
+        <p class="text-ink-soft text-sm mt-3">Sistema propio de puntuación de pisos sobre 100 puntos en 7 ejes (ubicación, estructura, eficiencia energética, calidad reforma, salida, riesgo, ROI). Aplicado a cada operación antes de comprar y publicado en el dossier al inversor.</p>
+        <p class="text-ink-soft text-sm mt-3"><span class="text-accent font-medium">Por qué funciona:</span> defiende el precio frente al inversor ("no es una corazonada, es un 84/100"), permite conversación profesional con bancos para financiación parcial, y se convierte en IP de la firma — algo que ningún competidor pequeño tiene.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOCKUPS NAVEGABLES -->
+<section class="bg-white border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <span class="num">03</span>
+    <h2 class="serif text-3xl md:text-4xl mt-3">El producto, navegable</h2>
+    <p class="text-ink-soft mt-3 max-w-3xl">Pulsa cada pestaña para ver el ecosistema desde cinco perspectivas: el inversor que evalúa una operación, el inquilino del club, el avatar Vento que perfila inversores, el panel del fundador y el simulador de capital. Es el mismo formato que entregamos en una Cápsula 01 — con la marca, las operaciones reales y los protocolos del cliente.</p>
+
+    <div class="mt-10">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="oportunidad">Oportunidad de inversión</button>
+        <button class="tab-btn" data-tab="club">Club Vento Living</button>
+        <button class="tab-btn" data-tab="avatar">Avatar Vento</button>
+        <button class="tab-btn" data-tab="back">Panel del fundador</button>
+        <button class="tab-btn" data-tab="simulador">Simulador económico</button>
+      </div>
+
+      <!-- TAB · OPORTUNIDAD -->
+      <div class="panel active" data-panel="oportunidad">
+        <div class="browser">
+          <div class="browser-bar">
+            <span class="dot" style="background:#ff5f57"></span>
+            <span class="dot" style="background:#febc2e"></span>
+            <span class="dot" style="background:#28c840"></span>
+            <span class="browser-url">app.casavento.es / oportunidades / OP-2026-014</span>
+          </div>
+          <div style="display: flex; min-height: 540px; background: #faf7f2;">
+            <div class="app-side">
+              <div class="vento-mark mb-5" style="margin-bottom: 20px;">
+                <span class="vento-symbol"></span>
+                <span class="vento-name" style="font-size: 12px;">CASA VENTO</span>
+              </div>
+              <div class="nav-item active"><span class="nav-icon"></span> Oportunidades</div>
+              <div class="nav-item"><span class="nav-icon"></span> Mi cartera</div>
+              <div class="nav-item"><span class="nav-icon"></span> Distribuciones</div>
+              <div class="nav-item"><span class="nav-icon"></span> Dossiers</div>
+              <div class="nav-item"><span class="nav-icon"></span> Avatar Vento</div>
+              <div class="nav-item"><span class="nav-icon"></span> Documentación legal</div>
+              <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--line);">
+                <div class="nav-item"><span class="nav-icon"></span> Mi perfil inversor</div>
+              </div>
+            </div>
+            <div style="flex: 1; padding: 28px;">
+              <!-- Header oportunidad -->
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 18px; border-bottom: 1px solid var(--line);">
+                <div>
+                  <div class="mono" style="font-size: 10px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">OP-2026-014 · cierre suscripción 28 mayo</div>
+                  <h3 class="serif" style="font-size: 24px; margin-top: 4px;">Calle Velázquez 87 · 4ºD</h3>
+                  <div style="font-size: 13px; color: var(--ink-soft); margin-top: 4px;">3 dorm · 142 m² · Salamanca · Madrid</div>
+                </div>
+                <div style="text-align: right;">
+                  <div class="mono" style="font-size: 10px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">Índice Calidad Vento</div>
+                  <div class="serif" style="font-size: 32px; color: var(--accent); margin-top: 2px;">87 / 100</div>
+                </div>
+              </div>
+
+              <!-- Foto + ficha -->
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px;">
+                <div class="prop-img"><div class="prop-img-icon"></div></div>
+                <div>
+                  <div class="mono" style="font-size: 9.5px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">Tesis de la operación</div>
+                  <p style="font-size: 13px; margin-top: 6px; line-height: 1.55; color: var(--ink-soft);">
+                    Edificio 1925 con cédula original. Compra a heredera no profesional con prisa. Reforma integral 110 k€ (cocina abierta, dos baños, suelo recuperado). Salida prevista: alquiler larga estancia 3.200 €/mes a perfil expat senior.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Eje · números clave -->
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 22px;">
+                <div class="marker-card"><div class="marker-num">680 k€</div><div class="marker-label">Coste total</div></div>
+                <div class="marker-card"><div class="marker-num">3.200 €</div><div class="marker-label">Renta mensual obj.</div></div>
+                <div class="marker-card"><div class="marker-num">5,6 %</div><div class="marker-label">Yield bruto</div></div>
+                <div class="marker-card" style="background: var(--accent); color: #fff; border-color: var(--accent);"><div class="marker-num" style="color: #fff;">12,8 %</div><div class="marker-label" style="color: rgba(255,255,255,.75);">TIR proyectada · 36m</div></div>
+              </div>
+
+              <!-- Índice 7 ejes -->
+              <div style="margin-top: 22px;">
+                <div class="mono" style="font-size: 9.5px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">Desglose Índice de Calidad</div>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 24px; margin-top: 10px; font-size: 12px;">
+                  <div>
+                    <div style="display: flex; justify-content: space-between;"><span>Ubicación</span><strong>92</strong></div>
+                    <div class="score-bar"><div class="score-fill high" style="width: 92%;"></div></div>
+                  </div>
+                  <div>
+                    <div style="display: flex; justify-content: space-between;"><span>Estructura</span><strong>88</strong></div>
+                    <div class="score-bar"><div class="score-fill high" style="width: 88%;"></div></div>
+                  </div>
+                  <div>
+                    <div style="display: flex; justify-content: space-between;"><span>Eficiencia energética</span><strong>72</strong></div>
+                    <div class="score-bar"><div class="score-fill med" style="width: 72%;"></div></div>
+                  </div>
+                  <div>
+                    <div style="display: flex; justify-content: space-between;"><span>Calidad reforma esperada</span><strong>90</strong></div>
+                    <div class="score-bar"><div class="score-fill high" style="width: 90%;"></div></div>
+                  </div>
+                  <div>
+                    <div style="display: flex; justify-content: space-between;"><span>Salida (liquidez)</span><strong>85</strong></div>
+                    <div class="score-bar"><div class="score-fill high" style="width: 85%;"></div></div>
+                  </div>
+                  <div>
+                    <div style="display: flex; justify-content: space-between;"><span>Riesgo (legal/comunidad)</span><strong>78</strong></div>
+                    <div class="score-bar"><div class="score-fill med" style="width: 78%;"></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CTA -->
+              <div style="margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; gap: 8px; justify-content: flex-end;">
+                <button style="border: 1px solid var(--line); padding: 8px 16px; border-radius: 4px; font-size: 12px;">Descargar dossier completo</button>
+                <button style="background: var(--accent); color: #fff; padding: 8px 16px; border-radius: 4px; font-size: 12px;">Suscribir desde 50.000 €</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB · CLUB INQUILINO -->
+      <div class="panel" data-panel="club">
+        <div class="browser">
+          <div class="browser-bar">
+            <span class="dot" style="background:#ff5f57"></span>
+            <span class="dot" style="background:#febc2e"></span>
+            <span class="dot" style="background:#28c840"></span>
+            <span class="browser-url">app.casavento.es / mi-casa</span>
+          </div>
+          <div style="display: flex; min-height: 540px;">
+            <div class="app-side">
+              <div class="vento-mark mb-5" style="margin-bottom: 20px;">
+                <span class="vento-symbol"></span>
+                <span class="vento-name" style="font-size: 12px;">VENTO LIVING</span>
+              </div>
+              <div class="nav-item active"><span class="nav-icon"></span> Mi casa</div>
+              <div class="nav-item"><span class="nav-icon"></span> Conserjería</div>
+              <div class="nav-item"><span class="nav-icon"></span> Mantenimiento</div>
+              <div class="nav-item"><span class="nav-icon"></span> Decoración trimestral</div>
+              <div class="nav-item"><span class="nav-icon"></span> Eventos socios</div>
+              <div class="nav-item"><span class="nav-icon"></span> Cambiar de piso</div>
+              <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--line);">
+                <div class="nav-item"><span class="nav-icon"></span> Mi perfil</div>
+              </div>
+            </div>
+            <div style="flex: 1; padding: 28px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 18px; border-bottom: 1px solid var(--line);">
+                <div>
+                  <div class="mono" style="font-size: 10px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">Hola, Lucía</div>
+                  <h3 class="serif" style="font-size: 24px; margin-top: 4px;">Tu casa esta semana</h3>
+                </div>
+                <span class="pill" style="background: var(--warm-soft); color: var(--warm);">Vento Living · socia desde 2025</span>
+              </div>
+
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px;">
+                <div class="marker-card"><div class="marker-num">14 m</div><div class="marker-label">Como inquilina</div></div>
+                <div class="marker-card"><div class="marker-num">9.2 / 10</div><div class="marker-label">NPS último trimestre</div></div>
+                <div class="marker-card"><div class="marker-num">3</div><div class="marker-label">Servicios este mes</div></div>
+                <div class="marker-card"><div class="marker-num">2</div><div class="marker-label">Eventos club abiertos</div></div>
+              </div>
+
+              <div style="margin-top: 22px; background: var(--warm-soft); border-radius: 6px; padding: 16px 18px; display: flex; gap: 14px; align-items: flex-start;">
+                <div style="width: 32px; height: 32px; background: var(--warm); border-radius: 4px; flex-shrink: 0;"></div>
+                <div>
+                  <div class="mono" style="font-size: 9.5px; color: var(--warm); letter-spacing: .12em; text-transform: uppercase;">Vento concierge</div>
+                  <p style="font-size: 13px; margin-top: 4px; line-height: 1.5;">Lucía, vimos en tu encuesta trimestral que el sofá actual ya no encaja con la luz natural del salón. Hemos preparado tres opciones del catálogo Vento — todas tapizadas en lino natural y con descuento de socia. ¿Te las paso?</p>
+                  <div style="margin-top: 10px; display: flex; gap: 8px;">
+                    <button style="background: var(--warm); color: #fff; padding: 6px 14px; border-radius: 4px; font-size: 11px;">Ver opciones</button>
+                    <button style="border: 1px solid var(--warm); color: var(--warm); padding: 6px 14px; border-radius: 4px; font-size: 11px;">Más adelante</button>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: 24px;">
+                <div class="mono" style="font-size: 10px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">Próximamente · solo socios</div>
+                <div style="display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap;">
+                  <div style="border: 1px solid var(--line); padding: 12px 16px; border-radius: 4px; font-size: 12px;"><strong style="color: var(--accent);">10 may</strong> · Cena vecinal · Velázquez 87</div>
+                  <div style="border: 1px solid var(--line); padding: 12px 16px; border-radius: 4px; font-size: 12px;"><strong style="color: var(--accent);">22 may</strong> · Visita estudio diseño Vento</div>
+                  <div style="border: 1px solid var(--line); padding: 12px 16px; border-radius: 4px; font-size: 12px;"><strong style="color: var(--accent);">5 jun</strong> · Charla "vivir mejor en menos m²"</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB · AVATAR -->
+      <div class="panel" data-panel="avatar">
+        <div class="browser">
+          <div class="browser-bar">
+            <span class="dot" style="background:#ff5f57"></span>
+            <span class="dot" style="background:#febc2e"></span>
+            <span class="dot" style="background:#28c840"></span>
+            <span class="browser-url">app.casavento.es / vento</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 320px 1fr; min-height: 540px;">
+            <div style="background: #faf7f2; border-right: 1px solid var(--line); padding: 24px 22px;">
+              <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 14px 0;">
+                <div style="width: 72px; height: 72px; background: linear-gradient(135deg, var(--accent), var(--warm)); border-radius: 4px;"></div>
+                <h4 class="serif" style="font-size: 20px; margin-top: 12px;">Vento</h4>
+                <div class="mono" style="font-size: 9.5px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase; margin-top: 4px;">Avatar de inversión</div>
+              </div>
+              <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line);">
+                <div class="mono" style="font-size: 9.5px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">Lo que sé de ti</div>
+                <ul style="margin-top: 8px; font-size: 12px; color: var(--ink-soft); display: flex; flex-direction: column; gap: 6px;">
+                  <li>· Inversor cualificado · perfil moderado</li>
+                  <li>· Capacidad disponible: 200 k€</li>
+                  <li>· Horizonte 3–5 años</li>
+                  <li>· Prefiere alquiler vs venta (estabilidad)</li>
+                  <li>· Zonas conocidas: Chamberí, Retiro</li>
+                  <li>· Fiscal: tipo marginal 47 %</li>
+                </ul>
+              </div>
+              <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line);">
+                <div class="mono" style="font-size: 9.5px; color: var(--accent); letter-spacing: .12em; text-transform: uppercase;">Privacidad</div>
+                <p style="font-size: 11px; color: var(--ink-soft); margin-top: 6px; line-height: 1.5;">Tus respuestas nunca salen de Casa Vento. Datos en UE · DPIA realizada · revoca el consentimiento cuando quieras.</p>
+              </div>
+            </div>
+            <div style="padding: 24px 28px; display: flex; flex-direction: column;">
+              <div style="font-size: 10px; color: var(--ink-soft); text-align: center; padding-bottom: 10px;">— hoy · 19:08 —</div>
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div class="bubble">Hola Andrés. Acaba de entrar la oportunidad <strong>OP-2026-014 · Velázquez 87</strong>. Por tu perfil (moderado, 200 k€, horizonte largo, prefieres rentas) creo que encaja muy bien. ¿Te paso la tesis en 60 segundos?</div>
+                <div class="bubble bubble-user">Sí, pero sin venderme nada. Solo los números.</div>
+                <div class="bubble">Trato. Coste total 680 k€. Reforma 110 k€ ya cotizada con dos contratistas. Salida prevista alquiler 3.200 €/mes a perfil expat senior. TIR proyectada 12,8 % a 36 meses. Índice Vento 87/100 (te paso el desglose si quieres).
+                <br><br>
+                <strong>Lo que NO me gusta:</strong> el edificio tiene cuotas de comunidad altas (250 €/mes) y derrama prevista en 2027 que ya hemos descontado. Ubicación es buena, no espectacular. Salida más probable: 24 meses, no 36.</div>
+                <div class="bubble bubble-user">Honesto. ¿Cuánto del bloque queda libre?</div>
+                <div class="bubble">El bloque suma 4 operaciones por 2,1 M€ totales. Quedan libres <strong>340 k€</strong> de capital. Si entras con 100 k€ tendrías ~4,8 % del bloque. Cierre de suscripción: 28 mayo. ¿Te agendo llamada con Iván o prefieres leer dossier primero?
+                  <div style="margin-top: 8px; display: flex; gap: 6px;">
+                    <button style="background: var(--accent); color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 11px;">Llamada con Iván</button>
+                    <button style="border: 1px solid var(--accent); color: var(--accent); padding: 6px 12px; border-radius: 4px; font-size: 11px;">Pasar el dossier</button>
+                  </div>
+                </div>
+              </div>
+              <div style="margin-top: auto; padding-top: 16px; border-top: 1px solid var(--line); display: flex; gap: 8px; align-items: center;">
+                <input type="text" placeholder="Escribe a Vento o pulsa para hablar…" style="flex: 1; border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; font-size: 13px;" />
+                <button style="background: var(--accent); color: #fff; width: 36px; height: 36px; border-radius: 999px;">●</button>
+              </div>
+              <div style="font-size: 10px; color: var(--ink-soft); text-align: center; margin-top: 8px;">Vento es un asistente. Las decisiones de inversión las tomas tú. No es asesoramiento financiero regulado.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB · BACK · panel del fundador -->
+      <div class="panel" data-panel="back">
+        <div class="browser">
+          <div class="browser-bar">
+            <span class="dot" style="background:#ff5f57"></span>
+            <span class="dot" style="background:#febc2e"></span>
+            <span class="dot" style="background:#28c840"></span>
+            <span class="browser-url">admin.casavento.es / control</span>
+          </div>
+          <div style="display: flex; min-height: 540px;">
+            <div class="app-side">
+              <div class="vento-mark mb-5" style="margin-bottom: 20px;">
+                <span class="vento-symbol"></span>
+                <span class="vento-name" style="font-size: 12px;">CASA VENTO <span style="color: var(--ink-soft); font-size: 9px;">·admin·</span></span>
+              </div>
+              <div class="nav-item active"><span class="nav-icon"></span> Panel diario</div>
+              <div class="nav-item"><span class="nav-icon"></span> Pipeline compra</div>
+              <div class="nav-item"><span class="nav-icon"></span> Operaciones activas</div>
+              <div class="nav-item"><span class="nav-icon"></span> Inversores</div>
+              <div class="nav-item"><span class="nav-icon"></span> Suscripciones</div>
+              <div class="nav-item"><span class="nav-icon"></span> Reformas en curso</div>
+              <div class="nav-item"><span class="nav-icon"></span> Cartera alquileres</div>
+              <div class="nav-item"><span class="nav-icon"></span> Cumplimiento</div>
+            </div>
+            <div style="flex: 1; padding: 28px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 18px; border-bottom: 1px solid var(--line);">
+                <div>
+                  <div class="mono" style="font-size: 10px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">Iván Soler · 30-abr-2026</div>
+                  <h3 class="serif" style="font-size: 22px; margin-top: 4px;">Tu jornada — bandeja del operador</h3>
+                </div>
+                <div style="text-align: right;">
+                  <div class="serif" style="font-size: 22px; color: var(--accent);">7</div>
+                  <div class="mono" style="font-size: 10px; color: var(--ink-soft); letter-spacing: .12em; text-transform: uppercase;">decisiones que requieren tu visto</div>
+                </div>
+              </div>
+
+              <div style="margin-top: 18px; display: grid; gap: 8px;">
+                <div style="border: 1px solid var(--line); padding: 14px 16px; border-radius: 4px; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center;">
+                  <span class="pill bg-accent-soft">Pipeline</span>
+                  <div style="font-size: 13px;"><strong>OP-2026-014 Velázquez 87</strong> · 60 % suscrito · faltan 8 días para cierre</div>
+                  <div style="display: flex; gap: 6px;">
+                    <button style="background: var(--accent); color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 11px;">Empujar</button>
+                  </div>
+                </div>
+                <div style="border: 1px solid var(--line); padding: 14px 16px; border-radius: 4px; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center;">
+                  <span class="pill bg-warm-soft">Inversor nuevo</span>
+                  <div style="font-size: 13px;"><strong>Pablo G.</strong> · médico · interés 80 k€ · derivación de Marina C. · llamada propuesta jueves</div>
+                  <div style="display: flex; gap: 6px;">
+                    <button style="background: var(--accent); color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 11px;">Confirmar</button>
+                  </div>
+                </div>
+                <div style="border: 1px solid var(--line); padding: 14px 16px; border-radius: 4px; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center;">
+                  <span class="pill bg-gold-soft">Reforma</span>
+                  <div style="font-size: 13px;"><strong>Castelló 28 · 3ºA</strong> · entrega prevista en 9 días · contrato de alquiler ya firmado</div>
+                  <div style="display: flex; gap: 6px;">
+                    <button style="background: var(--accent); color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 11px;">Visita final</button>
+                  </div>
+                </div>
+                <div style="border: 1px solid var(--line); padding: 14px 16px; border-radius: 4px; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center;">
+                  <span class="pill bg-moss-soft">Compra</span>
+                  <div style="font-size: 13px;"><strong>Eloy Gonzalo 14 · 2ºD</strong> · vendedor acepta 540 k€ · Índice Vento 81 · alta probabilidad</div>
+                  <div style="display: flex; gap: 6px;">
+                    <button style="background: var(--accent); color: #fff; padding: 6px 12px; border-radius: 4px; font-size: 11px;">Firma reserva</button>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
+                <div class="marker-card">
+                  <div class="marker-num">11</div>
+                  <div class="marker-label">Operaciones activas</div>
+                  <div class="marker-trend">+4 este trimestre</div>
+                </div>
+                <div class="marker-card">
+                  <div class="marker-num">38</div>
+                  <div class="marker-label">Inversores activos</div>
+                  <div class="marker-trend">14 nuevos en 90 días</div>
+                </div>
+                <div class="marker-card">
+                  <div class="marker-num">94 %</div>
+                  <div class="marker-label">Ocupación cartera alquiler</div>
+                  <div class="marker-trend">objetivo &gt; 92 %</div>
+                </div>
+                <div class="marker-card">
+                  <div class="marker-num">12,4 %</div>
+                  <div class="marker-label">TIR media histórica</div>
+                  <div class="marker-trend">vs prometido 11–14 %</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB · SIMULADOR -->
+      <div class="panel" data-panel="simulador">
+        <div class="browser">
+          <div class="browser-bar">
+            <span class="dot" style="background:#ff5f57"></span>
+            <span class="dot" style="background:#febc2e"></span>
+            <span class="dot" style="background:#28c840"></span>
+            <span class="browser-url">deck.casavento.es / inversores</span>
+          </div>
+          <div style="padding: 32px; background: #faf7f2;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 16px; border-bottom: 1px solid var(--line);">
+              <div>
+                <div class="mono" style="font-size: 10px; color: var(--accent); letter-spacing: .12em; text-transform: uppercase;">Modelo financiero · escenario base</div>
+                <h3 class="serif" style="font-size: 22px; margin-top: 4px;">Simulador de capacidad y rentabilidad</h3>
+              </div>
+              <span class="pill bg-gold-soft">Año 3 proyectado</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 22px;">
+              <div style="display: flex; flex-direction: column; gap: 18px;">
+                <div class="slider-wrap">
+                  <div class="slider-label"><span>Inversores cualificados</span><span class="v" id="vInv">42</span></div>
+                  <input type="range" id="rInv" min="0" max="120" value="42" step="2">
+                </div>
+                <div class="slider-wrap">
+                  <div class="slider-label"><span>Ticket medio (€)</span><span class="v" id="vTicket">125.000 €</span></div>
+                  <input type="range" id="rTicket" min="50000" max="500000" value="125000" step="5000">
+                </div>
+                <div class="slider-wrap">
+                  <div class="slider-label"><span>Operaciones / año</span><span class="v" id="vOps">14</span></div>
+                  <input type="range" id="rOps" min="4" max="40" value="14" step="1">
+                </div>
+                <div class="slider-wrap">
+                  <div class="slider-label"><span>Coste medio operación (€)</span><span class="v" id="vCoste">580.000 €</span></div>
+                  <input type="range" id="rCoste" min="300000" max="1500000" value="580000" step="20000">
+                </div>
+                <div class="slider-wrap">
+                  <div class="slider-label"><span>Margen bruto medio (%)</span><span class="v" id="vMargen">22</span></div>
+                  <input type="range" id="rMargen" min="10" max="35" value="22" step="1">
+                </div>
+                <div class="slider-wrap">
+                  <div class="slider-label"><span>Inquilinos en Vento Living</span><span class="v" id="vSocios">28</span></div>
+                  <input type="range" id="rSocios" min="0" max="100" value="28" step="1">
+                </div>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div class="marker-card" style="padding: 18px;">
+                  <div class="marker-label">Capital total bajo gestión</div>
+                  <div class="marker-num" id="oCapital" style="color: var(--accent); margin-top: 6px;">5.250.000 €</div>
+                  <div style="font-size: 11px; color: var(--ink-soft); margin-top: 6px;">Inversores × ticket medio</div>
+                </div>
+                <div class="marker-card" style="padding: 18px;">
+                  <div class="marker-label">Volumen anual de obra (compra + reforma)</div>
+                  <div class="marker-num" id="oVolumen" style="color: var(--accent); margin-top: 6px;">8.120.000 €</div>
+                  <div style="font-size: 11px; color: var(--ink-soft); margin-top: 6px;">Operaciones × coste medio</div>
+                </div>
+                <div class="marker-card" style="padding: 18px;">
+                  <div class="marker-label">Margen bruto anual (Casa Vento)</div>
+                  <div class="marker-num" id="oMargen" style="color: var(--accent); margin-top: 6px;">1.786.400 €</div>
+                  <div style="font-size: 11px; color: var(--ink-soft); margin-top: 6px;">Volumen × margen %</div>
+                </div>
+                <div class="marker-card" style="padding: 18px;">
+                  <div class="marker-label">Ingresos recurrentes Vento Living</div>
+                  <div class="marker-num" id="oLiving" style="color: var(--accent); margin-top: 6px;">27.440 €</div>
+                  <div style="font-size: 11px; color: var(--ink-soft); margin-top: 6px;">980 €/año × inquilinos socios</div>
+                </div>
+                <div class="marker-card" style="padding: 18px; background: var(--accent); color: #fff; border-color: var(--accent);">
+                  <div class="marker-label" style="color: rgba(255,255,255,.75);">Capacidad de compra · año 3 vs hoy</div>
+                  <div class="marker-num" id="oCapacidad" style="color: #fff; margin-top: 6px;">×4,2</div>
+                  <div style="font-size: 11px; opacity: .85; margin-top: 6px;">vs. modelo "capital amigos" actual</div>
+                </div>
+              </div>
+            </div>
+
+            <p style="font-size: 11px; color: var(--ink-soft); margin-top: 22px; text-align: center;">Simulador interactivo · cifras de ejemplo · entregable real personalizado al cliente</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Niveles de inversor -->
+<section class="bg-paper border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <span class="num">04</span>
+    <h2 class="serif text-3xl md:text-4xl mt-3">Niveles del inversor · estructura del vehículo</h2>
+    <p class="text-ink-soft mt-3 max-w-3xl">Tres tramos de entrada con condiciones diferenciadas. Estructura por bloques cerrados de 5–8 operaciones cada uno, no fondo abierto regulado.</p>
+
+    <div class="grid md:grid-cols-3 gap-6 mt-10">
+      <div class="card p-7 card-accent">
+        <span class="pill bg-accent-soft">Friend</span>
+        <h3 class="serif text-2xl mt-3">Vento Friend</h3>
+        <div class="serif text-3xl mt-4">desde 50.000 €</div>
+        <div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-1">Por bloque · cierre 36 meses</div>
+        <ul class="mt-5 space-y-2 text-sm text-ink-soft">
+          <li class="flex gap-3"><span class="arrow">→</span> Acceso a oportunidades del bloque</li>
+          <li class="flex gap-3"><span class="arrow">→</span> TIR objetivo 11 %</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Reporting trimestral</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Avatar Vento básico</li>
+        </ul>
+      </div>
+      <div class="card p-7 card-warm">
+        <span class="pill bg-warm-soft">Partner</span>
+        <h3 class="serif text-2xl mt-3">Vento Partner</h3>
+        <div class="serif text-3xl mt-4">desde 150.000 €</div>
+        <div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-1">Por bloque · cierre 36 meses</div>
+        <ul class="mt-5 space-y-2 text-sm text-ink-soft">
+          <li class="flex gap-3"><span class="arrow">→</span> Todo lo del Friend +</li>
+          <li class="flex gap-3"><span class="arrow">→</span> TIR objetivo 12 %</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Visita exclusiva a obras</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Avatar Vento completo</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Derecho a co-elegir 1 piso/año</li>
+        </ul>
+      </div>
+      <div class="card p-7 card-gold">
+        <span class="pill bg-gold-soft">Founder</span>
+        <h3 class="serif text-2xl mt-3">Vento Founder</h3>
+        <div class="serif text-3xl mt-4">desde 350.000 €</div>
+        <div class="mono text-[11px] uppercase tracking-widest text-ink-soft mt-1">Compromiso multi-bloque · 5 años</div>
+        <ul class="mt-5 space-y-2 text-sm text-ink-soft">
+          <li class="flex gap-3"><span class="arrow">→</span> Todo lo del Partner +</li>
+          <li class="flex gap-3"><span class="arrow">→</span> TIR objetivo 14 % + carry preferente</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Asiento en consejo asesor</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Voto en política de compra</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Vento Living gratis (si alquila)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Modelo económico para Casa Vento -->
+    <h3 class="serif text-xl mt-14">Cómo gana Casa Vento (transparencia con el inversor)</h3>
+    <div class="mt-5 border border-line overflow-hidden bg-white">
+      <table class="w-full text-sm">
+        <thead style="background: #faf7f2;">
+          <tr class="text-left">
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Concepto</th>
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Importe</th>
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Para qué</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line">
+          <tr><td class="p-4 serif">Setup fee</td><td class="p-4">0,5 % del capital comprometido</td><td class="p-4 text-ink-soft">Estructuración del bloque, due diligence, jurídico</td></tr>
+          <tr style="background: #faf7f2;"><td class="p-4 serif">Management fee</td><td class="p-4">1,5 % anual sobre capital activo</td><td class="p-4 text-ink-soft">Operativa, equipo, software, reporting</td></tr>
+          <tr><td class="p-4 serif">Carry</td><td class="p-4">20 % sobre rendimiento &gt; 8 % preferente</td><td class="p-4 text-ink-soft">Incentivo alineado con el inversor</td></tr>
+          <tr style="background: #faf7f2;"><td class="p-4 serif">Honorarios diseño y reforma</td><td class="p-4">8 % sobre coste de obra</td><td class="p-4 text-ink-soft">Estudio de diseño Casa Vento (servicio externo a la SPV)</td></tr>
+          <tr><td class="p-4 serif">Margen alquiler / venta</td><td class="p-4">Va al bloque (inversor)</td><td class="p-4 text-ink-soft">Rendimiento principal del inversor</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Roadmap accionable -->
+<section class="bg-white border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <span class="num">05</span>
+    <h2 class="serif text-3xl md:text-4xl mt-3">Plan accionable · semana a semana</h2>
+    <p class="text-ink-soft mt-3 max-w-3xl">No un calendario flotante. Cada paso tiene responsable, dependencia y entregable verificable. Esta es exactamente la tabla que entregamos junto al Blueprint de la Cápsula 01.</p>
+
+    <div class="mt-10 border border-line overflow-hidden bg-white">
+      <table class="w-full text-sm">
+        <thead style="background: #faf7f2;">
+          <tr class="text-left">
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Semana</th>
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Hito</th>
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Responsable</th>
+            <th class="p-4 mono text-[11px] uppercase tracking-widest text-ink-soft">Entregable verificable</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-line">
+          <tr><td class="p-4 serif">S1–2</td><td class="p-4">Brainstorm + Blueprint Cápsula 01</td><td class="p-4">Praxia + Iván</td><td class="p-4 text-ink-soft">Dossier 30 pp + prototipo HTML + modelo financiero</td></tr>
+          <tr style="background: #faf7f2;"><td class="p-4 serif">S3–4</td><td class="p-4">Constitución Casa Vento Holding + SPV bloque 01</td><td class="p-4">Notario · abogado mercantil · Praxia coordina</td><td class="p-4 text-ink-soft">Escrituras + pacto de inversores firmado</td></tr>
+          <tr><td class="p-4 serif">S3–5</td><td class="p-4">Definición y validación Índice Calidad Vento</td><td class="p-4">Praxia + Iván + arquitecta</td><td class="p-4 text-ink-soft">Manual del índice + 5 pisos test scoreados</td></tr>
+          <tr style="background: #faf7f2;"><td class="p-4 serif">S5–8</td><td class="p-4">Diseño UX + MVP software (oportunidades + suscripción)</td><td class="p-4">Diseñador externo + dev senior · Praxia dirige</td><td class="p-4 text-ink-soft">Mockups Figma + build navegable en staging</td></tr>
+          <tr><td class="p-4 serif">S8–10</td><td class="p-4">Compliance · revisión CNMV (umbrales) + RGPD + KYC/AML</td><td class="p-4">Abogado regulatorio + DPO</td><td class="p-4 text-ink-soft">Documentación firmada · margen seguridad &lt;150 inversores</td></tr>
+          <tr style="background: #faf7f2;"><td class="p-4 serif">S9–12</td><td class="p-4">Captación primer bloque 2,1 M€ (15–25 inversores)</td><td class="p-4">Iván + Praxia (materiales)</td><td class="p-4 text-ink-soft">Bloque cerrado · primeras suscripciones firmadas</td></tr>
+          <tr><td class="p-4 serif">S12–16</td><td class="p-4">Avatar Vento + integración con CRM y dossiers</td><td class="p-4">IA engineer · Praxia dirige</td><td class="p-4 text-ink-soft">Avatar activo en producción</td></tr>
+          <tr style="background: #faf7f2;"><td class="p-4 serif">S16–24</td><td class="p-4">Lanzamiento Vento Living + onboarding inquilinos cartera</td><td class="p-4">Comercial Casa Vento + Praxia</td><td class="p-4 text-ink-soft">≥60 % cartera adherida · NPS &gt; 8</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-10 grid md:grid-cols-3 gap-6">
+      <div class="card p-6">
+        <span class="pill bg-accent-soft">Equipo externo</span>
+        <h3 class="serif text-lg mt-3">Quién hace qué</h3>
+        <ul class="text-sm text-ink-soft mt-3 space-y-2">
+          <li class="flex gap-3"><span class="arrow">→</span> 1 dev senior full-stack (4 meses)</li>
+          <li class="flex gap-3"><span class="arrow">→</span> 1 IA engineer (2 meses parcial)</li>
+          <li class="flex gap-3"><span class="arrow">→</span> 1 diseñador UX/UI (5 semanas)</li>
+          <li class="flex gap-3"><span class="arrow">→</span> 1 abogado mercantil + 1 regulatorio</li>
+          <li class="flex gap-3"><span class="arrow">→</span> 1 DPO externo (puntual)</li>
+        </ul>
+      </div>
+      <div class="card p-6">
+        <span class="pill bg-gold-soft">Inversión Cápsula 02</span>
+        <h3 class="serif text-lg mt-3">Coste total aterrizaje</h3>
+        <ul class="text-sm text-ink-soft mt-3 space-y-2">
+          <li class="flex gap-3"><span class="arrow">→</span> Honorarios Praxia · 105.000 €</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Equipo externo · ~78.000 €</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Infra y APIs (12 meses) · 14.000 €</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Legal mercantil + regulatorio · 18.000 €</li>
+          <li class="flex gap-3 pt-2 border-t border-line text-ink"><span class="arrow">→</span> <strong>Total año 1: 215.000 €</strong></li>
+        </ul>
+      </div>
+      <div class="card p-6">
+        <span class="pill bg-moss-soft">ROI esperado</span>
+        <h3 class="serif text-lg mt-3">Recuperación</h3>
+        <ul class="text-sm text-ink-soft mt-3 space-y-2">
+          <li class="flex gap-3"><span class="arrow">→</span> Mes 4: setup fee primer bloque cubre OPEX</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Mes 14: management fee y honorarios diseño pagan Cápsula 02</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Año 2: capital bajo gestión 5,2 M€</li>
+          <li class="flex gap-3"><span class="arrow">→</span> Año 3: capacidad ×4,2 vs hoy</li>
+          <li class="flex gap-3 pt-2 border-t border-line text-ink"><span class="arrow">→</span> <strong>+1,7 M€ margen bruto / año 3</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Riesgos y mitigaciones -->
+<section class="bg-paper border-b border-line">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    <span class="num">06</span>
+    <h2 class="serif text-3xl md:text-4xl mt-3">Riesgos y mitigaciones</h2>
+    <p class="text-ink-soft mt-3 max-w-3xl">Real estate residencial con coinversión privada tiene puntos calientes muy concretos. Tipificarlos por escrito antes de captar es lo que separa una operadora seria de una "amistad con dinero".</p>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-10">
+      <div class="card p-6">
+        <span class="pill bg-warm-soft">Regulatorio</span>
+        <h3 class="serif text-lg mt-3">Riesgo de ser considerado fondo regulado (CNMV)</h3>
+        <p class="text-sm text-ink-soft mt-2">Si la captación es masiva, abierta al público y/o supera 150 inversores no profesionales, riesgo de SGIIC y supervisión CNMV.</p>
+        <p class="text-sm text-accent mt-3"><span class="font-medium">Mitigación:</span> club privado &lt;150 inversores cualificados por bloque, ticket mínimo 50 k€, captación nominativa, sin publicidad pública. Asesoría regulatoria antes del primer cierre. SPV ad-hoc por bloque.</p>
+      </div>
+      <div class="card p-6">
+        <span class="pill bg-accent-soft">Mercado</span>
+        <h3 class="serif text-lg mt-3">Caída del mercado inmobiliario madrileño</h3>
+        <p class="text-sm text-ink-soft mt-2">Subida de tipos, regulación de alquiler o crisis macroeconómica pueden bajar el precio de salida.</p>
+        <p class="text-sm text-accent mt-3"><span class="font-medium">Mitigación:</span> modelo híbrido 60 % alquiler / 40 % venta da resiliencia. Índice de Calidad &gt; 80 sólo en zonas de demanda estructural. Stress test del modelo financiero a -15 % de precio publicado en cada dossier.</p>
+      </div>
+      <div class="card p-6">
+        <span class="pill bg-gold-soft">Operativo</span>
+        <h3 class="serif text-lg mt-3">Sobrecoste de obra y plazos</h3>
+        <p class="text-sm text-ink-soft mt-2">Las reformas integrales se desvían en presupuesto y plazo en el 40 % de los casos del sector.</p>
+        <p class="text-sm text-accent mt-3"><span class="font-medium">Mitigación:</span> doble cotización por contratista, contingencia 10 % en cada operación, contratos a precio cerrado con penalizaciones, supervisión semanal con la arquitecta del estudio.</p>
+      </div>
+      <div class="card p-6">
+        <span class="pill bg-moss-soft">RGPD + financiero</span>
+        <h3 class="serif text-lg mt-3">Datos sensibles del inversor + KYC/AML</h3>
+        <p class="text-sm text-ink-soft mt-2">Información patrimonial, perfil de riesgo, identidad fiscal. Obligación de prevención de blanqueo (Ley 10/2010).</p>
+        <p class="text-sm text-accent mt-3"><span class="font-medium">Mitigación:</span> consentimiento explícito por categoría, datos en UE, KYC/AML automatizado vía proveedor (Onfido o similar), DPO externo certificado, archivo durante 10 años.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cierre -->
+<section style="background: #1a2733; color: #ffffff;">
+  <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+    <span class="serif" style="color: #b08d3a; font-size: 18px; font-weight: 600;">·</span>
+    <h2 class="serif" style="color: #ffffff; font-size: clamp(28px, 5vw, 48px); line-height: 1.1; margin-top: 12px; font-weight: 600;">Esto es lo que entregamos en 14 días.</h2>
+    <p style="color: rgba(255,255,255,.85); font-size: 17px; line-height: 1.6; margin-top: 22px; max-width: 640px; margin-left: auto; margin-right: auto;">
+      Caso ficticio · Casa Vento nunca ha existido. Lo que sí es real es el método, las pantallas, el roadmap, el índice de calidad y los riesgos — exactamente lo que se construye en una Cápsula 01 con un cliente. Si tu operadora inmobiliaria, family office o proyecto residencial necesita un sistema así, hablemos.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-4">
+      <a href="https://cal.com/marta-escobar-rojas-teatxg/30min" target="_blank" rel="noopener" style="background: #ffffff; color: #1a2733; padding: 16px 28px; border-radius: 4px; font-weight: 600;" class="hover:opacity-90">Reservar 30 min con Marta · gratis</a>
+      <button type="button" onclick="if(window.PraxiaChat&&window.PraxiaChat.open){window.PraxiaChat.open()}else{document.querySelector('.pchat-fab')&&document.querySelector('.pchat-fab').click()}" style="border: 1px solid rgba(255,255,255,.6); color: #ffffff; padding: 16px 28px; border-radius: 4px; background: transparent; cursor: pointer; font: inherit;" class="hover:bg-white hover:text-ink transition">Hablar con el asistente</button>
+    </div>
+    <div class="mt-6 flex flex-wrap justify-center gap-6 text-sm" style="color: rgba(255,255,255,.7);">
+      <a href="index.html#capsulas" class="hover:text-white underline-offset-4 hover:underline">Ver detalle de cápsulas y precios →</a>
+      <a href="mailto:info@praxia-atelier.net" class="hover:text-white underline-offset-4 hover:underline">info@praxia-atelier.net</a>
+    </div>
+    <div class="mono" style="color: rgba(255,255,255,.65); letter-spacing: .12em; text-transform: uppercase; font-size: 11px; margin-top: 48px;">
+      · Praxia Atelier · Caso Casa Vento v1.0 · 2026 ·
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-t border-line bg-paper">
+  <div class="max-w-6xl mx-auto px-6 py-10 text-sm text-ink-soft">
+    <p class="mono text-[11px] uppercase tracking-widest">Aviso · Caso de demostración</p>
+    <p class="mt-2 max-w-3xl">
+      "Casa Vento", "Iván Soler", "Vento Capital" y "Vento Living" son ficticios, creados por Praxia Atelier exclusivamente con fines comerciales y de demostración. Cualquier parecido con operadoras inmobiliarias, profesionales o productos reales es coincidencia. Las pantallas, cifras y proyecciones son ilustrativas. Ni este documento ni el sitio constituyen asesoramiento financiero, fiscal o legal. En un proyecto real todo el contenido se construye y valida con el cliente bajo NDA y con asesoría regulatoria específica.
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.querySelector(`.panel[data-panel="${tab}"]`).classList.add('active');
+    });
+  });
+
+  // Simulator
+  const fmt = (n) => Math.round(n).toLocaleString('es-ES');
+  function recalcular() {
+    const inv = +document.getElementById('rInv').value;
+    const ticket = +document.getElementById('rTicket').value;
+    const ops = +document.getElementById('rOps').value;
+    const coste = +document.getElementById('rCoste').value;
+    const margen = +document.getElementById('rMargen').value;
+    const socios = +document.getElementById('rSocios').value;
+
+    document.getElementById('vInv').textContent = fmt(inv);
+    document.getElementById('vTicket').textContent = fmt(ticket) + ' €';
+    document.getElementById('vOps').textContent = ops;
+    document.getElementById('vCoste').textContent = fmt(coste) + ' €';
+    document.getElementById('vMargen').textContent = margen;
+    document.getElementById('vSocios').textContent = socios;
+
+    const capital = inv * ticket;
+    const volumen = ops * coste;
+    const margenBruto = volumen * (margen / 100);
+    const ingresosLiving = socios * 980;
+    // capacidad vs baseline (5 ops/año "modelo amigos" → ratio actual = ops/5)
+    const capacidad = ops / 5;
+
+    document.getElementById('oCapital').textContent = fmt(capital) + ' €';
+    document.getElementById('oVolumen').textContent = fmt(volumen) + ' €';
+    document.getElementById('oMargen').textContent = fmt(margenBruto) + ' €';
+    document.getElementById('oLiving').textContent = fmt(ingresosLiving) + ' €';
+    document.getElementById('oCapacidad').textContent = '×' + capacidad.toFixed(1).replace('.', ',');
+  }
+  document.querySelectorAll('input[type=range]').forEach(r => r.addEventListener('input', recalcular));
+  recalcular();
+</script>
+
+<!-- Praxia Chatbox · cargado externo (un solo archivo para todas las páginas) -->
+<link rel="stylesheet" href="praxia-chatbox.css">
+<script src="praxia-chatbox.js" defer></script>
+<script src="praxia-i18n.js" defer></script>
+
+</body>
+</html>

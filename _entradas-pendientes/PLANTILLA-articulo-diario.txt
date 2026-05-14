@@ -1,0 +1,108 @@
+============================================================
+PLANTILLA · NUEVO ARTÍCULO DEL DIARIO
+============================================================
+Copia este bloque entero y pégalo en el chat con el asistente
+de Praxia, rellenando los campos. En unos minutos lo monta
+con SEO, schema, OG y todo en su sitio.
+============================================================
+
+Tengo un artículo nuevo para el Diario:
+
+TÍTULO: [el titular del artículo · que sea concreto y editorial,
+no genérico. Mejor: "Por qué una AIE cambia la economía de
+cualquier vehículo de coinversión privado" · Peor: "Sobre las AIE"]
+
+SUBTÍTULO/ENTRADILLA: [1-2 frases que enganchen al lector y
+resuman lo que va a aprender · ej. "La AIE no es solo una
+estructura jurídica. Es lo que permite que un grupo de socios
+coinviertan sin entrar en CNMV — y por qué ese matiz cambia
+modelos enteros."]
+
+CATEGORÍA: [una sola · elige de la lista:
+- Modelo económico
+- Jurídico-fiscal
+- IA aplicada
+- Capital y captación
+- Producto digital
+- Operaciones
+- Marketing y posicionamiento
+- Comercial
+- Estrategia]
+
+FECHA DE PUBLICACIÓN: [YYYY-MM-DD · hoy o la que quieras]
+
+LECTURA APROXIMADA: [X minutos · estima 200 palabras = 1 minuto]
+
+ETIQUETAS: [3-5 etiquetas separadas por coma · ej. AIE,
+vehículo de coinversión, family business, fiscal, comunidad]
+
+CUERPO:
+
+[Aquí el artículo entero en texto plano. Reglas:
+
+- Párrafos de 3-5 líneas, frases cortas. Editorial, no whatsapp.
+- Para subtítulos grandes, ponlos así:
+  ## Subtítulo grande
+- Para subtítulos más pequeños:
+  ### Subtítulo pequeño
+- Para negrita: **palabra**
+- Para cursiva: _palabra_
+- Para enlaces: [texto del enlace](https://url-completa)
+- Para una cita destacada (ancla del artículo):
+  > Esta es la frase que quieres que destaque visualmente.
+- Para una lista:
+  - Punto uno
+  - Punto dos
+- Para una línea separadora visual: ---
+]
+
+
+============================================================
+EJEMPLO COMPLETO RELLENADO (no es real)
+============================================================
+
+Tengo un artículo nuevo para el Diario:
+
+TÍTULO: Por qué una AIE cambia la economía de cualquier
+vehículo de coinversión privado.
+
+SUBTÍTULO: La AIE no es solo una estructura jurídica. Es lo
+que permite que un grupo de socios coinviertan sin entrar en
+CNMV — y por qué ese matiz cambia modelos enteros.
+
+CATEGORÍA: Jurídico-fiscal
+
+FECHA: 2026-05-15
+
+LECTURA: 7 min
+
+ETIQUETAS: AIE, vehículo de coinversión, family business,
+fiscal, comunidad
+
+CUERPO:
+
+La primera vez que vi una AIE bien diseñada me di cuenta de
+algo: la mayoría de los proyectos de coinversión privada que
+fracasan no fracasan por el producto, fracasan por la
+estructura.
+
+Llevo tres años trabajando con family offices, asociaciones y
+clubes privados que querían **coinvertir entre sí** sin entrar
+en el régimen de fondos regulados de la CNMV. Todos llegaban
+con la misma pregunta: "¿hay alguna forma legal de hacer esto?"
+
+La respuesta corta es sí. Y se llama AIE.
+
+## Qué es una AIE, en una frase
+
+[continúa el artículo con secciones, citas, etc.]
+
+> La AIE no compite con la SL. Es una capa por encima.
+
+[más cuerpo del artículo]
+
+---
+
+ETIQUETAS: AIE, vehículo de coinversión, family business
+
+============================================================
